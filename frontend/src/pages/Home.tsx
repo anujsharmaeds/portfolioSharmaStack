@@ -53,7 +53,7 @@ const Home: React.FC = () => {
       description: 'Scalable gambling platform handling 10K+ concurrent users',
       technologies: ['React.js', 'Node.js', 'Socket.IO', 'MongoDB'],
       metrics: '30% faster transaction processing',
-      image: 'https://images.unsplash.com/photo-1620278233226-7e5e9a1c8a7d?auto=format&fit=crop&w=800',
+      image: 'https://images.pexels.com/photos/6664179/pexels-photo-6664179.jpeg?auto=compress&cs=tinysrgb&w=800',
       liveUrl: '#',
       codeUrl: '#',
     },
