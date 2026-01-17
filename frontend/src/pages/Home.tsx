@@ -40,7 +40,7 @@ const Home: React.FC = () => {
 
   const projects = [
     {
-      title: 'Media Intelligence Platform',
+      title: 'Publish Ads And Keep The Track',
       description: 'AI-powered analytics platform for enterprise clients',
       technologies: ['Next.js', 'NestJS', 'MongoDB', 'AWS'],
       metrics: '60% reduction in manual effort',

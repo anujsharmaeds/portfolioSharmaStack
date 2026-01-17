@@ -12,7 +12,7 @@ const Projects: React.FC = () => {
   const projects = [
     {
       id: 1,
-      title: 'Media Intelligence Platform',
+      title: 'Publish Ads And Keep The Track',
       description: 'AI-powered analytics platform for enterprise clients with automated budget allocation',
       longDescription: 'Led development of enterprise-scale media analytics platform using Next.js and NestJS. Implemented AI-driven budget optimization system using prompt engineering and data analysis.',
       technologies: ['Next.js', 'NestJS', 'MongoDB', 'AWS', 'OpenAI', 'Redis'],

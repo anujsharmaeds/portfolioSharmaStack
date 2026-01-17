@@ -19,7 +19,7 @@ const resources = {
       'hero.description': '4.5+ years crafting scalable web applications. Open to relocation in Europe.',
       'hero.cta.hire': 'Hire Me',
       'hero.cta.projects': 'View Projects',
-      'hero.based': 'Based in Pune, India',
+      'hero.based': 'Based in Delhi, India',
       'hero.target': 'Target: European Tech Market',
       
       // Services
