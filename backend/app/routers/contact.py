@@ -137,15 +137,17 @@ async def send_admin_notification(contact: ContactCreate):
                 f"⏳ <b>Timeline:</b> {html.escape(contact.timeline) if contact.timeline else 'N/A'}\n\n"
                 f"💬 <b>Message:</b>\n{safe_message}"
             )
-            async with httpx.AsyncClient() as client:
-                resp = await client.post(telegram_url, json={
-                    "chat_id": chat_id,
-                    "text": message,
-                    "parse_mode": "HTML"
-                })
-                print(f"Telegram API Response: {resp.status_code} - {resp.text}")
-                if resp.status_code != 200:
-                    print(f"Telegram Error Details: {resp.json()}")
+            
+            import requests
+            resp = requests.post(telegram_url, json={
+                "chat_id": chat_id,
+                "text": message,
+                "parse_mode": "HTML"
+            }, timeout=10)
+            
+            print(f"Telegram API Response: {resp.status_code} - {resp.text}")
+            if resp.status_code != 200:
+                print(f"Telegram Error Details: {resp.json()}")
         except Exception as e:
             import traceback
             print(f"CRITICAL: Failed to send Telegram notification: {e}")
