@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-hot-toast';
 
 interface ContactFormData {
   name: string;
@@ -19,9 +20,7 @@ interface ContactFormData {
 const ContactForm: React.FC = () => {
   const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [submitMessage, setSubmitMessage] = useState('');
-  
+
   const {
     register,
     handleSubmit,
@@ -35,8 +34,7 @@ const ContactForm: React.FC = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    setSubmitStatus('idle');
-    
+
     try {
       // Simulate API call - replace with actual backend endpoint
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
@@ -49,28 +47,14 @@ const ContactForm: React.FC = () => {
       });
 
       if (response.ok) {
-        setSubmitStatus('success');
-        setSubmitMessage('Thank you! Your message has been sent. I\'ll get back to you within 24 hours.');
+        toast.success('Thank you! Your message has been sent. I\'ll get back to you within 24 hours.');
         reset();
-        
-        // Clear success message after 5 seconds
-        setTimeout(() => {
-          setSubmitStatus('idle');
-          setSubmitMessage('');
-        }, 5000);
       } else {
         throw new Error('Failed to send message');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-      setSubmitMessage('Something went wrong. Please try again or contact me directly at anujankur13@gmail.com');
-      
-      // Clear error message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus('idle');
-        setSubmitMessage('');
-      }, 5000);
+      toast.error('Something went wrong. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -110,7 +94,7 @@ const ContactForm: React.FC = () => {
             {t('contact.form.name')} *
           </label>
           <input
-            {...register('name', { 
+            {...register('name', {
               required: 'Name is required',
               minLength: { value: 2, message: 'Name must be at least 2 characters' }
             })}
@@ -156,7 +140,7 @@ const ContactForm: React.FC = () => {
             type="tel"
             {...register('phone')}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            placeholder="+91 75250 71752"
+            placeholder="+91 XXXXXXXXXX"
             disabled={isSubmitting}
           />
         </div>
@@ -180,7 +164,7 @@ const ContactForm: React.FC = () => {
           {t('contact.form.subject')} *
         </label>
         <input
-          {...register('subject', { 
+          {...register('subject', {
             required: 'Subject is required',
             minLength: { value: 5, message: 'Subject must be at least 5 characters' }
           })}
@@ -257,42 +241,7 @@ const ContactForm: React.FC = () => {
         </div>
       </div>
 
-      {/* Submit Status Messages */}
-      {submitStatus === 'success' && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-start space-x-3"
-        >
-          <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-          <div>
-            <p className="text-green-700 dark:text-green-400 font-medium">
-              Message sent successfully!
-            </p>
-            <p className="text-green-600 dark:text-green-500 text-sm mt-1">
-              {submitMessage}
-            </p>
-          </div>
-        </motion.div>
-      )}
 
-      {submitStatus === 'error' && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-start space-x-3"
-        >
-          <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
-          <div>
-            <p className="text-red-700 dark:text-red-400 font-medium">
-              Failed to send message
-            </p>
-            <p className="text-red-600 dark:text-red-500 text-sm mt-1">
-              {submitMessage}
-            </p>
-          </div>
-        </motion.div>
-      )}
 
       {/* Submit Button */}
       <motion.button

@@ -50,7 +50,7 @@ const Home: React.FC = () => {
     },
     {
       title: 'Real-time Betting Platform',
-      description: 'Scalable gambling platform handling 10K+ concurrent users',
+      description: 'Scalable Casino platform handling 10K+ concurrent users',
       technologies: ['React.js', 'Node.js', 'Socket.IO', 'MongoDB'],
       metrics: '30% faster transaction processing',
       image: 'https://images.pexels.com/photos/6664179/pexels-photo-6664179.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -71,9 +71,9 @@ const Home: React.FC = () => {
   return (
     <div>
       <Hero />
-      
+
       <Stats />
-      
+
       {/* Services Preview */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">

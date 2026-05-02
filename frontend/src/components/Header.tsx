@@ -26,14 +26,27 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">AS</span>
+          <Link to="/" className="flex items-center space-x-3">
+
+            {/* Logo Box */}
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
+              <img
+                src="/sharmaStack_S_allwork.svg"
+                alt="SharmaStack Logo"
+                className="w-72 h-72 md:w-72 md:h-72 object-contain"
+              />
             </div>
-            <div>
-              <h1 className="text-xl font-bold">Anuj Sharma</h1>
-              <p className="text-xs text-gray-600 dark:text-gray-400">Senior Full Stack Developer</p>
+
+            {/* Text */}
+            <div className="flex flex-col justify-center leading-tight">
+              <h1 className="text-lg font-semibold text-white">
+                SharmaStack
+              </h1>
+              <p className="text-[10px] uppercase tracking-wider text-gray-400">
+                Web Development • AI • IoT • FinTech • Scalable Systems • 5+ Years
+              </p>
             </div>
+
           </Link>
 
           {/* Desktop Navigation */}

@@ -208,8 +208,10 @@ const Hero: React.FC = () => {
             >
               {/* Name centered at top */}
               <div className="mb-8">
-                <h1 className="text-5xl md:text-7xl font-bold mb-2">
-                  <span className="gradient-text">Anuj Sharma</span>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
+                  {/* <span className="text-gray-900 dark:text-white">Anuj Sharma</span> */}
+                  {/* <span className="hidden md:inline text-gray-300 dark:text-gray-700">|</span> */}
+                  <span className="gradient-text">SharmaStack</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400">
                   {t('hero.title')}
@@ -269,7 +271,7 @@ const Hero: React.FC = () => {
               {/* Quick Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
                 {[
-                  { value: '4.5+', label: t('about.experience', 'Years Experience') },
+                  { value: '5+', label: t('about.experience', 'Years Experience') },
                   { value: '50+', label: t('about.projects', 'Projects') },
                   { value: '30+', label: t('about.clients', 'Happy Clients') },
                   { value: '100%', label: t('status.remote', 'Remote Ready') },

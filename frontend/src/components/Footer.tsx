@@ -49,15 +49,15 @@ const Footer: React.FC = () => {
           <div>
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AS</span>
+                <span className="text-white font-bold text-xl">SS</span>
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">Anuj Sharma</h2>
-                <p className="text-sm text-gray-400">Senior Full Stack Developer</p>
+                <h2 className="text-xl font-bold text-white">sharmaStack</h2>
+                {/* <p className="text-sm text-gray-400">Senior Full Stack Developer</p> */}
               </div>
             </div>
             <p className="text-gray-400 mb-6">
-              Building scalable web applications with modern technologies. 
+              Building scalable web applications with modern technologies.
               Open to European opportunities and relocation.
             </p>
             <div className="flex space-x-4">
@@ -113,21 +113,21 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">+91 75250 71752</span>
+                <span className="text-gray-400">+91 xxxxxxxxxx</span>
               </li>
               <li className="flex items-start space-x-3">
                 <Mail className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <a 
-                  href="mailto:anujankur13@gmail.com"
+                <a
+                  href="mailto:[EMAIL_ADDRESS]"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  anujankur13@gmail.com
+                  [EMAIL_ADDRESS]
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
                 <span className="text-gray-400">
-                  Pune, India
+                  Gurugram, Haryana, India
                   <br />
                   <span className="text-sm">Open to European Relocation</span>
                 </span>
@@ -164,16 +164,16 @@ const Footer: React.FC = () => {
             <p className="text-gray-500 text-sm">
               © {currentYear} Anuj Sharma. {t('footer.rights')}
             </p>
-            
+
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-500 hover:text-white text-sm transition-colors"
               >
                 {t('footer.privacy')}
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-gray-500 hover:text-white text-sm transition-colors"
               >
                 {t('footer.terms')}

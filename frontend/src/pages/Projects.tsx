@@ -33,7 +33,7 @@ const Projects: React.FC = () => {
     {
       id: 2,
       title: 'Real-time Betting Platform',
-      description: 'Scalable gambling platform handling 10K+ concurrent users with live event streaming',
+      description: 'Scalable Casino platform handling 10K+ concurrent users with live event streaming',
       longDescription: 'Engineered real-time casino betting platforms with React.js and Node.js. Implemented Socket.IO for live event streaming and optimized MongoDB for high-performance transactions.',
       technologies: ['React.js', 'Node.js', 'Socket.IO', 'MongoDB', 'Docker', 'Redis'],
       category: 'scalable',
@@ -143,8 +143,8 @@ const Projects: React.FC = () => {
   const filteredProjects = projects.filter(project => {
     const matchesFilter = activeFilter === 'all' || project.category === activeFilter;
     const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
+      project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesFilter && matchesSearch;
   });
 
@@ -159,7 +159,7 @@ const Projects: React.FC = () => {
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
             {t('projects.subtitle')}
           </p>
-          
+
           {/* Stats */}
           <div className="flex flex-wrap justify-center gap-8 mb-12">
             {[
@@ -205,7 +205,7 @@ const Projects: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Filter Button (Mobile) */}
               <button className="md:hidden flex items-center justify-center px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl">
                 <Filter className="w-5 h-5 mr-2" />
@@ -219,11 +219,10 @@ const Projects: React.FC = () => {
                 <button
                   key={filter.id}
                   onClick={() => setActiveFilter(filter.id)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                    activeFilter === filter.id
+                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeFilter === filter.id
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
                       : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
+                    }`}
                 >
                   {filter.label}
                 </button>

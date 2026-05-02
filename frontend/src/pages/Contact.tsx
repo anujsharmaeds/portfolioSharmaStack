@@ -12,33 +12,33 @@ const Contact: React.FC = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: t('contact.info.phone'),
-      value: '+91 75250 71752',
-      link: 'tel:+917525071752',
+      value: '+91 XXXXXXXXX',
+      link: 'tel:+91XXXXXXXXX',
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: t('contact.info.email'),
-      value: 'anujankur13@gmail.com',
-      link: 'mailto:anujankur13@gmail.com',
+      value: "[EMAIL_ADDRESS]",
+      link: "mailto:[EMAIL_ADDRESS]",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: t('contact.info.location'),
-      value: 'Gurugram, India | Open to European Relocation',
-      link: 'https://maps.google.com/?q=Gurugram+India',
+      value: 'Gurugram, Haryana, India | Open to European Relocation',
+      link: 'https://maps.google.com/?q=Gurugram+Haryana+India',
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       title: t('contact.info.linkedin'),
-      value: 'linkedin.com/in/anujsharma007',
-      link: 'https://linkedin.com/in/anujsharma007',
+      value: 'linkedin.com/in/konnecto-iot',
+      link: 'https://www.linkedin.com/company/konnecto-iot/',
     },
-    {
-      icon: <Github className="w-6 h-6" />,
-      title: t('contact.info.github'),
-      value: 'github.com/anujsharma',
-      link: 'https://github.com/anujsharma',
-    },
+    // {
+    //   icon: <Github className="w-6 h-6" />,
+    //   title: t('contact.info.github'),
+    //   value: 'github.com/anujsharma',
+    //   link: 'https://github.com/anujsharma',
+    // },
   ];
 
   const inquiryTypes = [
@@ -103,7 +103,7 @@ const Contact: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
                 {t('contact.info.title')}
               </h2>
-              
+
               <div className="space-y-6">
                 {contactInfo.map((info) => (
                   <a
@@ -142,17 +142,16 @@ const Contact: React.FC = () => {
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
                 What can I help you with?
               </h3>
-              
+
               <div className="space-y-4">
                 {inquiryTypes.map((type) => (
                   <button
                     key={type.id}
                     onClick={() => setActiveTab(type.id)}
-                    className={`w-full text-left p-4 rounded-xl transition-all ${
-                      activeTab === type.id
-                        ? 'bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border-2 border-blue-500'
-                        : 'bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 border border-transparent'
-                    }`}
+                    className={`w-full text-left p-4 rounded-xl transition-all ${activeTab === type.id
+                      ? 'bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border-2 border-blue-500'
+                      : 'bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 border border-transparent'
+                      }`}
                   >
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="font-semibold text-gray-800 dark:text-white">
@@ -186,7 +185,7 @@ const Contact: React.FC = () => {
                 <Clock className="w-6 h-6 mr-2" />
                 European Availability
               </h3>
-              
+
               <div className="space-y-4">
                 {europeAvailability.map((zone) => (
                   <div key={zone.timezone} className="flex justify-between items-center">
@@ -199,7 +198,7 @@ const Contact: React.FC = () => {
                   </div>
                 ))}
               </div>
-              
+
               <div className="mt-6 p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   <span className="font-semibold">Note:</span> Available for synchronous meetings during CET business hours. Quick responses available 24/7 via email.
@@ -224,7 +223,7 @@ const Contact: React.FC = () => {
                   </h2>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Fill out the form below and I'll get back to you as soon as possible. 
+                  Fill out the form below and I'll get back to you as soon as possible.
                   For urgent matters, please call directly.
                 </p>
               </div>
@@ -243,7 +242,7 @@ const Contact: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
                   What happens next?
                 </h3>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {[
                     {

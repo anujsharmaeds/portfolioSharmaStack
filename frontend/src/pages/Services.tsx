@@ -167,21 +167,19 @@ const Services: React.FC = () => {
             <div className="bg-white dark:bg-gray-800 rounded-xl p-1 inline-flex mx-auto">
               <button
                 onClick={() => setBillingCycle('project')}
-                className={`px-8 py-3 rounded-lg font-medium transition-all ${
-                  billingCycle === 'project'
+                className={`px-8 py-3 rounded-lg font-medium transition-all ${billingCycle === 'project'
                     ? 'bg-blue-600 text-white'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                }`}
+                  }`}
               >
                 {t('service.billing.project', 'Project-Based')}
               </button>
               <button
                 onClick={() => setBillingCycle('monthly')}
-                className={`px-8 py-3 rounded-lg font-medium transition-all ${
-                  billingCycle === 'monthly'
+                className={`px-8 py-3 rounded-lg font-medium transition-all ${billingCycle === 'monthly'
                     ? 'bg-blue-600 text-white'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                }`}
+                  }`}
               >
                 {t('service.billing.monthly', 'Monthly Retainer')}
               </button>
@@ -201,11 +199,10 @@ const Services: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative rounded-2xl p-8 border-2 transition-all duration-300 ${
-                  pkg.popular
+                className={`relative rounded-2xl p-8 border-2 transition-all duration-300 ${pkg.popular
                     ? 'border-blue-500 shadow-2xl scale-105 bg-gradient-to-b from-white to-blue-50 dark:from-gray-800 dark:to-blue-900/10'
                     : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800'
-                }`}
+                  }`}
               >
                 {pkg.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
@@ -259,11 +256,10 @@ const Services: React.FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`w-full py-3 rounded-lg font-medium transition-colors ${
-                    pkg.popular
+                  className={`w-full py-3 rounded-lg font-medium transition-colors ${pkg.popular
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:opacity-90'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
-                  }`}
+                    }`}
                 >
                   {pkg.name === t('service.enterprise')
                     ? t('service.cta.contact')

@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from './providers/ThemeProvider';
@@ -33,6 +34,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <I18nProvider>
+          <Toaster position="top-right" />
           <Router>
             <Layout>
               <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>

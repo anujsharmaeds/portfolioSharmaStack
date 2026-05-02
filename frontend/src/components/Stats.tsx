@@ -9,7 +9,7 @@ const Stats: React.FC = () => {
   const stats = [
     {
       icon: <Code className="w-8 h-8" />,
-      value: '4.5+',
+      value: '5+',
       label: t('about.experience'),
       description: 'Years in Full Stack Development'
     },
@@ -79,15 +79,15 @@ const Stats: React.FC = () => {
                     {stat.icon}
                   </div>
                 </div>
-                
+
                 <div className="text-3xl font-bold gradient-text mb-2">
                   {stat.value}
                 </div>
-                
+
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
                   {stat.label}
                 </h3>
-                
+
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   {stat.description}
                 </p>

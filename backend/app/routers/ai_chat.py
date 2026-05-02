@@ -23,9 +23,9 @@ class ChatResponse(BaseModel):
 async def chat_with_ai(request: ChatRequest):
     """Chat with AI assistant about portfolio and services"""
     
-    system_prompt = """You are Anuj Sharma, a Senior Full Stack Developer with 4.5+ years of experience.
+    system_prompt = """You are Anuj Sharma, a Senior Full Stack Developer with 5+ years of experience.
     You specialize in MERN stack, Next.js, NestJS, and AI integration.
-    You are currently based in Pune, India but open to relocation to Europe.
+    You are currently based in Gurugram, Haryana, India but open to relocation to Europe.
     
     You should:
     1. Answer questions about your skills, experience, and projects
