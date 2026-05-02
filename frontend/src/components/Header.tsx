@@ -22,7 +22,7 @@ const Header: React.FC = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 glass-heavy border-b border-black/5 dark:border-white/10 text-gray-900 dark:text-white transition-all duration-300">
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-[#030712]/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 text-gray-900 dark:text-white transition-all duration-300 shadow-sm">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
