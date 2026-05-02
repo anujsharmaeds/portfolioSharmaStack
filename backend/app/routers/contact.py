@@ -116,8 +116,9 @@ async def send_admin_notification(contact: ContactCreate):
     # Send Telegram notification if configured
     if settings.TELEGRAM_BOT_TOKEN and settings.TELEGRAM_CHAT_ID:
         try:
-            import httpx
-            telegram_url = f"https://api.telegram.org/bot{settings.TELEGRAM_BOT_TOKEN}/sendMessage"
+            token = settings.TELEGRAM_BOT_TOKEN.strip().strip('"').strip("'")
+            chat_id = settings.TELEGRAM_CHAT_ID.strip().strip('"').strip("'")
+            telegram_url = f"https://api.telegram.org/bot{token}/sendMessage"
             # Escape HTML characters in user input to prevent parsing errors
             import html
             safe_name = html.escape(contact.name)
@@ -138,14 +139,17 @@ async def send_admin_notification(contact: ContactCreate):
             )
             async with httpx.AsyncClient() as client:
                 resp = await client.post(telegram_url, json={
-                    "chat_id": settings.TELEGRAM_CHAT_ID,
+                    "chat_id": chat_id,
                     "text": message,
                     "parse_mode": "HTML"
                 })
+                print(f"Telegram API Response: {resp.status_code} - {resp.text}")
                 if resp.status_code != 200:
-                    print(f"Telegram API Error: {resp.text}")
+                    print(f"Telegram Error Details: {resp.json()}")
         except Exception as e:
-            print(f"Failed to send Telegram notification: {e}")
+            import traceback
+            print(f"CRITICAL: Failed to send Telegram notification: {e}")
+            traceback.print_exc()
 
     try:
         msg = MIMEMultipart()
