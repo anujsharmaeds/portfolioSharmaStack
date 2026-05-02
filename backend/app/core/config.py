@@ -31,8 +31,8 @@ class Settings(BaseSettings):
     ANTHROPIC_API_KEY: Optional[str] = None
     
     # Telegram Notifications
-    TELEGRAM_BOT_TOKEN:str = "8193259321:AAGAbHgFXHjN2RUPC_ZPvIAx-vf56IEMwtM"
-    TELEGRAM_CHAT_ID:str = "6741467182"
+    TELEGRAM_BOT_TOKEN: Optional[str] = None
+    TELEGRAM_CHAT_ID: Optional[str] = None
     
     # Analytics
     GOOGLE_ANALYTICS_ID: Optional[str] = None
