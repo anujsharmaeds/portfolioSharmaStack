@@ -118,23 +118,32 @@ async def send_admin_notification(contact: ContactCreate):
         try:
             import httpx
             telegram_url = f"https://api.telegram.org/bot{settings.TELEGRAM_BOT_TOKEN}/sendMessage"
+            # Escape HTML characters in user input to prevent parsing errors
+            import html
+            safe_name = html.escape(contact.name)
+            safe_email = html.escape(contact.email)
+            safe_subject = html.escape(contact.subject)
+            safe_message = html.escape(contact.message)
+            
             message = (
-                f"🚀 *New Portfolio Contact!*\n\n"
-                f"👤 *Name:* {contact.name}\n"
-                f"📧 *Email:* {contact.email}\n"
-                f"📱 *Phone:* {contact.phone or 'N/A'}\n"
-                f"🏢 *Company:* {contact.company or 'N/A'}\n"
-                f"📝 *Subject:* {contact.subject}\n"
-                f"💰 *Budget:* {contact.budget or 'N/A'}\n"
-                f"⏳ *Timeline:* {contact.timeline or 'N/A'}\n\n"
-                f"💬 *Message:*\n{contact.message}"
+                f"🚀 <b>New Portfolio Contact!</b>\n\n"
+                f"👤 <b>Name:</b> {safe_name}\n"
+                f"📧 <b>Email:</b> {safe_email}\n"
+                f"📱 <b>Phone:</b> {html.escape(contact.phone) if contact.phone else 'N/A'}\n"
+                f"🏢 <b>Company:</b> {html.escape(contact.company) if contact.company else 'N/A'}\n"
+                f"📝 <b>Subject:</b> {safe_subject}\n"
+                f"💰 <b>Budget:</b> {html.escape(contact.budget) if contact.budget else 'N/A'}\n"
+                f"⏳ <b>Timeline:</b> {html.escape(contact.timeline) if contact.timeline else 'N/A'}\n\n"
+                f"💬 <b>Message:</b>\n{safe_message}"
             )
             async with httpx.AsyncClient() as client:
-                await client.post(telegram_url, json={
+                resp = await client.post(telegram_url, json={
                     "chat_id": settings.TELEGRAM_CHAT_ID,
                     "text": message,
-                    "parse_mode": "Markdown"
+                    "parse_mode": "HTML"
                 })
+                if resp.status_code != 200:
+                    print(f"Telegram API Error: {resp.text}")
         except Exception as e:
             print(f"Failed to send Telegram notification: {e}")
 
