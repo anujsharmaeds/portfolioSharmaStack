@@ -18,8 +18,8 @@ const Contact: React.FC = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: t('contact.info.email'),
-      value: "[EMAIL_ADDRESS]",
-      link: "mailto:[EMAIL_ADDRESS]",
+      value: "contact@sharmastack.com",
+      link: "mailto:contact@sharmastack.com",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
