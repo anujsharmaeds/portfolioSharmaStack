@@ -33,18 +33,19 @@ async def create_contact(
     
     result = await db.contacts.insert_one(contact_data)
     
+    # Send notification to admin FIRST
+    # If the email system hangs (due to Render blocking SMTP), we still get the Telegram message!
+    background_tasks.add_task(
+        send_admin_notification,
+        contact
+    )
+
     # Send confirmation email in background
     background_tasks.add_task(
         send_contact_confirmation,
         contact.email,
         contact.name,
         contact.subject
-    )
-    
-    # Send notification to admin
-    background_tasks.add_task(
-        send_admin_notification,
-        contact
     )
     
     return ContactResponse(
