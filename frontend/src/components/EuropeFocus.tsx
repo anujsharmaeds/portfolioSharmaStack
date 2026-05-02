@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
+
 import { MapPin, Plane, Globe, Clock, MessageSquare, CheckCircle } from 'lucide-react';
 
 const EuropeFocus: React.FC = () => {
-  const { t } = useTranslation();
+
 
   const europeanCountries = [
     'Germany', 'Netherlands', 'UK', 'Sweden', 'Switzerland', 'France',

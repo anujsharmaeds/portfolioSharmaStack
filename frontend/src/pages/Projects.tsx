@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ExternalLink, Github, Filter, Search, Calendar, Users, Zap } from 'lucide-react';
+import { Filter, Search, Calendar, Users, Zap } from 'lucide-react';
 import ProjectCard from '../components/ProjectCard';
 
 const Projects: React.FC = () => {
