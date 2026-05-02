@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Sun, Moon, Monitor } from 'lucide-react';
-import { useTheme } from '../providers/ThemeProvider';
+import { Menu, X } from 'lucide-react';
+// import { Menu, X, Sun, Moon, Monitor } from 'lucide-react';
+// import { useTheme } from '../providers/ThemeProvider';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useTranslation();
   const location = useLocation();
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
 
   const navItems = [
     { path: '/', label: t('nav.home') },
@@ -54,7 +55,7 @@ const Header: React.FC = () => {
           {/* Controls */}
           <div className="flex items-center space-x-4">
             {/* Theme Switcher */}
-            <div className="hidden md:flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+            {/* <div className="hidden md:flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
               <button
                 onClick={() => setTheme('light')}
                 className={`p-2 rounded-md transition-colors ${theme === 'light'
@@ -85,7 +86,7 @@ const Header: React.FC = () => {
               >
                 <Monitor className="w-4 h-4" />
               </button>
-            </div>
+            </div> */}
 
             {/* Language Switcher */}
             <LanguageSwitcher />
