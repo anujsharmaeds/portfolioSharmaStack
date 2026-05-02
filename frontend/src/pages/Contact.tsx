@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Mail, Phone, MapPin, Linkedin, Github, Send, Clock, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Send, Clock, CheckCircle } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 
 const Contact: React.FC = () => {
