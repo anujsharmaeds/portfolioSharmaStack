@@ -24,8 +24,8 @@ const Contact: React.FC = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: t('contact.info.location'),
-      value: 'Pune, India | Open to European Relocation',
-      link: 'https://maps.google.com/?q=Pune+India',
+      value: 'Gurugram, India | Open to European Relocation',
+      link: 'https://maps.google.com/?q=Gurugram+India',
     },
     {
       icon: <Linkedin className="w-6 h-6" />,

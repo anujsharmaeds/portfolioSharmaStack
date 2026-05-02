@@ -39,7 +39,8 @@ const ContactForm: React.FC = () => {
     
     try {
       // Simulate API call - replace with actual backend endpoint
-      const response = await fetch('http://localhost:8000/api/contact/', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/contact/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

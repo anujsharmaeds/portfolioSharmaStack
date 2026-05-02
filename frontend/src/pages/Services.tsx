@@ -52,6 +52,24 @@ const Services: React.FC = () => {
       popular: true,
     },
     {
+      name: "AI Agent Development",
+      price: billingCycle === 'monthly' ? '$3,999' : '$10,000',
+      period: billingCycle === 'monthly' ? t('service.price.monthly') : t('service.price.project'),
+      description: 'Fully autonomous AI bots and LLM agents',
+      features: [
+        'Custom LLM Integration',
+        'RAG (Retrieval-Augmented Generation)',
+        'Telegram / Discord Bot Agents',
+        'Autonomous Task Execution',
+        'Voice & Text AI Interfaces',
+        'Vector Database Setup',
+      ],
+      excluded: [
+        'Enterprise On-Prem Hosting',
+      ],
+      popular: false,
+    },
+    {
       name: t('service.enterprise'),
       price: billingCycle === 'monthly' ? '$4,999+' : '$15,000+',
       period: billingCycle === 'monthly' ? t('service.price.monthly') : t('service.price.project'),
@@ -155,7 +173,7 @@ const Services: React.FC = () => {
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
-                Project-Based
+                {t('service.billing.project', 'Project-Based')}
               </button>
               <button
                 onClick={() => setBillingCycle('monthly')}
@@ -165,7 +183,7 @@ const Services: React.FC = () => {
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
-                Monthly Retainer
+                {t('service.billing.monthly', 'Monthly Retainer')}
               </button>
             </div>
           </div>
@@ -262,10 +280,10 @@ const Services: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Service <span className="gradient-text">Categories</span>
+              {t('service.categories.title', 'Service Categories').split(' ')[0]} <span className="gradient-text">{t('service.categories.title', 'Service Categories').split(' ').slice(1).join(' ')}</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Comprehensive solutions across modern web technologies
+              {t('service.categories.subtitle', 'Comprehensive solutions across modern web technologies')}
             </p>
           </div>
 
@@ -322,10 +340,10 @@ const Services: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Need a <span className="gradient-text">Custom Solution</span>?
+              {t('service.custom.title', 'Need a Custom Solution?')}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-              Every project is unique. Let's discuss your specific requirements and create a tailored plan.
+              {t('service.custom.subtitle', 'Every project is unique. Let\'s discuss your specific requirements and create a tailored plan.')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
@@ -334,7 +352,7 @@ const Services: React.FC = () => {
                 href="/contact"
                 className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
-                Get a Custom Quote
+                {t('service.custom.btn1', 'Get a Custom Quote')}
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.05 }}
@@ -342,7 +360,7 @@ const Services: React.FC = () => {
                 href="#"
                 className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all"
               >
-                Schedule a Consultation
+                {t('service.custom.btn2', 'Schedule a Consultation')}
               </motion.a>
             </div>
           </div>

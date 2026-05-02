@@ -21,8 +21,8 @@ const Header: React.FC = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-      <div className="container mx-auto px-4 py-4">
+    <header className="fixed top-0 left-0 w-full z-50 glass-heavy border-b border-black/5 dark:border-white/10 text-gray-900 dark:text-white transition-all duration-300">
+      <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
@@ -41,11 +41,10 @@ const Header: React.FC = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-colors ${
-                  location.pathname === item.path
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                }`}
+                className={`text-sm font-medium transition-all duration-300 ${location.pathname === item.path
+                  ? 'text-blue-600 dark:text-purple-400 font-bold'
+                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                  }`}
               >
                 {item.label}
               </Link>
@@ -58,33 +57,30 @@ const Header: React.FC = () => {
             <div className="hidden md:flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
               <button
                 onClick={() => setTheme('light')}
-                className={`p-2 rounded-md transition-colors ${
-                  theme === 'light'
-                    ? 'bg-white dark:bg-gray-700 shadow'
-                    : 'hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`}
+                className={`p-2 rounded-md transition-colors ${theme === 'light'
+                  ? 'bg-white dark:bg-gray-700 shadow'
+                  : 'hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`}
                 title={t('theme.light')}
               >
                 <Sun className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setTheme('dark')}
-                className={`p-2 rounded-md transition-colors ${
-                  theme === 'dark'
-                    ? 'bg-white dark:bg-gray-700 shadow'
-                    : 'hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`}
+                className={`p-2 rounded-md transition-colors ${theme === 'dark'
+                  ? 'bg-white dark:bg-gray-700 shadow'
+                  : 'hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`}
                 title={t('theme.dark')}
               >
                 <Moon className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setTheme('system')}
-                className={`p-2 rounded-md transition-colors ${
-                  theme === 'system'
-                    ? 'bg-white dark:bg-gray-700 shadow'
-                    : 'hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`}
+                className={`p-2 rounded-md transition-colors ${theme === 'system'
+                  ? 'bg-white dark:bg-gray-700 shadow'
+                  : 'hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`}
                 title={t('theme.system')}
               >
                 <Monitor className="w-4 h-4" />
@@ -97,7 +93,7 @@ const Header: React.FC = () => {
             {/* CTA Button */}
             <Link
               to="/contact"
-              className="hidden md:inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+              className="hidden md:inline-flex items-center px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-medium shadow-lg hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all duration-300"
             >
               {t('cta.hire')}
             </Link>
@@ -105,7 +101,7 @@ const Header: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="md:hidden p-2 rounded-lg text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -121,11 +117,10 @@ const Header: React.FC = () => {
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`text-base font-medium py-2 ${
-                    location.pathname === item.path
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                  }`}
+                  className={`text-base font-medium py-2 ${location.pathname === item.path
+                    ? 'text-blue-600 dark:text-blue-400'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                    }`}
                 >
                   {item.label}
                 </Link>

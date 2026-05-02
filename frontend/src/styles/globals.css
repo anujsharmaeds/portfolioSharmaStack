@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
 
 @layer base {
   :root {
@@ -60,6 +60,19 @@
 
   .europe-gradient {
     background: linear-gradient(135deg, #003399 0%, #FFCC00 50%, #CC0000 100%);
+  }
+
+  .glass {
+    @apply bg-black/5 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10;
+  }
+  .glass-heavy {
+    @apply bg-white/40 dark:bg-black/40 backdrop-blur-xl border border-black/10 dark:border-white/10;
+  }
+  .glass-card {
+    @apply bg-white/40 dark:bg-black/40 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl;
+  }
+  .text-glow {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
   }
 }
 

@@ -1,4 +1,6 @@
-﻿from fastapi import APIRouter, HTTPException, BackgroundTasks, Depends
+from fastapi import APIRouter, HTTPException, BackgroundTasks, Depends, Request
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from datetime import datetime
 import smtplib
@@ -11,9 +13,12 @@ from app.core.database import get_database
 from app.core.config import settings
 
 router = APIRouter()
+limiter = Limiter(key_func=get_remote_address)
 
 @router.post("/", response_model=ContactResponse)
+@limiter.limit("3/minute")
 async def create_contact(
+    request: Request,
     contact: ContactCreate,
     background_tasks: BackgroundTasks,
     db: AsyncIOMotorDatabase = Depends(get_database)
@@ -108,6 +113,31 @@ async def send_contact_confirmation(email: str, name: str, subject: str):
 
 async def send_admin_notification(contact: ContactCreate):
     """Send notification to admin about new contact"""
+    # Send Telegram notification if configured
+    if settings.TELEGRAM_BOT_TOKEN and settings.TELEGRAM_CHAT_ID:
+        try:
+            import httpx
+            telegram_url = f"https://api.telegram.org/bot{settings.TELEGRAM_BOT_TOKEN}/sendMessage"
+            message = (
+                f"🚀 *New Portfolio Contact!*\n\n"
+                f"👤 *Name:* {contact.name}\n"
+                f"📧 *Email:* {contact.email}\n"
+                f"📱 *Phone:* {contact.phone or 'N/A'}\n"
+                f"🏢 *Company:* {contact.company or 'N/A'}\n"
+                f"📝 *Subject:* {contact.subject}\n"
+                f"💰 *Budget:* {contact.budget or 'N/A'}\n"
+                f"⏳ *Timeline:* {contact.timeline or 'N/A'}\n\n"
+                f"💬 *Message:*\n{contact.message}"
+            )
+            async with httpx.AsyncClient() as client:
+                await client.post(telegram_url, json={
+                    "chat_id": settings.TELEGRAM_CHAT_ID,
+                    "text": message,
+                    "parse_mode": "Markdown"
+                })
+        except Exception as e:
+            print(f"Failed to send Telegram notification: {e}")
+
     try:
         msg = MIMEMultipart()
         msg["From"] = settings.EMAIL_FROM

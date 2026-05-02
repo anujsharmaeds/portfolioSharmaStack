@@ -200,6 +200,64 @@ const resources = {
       'status.europe': 'Offen für europäische Umsiedlung',
       'status.remote': 'Remote-Arbeit möglich',
     }
+  },
+  fr: {
+    translation: {
+      'nav.home': 'Accueil',
+      'nav.services': 'Services',
+      'nav.projects': 'Projets',
+      'nav.about': 'À Propos',
+      'nav.contact': 'Contact',
+      'nav.blog': 'Blog',
+      
+      'hero.title': 'Développeur Full Stack Senior',
+      'hero.subtitle': 'MERN Stack • Next.js • NestJS • IA',
+      'hero.description': 'Plus de 4,5 ans dans la création d\'applications web évolutives. Ouvert à une relocalisation en Europe.',
+      'hero.cta.hire': 'Embauchez-Moi',
+      'hero.cta.projects': 'Voir les Projets',
+      'hero.based': 'Basé à Delhi, Inde',
+      'hero.target': 'Cible : Marché Tech Européen',
+      
+      'theme.dark': 'Sombre',
+      'theme.light': 'Clair',
+      'theme.system': 'Système',
+      
+      'lang.en': 'English',
+      'lang.de': 'Deutsch',
+      'lang.fr': 'Français',
+      'lang.ko': '한국어',
+      
+      'cta.hire': 'Embauchez-Moi',
+    }
+  },
+  ko: {
+    translation: {
+      'nav.home': '홈',
+      'nav.services': '서비스',
+      'nav.projects': '프로젝트',
+      'nav.about': '소개',
+      'nav.contact': '연락처',
+      'nav.blog': '블로그',
+      
+      'hero.title': '시니어 풀스택 개발자',
+      'hero.subtitle': 'MERN Stack • Next.js • NestJS • AI 통합',
+      'hero.description': '4.5년 이상의 확장 가능한 웹 애플리케이션 개발. 유럽 이주 환영.',
+      'hero.cta.hire': '채용하기',
+      'hero.cta.projects': '프로젝트 보기',
+      'hero.based': '인도 델리 거주',
+      'hero.target': '목표: 유럽 기술 시장',
+      
+      'theme.dark': '다크',
+      'theme.light': '라이트',
+      'theme.system': '시스템',
+      
+      'lang.en': 'English',
+      'lang.de': 'Deutsch',
+      'lang.fr': 'Français',
+      'lang.ko': '한국어',
+      
+      'cta.hire': '채용하기',
+    }
   }
 };
 

@@ -25,6 +25,7 @@ const technologies = {
       { name: "Flask", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" },
       { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
       { name: "Nest.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg" },
+      { name: "Dot Net", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" },
     ]
   },
   database: {
@@ -65,6 +66,7 @@ const technologies = {
 };
 
 const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
   return (
     <AnimatePresence>
       {isOpen && (
@@ -77,7 +79,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
             onClick={onClose}
             className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
           />
-          
+
           {/* Modal */}
           <div className="fixed inset-0 flex items-center justify-center z-50 px-4">
             <motion.div
@@ -92,7 +94,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-gray-600 dark:text-gray-400 mt-2">
-                      Explore my tech stack and expertise across different domains
+                      {t('hero.modal.subtitle', 'Explore my tech stack and expertise across different domains')}
                     </p>
                   </div>
                   <button
@@ -116,7 +118,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
                         {category.title}
                       </h3>
                     </div>
-                    
+
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                       {category.techs.map((tech) => (
                         <motion.div
@@ -147,7 +149,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
                           <span className="font-medium text-gray-800 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                             {tech.name}
                           </span>
-                          
+
                           {/* Hover effect */}
                           <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/30 dark:group-hover:border-blue-400/30 rounded-xl transition-all duration-300" />
                         </motion.div>
@@ -161,13 +163,13 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
               <div className="sticky bottom-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 p-2 rounded-b-2xl">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Continuously learning and adapting to new technologies
+                    {t('hero.modal.footer', 'Continuously learning and adapting to new technologies')}
                   </p>
                   <button
                     onClick={onClose}
                     className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
                   >
-                    Got it!
+                    {t('hero.modal.close', 'Got it!')}
                   </button>
                 </div>
               </div>
@@ -185,15 +187,16 @@ const Hero: React.FC = () => {
 
   return (
     <>
-      <section className="relative overflow-hidden pt-20 pb-32">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900/20" />
-        
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" />
-          <div className="absolute top-40 right-20 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '2s' }} />
-          <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style={{ animationDelay: '4s' }} />
+      <section className="relative overflow-hidden pt-32 pb-40">
+        {/* Premium Dark Mesh Gradient Background */}
+        <div className="absolute inset-0 bg-gray-50 dark:bg-[#030712] transition-colors duration-300">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-600/20 blur-[120px] mix-blend-screen animate-float" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/20 blur-[120px] mix-blend-screen animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-[20%] left-[40%] w-[30%] h-[30%] rounded-full bg-pink-600/10 blur-[120px] mix-blend-screen animate-float" style={{ animationDelay: '4s' }} />
+
+          {/* subtle grid overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+          <div className="absolute inset-0 bg-white dark:bg-[#030712] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 transition-colors duration-300" />
         </div>
 
         <div className="relative container mx-auto px-4">
@@ -214,19 +217,19 @@ const Hero: React.FC = () => {
               </div>
 
               {/* Badges */}
-              <div className="flex flex-wrap justify-center gap-3 mb-8">
-                <span className="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium flex items-center">
+              <div className="flex flex-wrap justify-center gap-3 mb-10">
+                <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-blue-300">
                   <MapPin className="w-4 h-4 mr-2" />
                   {t('hero.based')}
-                </span>
-                <span className="px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium flex items-center">
+                </motion.span>
+                <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-green-300">
                   <Globe className="w-4 h-4 mr-2" />
                   {t('hero.target')}
-                </span>
-                <span className="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium flex items-center">
+                </motion.span>
+                <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-purple-300">
                   <Calendar className="w-4 h-4 mr-2" />
                   {t('status.available')}
-                </span>
+                </motion.span>
               </div>
 
               {/* Subtitle */}
@@ -240,29 +243,25 @@ const Hero: React.FC = () => {
               </p>
 
               {/* CTA Buttons with Tech Stack Button */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+              <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300"
+                    className="group relative inline-flex items-center justify-center px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)]"
                   >
-                    {t('hero.cta.hire')}
-                    <ArrowRight className="ml-3 w-5 h-5" />
+                    <span className="relative z-10 flex items-center">
+                      {t('hero.cta.hire')}
+                      <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
                   </Link>
                 </motion.div>
-                
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <button
                     onClick={() => setIsTechModalOpen(true)}
-                    className="inline-flex items-center px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-lg transition-all duration-300"
+                    className="inline-flex items-center px-8 py-4 glass text-gray-900 dark:text-white rounded-2xl font-semibold text-lg hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300"
                   >
-                    View Tech Stack
+                    {t('hero.cta.techStack', 'View Tech Stack')}
                   </button>
                 </motion.div>
               </div>
@@ -270,10 +269,10 @@ const Hero: React.FC = () => {
               {/* Quick Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
                 {[
-                  { value: '4.5+', label: 'Years Experience' },
-                  { value: '50+', label: 'Projects' },
-                  { value: '30+', label: 'Happy Clients' },
-                  { value: '100%', label: 'Remote Ready' },
+                  { value: '4.5+', label: t('about.experience', 'Years Experience') },
+                  { value: '50+', label: t('about.projects', 'Projects') },
+                  { value: '30+', label: t('about.clients', 'Happy Clients') },
+                  { value: '100%', label: t('status.remote', 'Remote Ready') },
                 ].map((stat, index) => (
                   <motion.div
                     key={stat.label}
@@ -291,6 +290,23 @@ const Hero: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
+              {/* Trust Badges */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800"
+              >
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 uppercase tracking-wider font-semibold">Trusted by Innovative Companies Worldwide</p>
+                <div className="flex flex-wrap justify-center gap-8 opacity-60 grayscale transition-all duration-500">
+                  {['TechCorp', 'InnovateJS', 'CloudScale', 'NextGen AI'].map(name => (
+                    <div key={name} className="text-xl font-bold text-gray-800 dark:text-gray-300 flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                      <Globe className="w-5 h-5 mr-2" />
+                      {name}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-﻿from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings
 from typing import Optional
 
 class Settings(BaseSettings):
@@ -29,6 +29,10 @@ class Settings(BaseSettings):
     # AI
     OPENAI_API_KEY: Optional[str] = None
     ANTHROPIC_API_KEY: Optional[str] = None
+    
+    # Telegram Notifications
+    TELEGRAM_BOT_TOKEN:str = "8193259321:AAGAbHgFXHjN2RUPC_ZPvIAx-vf56IEMwtM"
+    TELEGRAM_CHAT_ID:str = "6741467182"
     
     # Analytics
     GOOGLE_ANALYTICS_ID: Optional[str] = None

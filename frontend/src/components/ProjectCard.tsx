@@ -29,9 +29,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      whileHover={{ y: -8 }}
-      className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
+      whileHover={{ y: -10, rotateX: 2, rotateY: -2 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="glass-card overflow-hidden group hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] hover:border-purple-500/40 relative"
     >
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10 pointer-events-none" />
       {/* Project Image */}
       <div className="h-48 overflow-hidden">
         <img
@@ -41,8 +43,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         />
       </div>
 
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+      <div className="p-6 relative z-20">
+        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
           {title}
         </h3>
         
@@ -52,7 +54,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Metrics Badge */}
         <div className="mb-4">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium glass border-green-500/30 text-green-300">
             📈 {metrics}
           </span>
         </div>
@@ -66,7 +68,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             {technologies.map((tech, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium"
+                className="px-3 py-1 glass text-blue-300 rounded-full text-xs font-medium border-blue-500/20"
               >
                 {tech}
               </span>
@@ -75,27 +77,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
+        <div className="flex items-center justify-between pt-4 border-t border-white/10">
           <div className="flex space-x-3">
             <motion.a
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="p-2 glass rounded-lg hover:bg-white/10 hover:text-purple-400 transition-colors"
               title={t('project.demo')}
             >
               <ExternalLink className="w-5 h-5" />
             </motion.a>
             
             <motion.a
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.1, rotate: -5 }}
               whileTap={{ scale: 0.9 }}
               href={codeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="p-2 glass rounded-lg hover:bg-white/10 hover:text-purple-400 transition-colors"
               title={t('project.code')}
             >
               <Github className="w-5 h-5" />
