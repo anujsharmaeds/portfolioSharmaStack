@@ -65,11 +65,25 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
       
       const formData = new FormData();
+      
+      // Inject missing fields that might not be mounted
+      if (!data.subject && activeTab === 'plan') {
+        data.subject = defaultSubject || 'Plan Inquiry';
+      }
+      if (!data.message && activeTab === 'plan') {
+        data.message = `New plan selection inquiry for: ${defaultSubject}`;
+      }
+      
       Object.entries(data).forEach(([key, value]) => {
         if (key !== 'resume' && value !== undefined && value !== null && value !== '') {
           formData.append(key, value as string);
         }
       });
+      
+      // Always ensure inquiryType is set
+      if (!data.inquiryType) {
+        formData.set('inquiryType', activeTab);
+      }
       
       if (data.resume && data.resume.length > 0) {
         formData.append('resume', data.resume[0]);
@@ -84,11 +98,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
         toast.success('Thank you! Your message has been sent. I\'ll get back to you within 24 hours.');
         reset();
       } else {
-        throw new Error('Failed to send message');
+        let errorMsg = 'Failed to send message';
+        try {
+          const errorData = await response.json();
+          if (errorData.error) errorMsg = errorData.error;
+          else if (errorData.detail) {
+            errorMsg = typeof errorData.detail === 'string' ? errorData.detail : errorData.detail[0]?.msg || errorMsg;
+          }
+        } catch (e) {
+          // ignore
+        }
+        throw new Error(errorMsg);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast.error('Something went wrong. Please try again later.');
+      toast.error(error instanceof Error ? error.message : 'Something went wrong. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }

@@ -17,7 +17,7 @@ router = APIRouter()
 limiter = Limiter(key_func=get_remote_address)
 
 @router.post("/", response_model=ContactResponse)
-@limiter.limit("3/minute")
+@limiter.limit("10/minute")
 async def create_contact(
     request: Request,
     background_tasks: BackgroundTasks,
