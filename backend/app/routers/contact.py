@@ -141,13 +141,12 @@ def send_contact_confirmation(email: str, name: str, subject: str):
         
         msg.attach(MIMEText(body, "plain"))
         
-        # Temporarily disabled SMTP sending as per user request to stop API failures
-        # if settings.SMTP_HOST and settings.SMTP_USER:
-        #     with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
-        #         server.starttls()
-        #         server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
-        #         server.send_message(msg)
-        pass
+        # Only send if SMTP is configured
+        if settings.SMTP_HOST and settings.SMTP_USER:
+            with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+                server.starttls()
+                server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+                server.send_message(msg)
     except Exception as e:
         print(f"Failed to send confirmation email: {e}")
 
@@ -285,12 +284,12 @@ def send_admin_notification(contact: ContactCreate, resume_filename: str = None,
             part['Content-Disposition'] = f'attachment; filename="{resume_filename}"'
             msg.attach(part)
         
-        # Temporarily disabled SMTP sending as per user request to stop API failures
-        # if settings.SMTP_HOST and settings.SMTP_USER:
-        #     with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
-        #         server.starttls()
-        #         server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
-        #         server.send_message(msg)
-        #         print("Admin email notification sent successfully to contact@sharmastack.com")
+        # Only send if SMTP is configured
+        if settings.SMTP_HOST and settings.SMTP_USER:
+            with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+                server.starttls()
+                server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+                server.send_message(msg)
+                print("Admin email notification sent successfully to contact@sharmastack.com")
     except Exception as e:
         print(f"Failed to send admin notification email: {e}")
