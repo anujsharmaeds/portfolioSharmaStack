@@ -175,7 +175,8 @@ def send_admin_notification(contact: ContactCreate, resume_filename: str = None,
                     f"👤 <b>Name:</b> {safe_name}\n"
                     f"📧 <b>Email:</b> {safe_email}\n"
                     f"📱 <b>Phone:</b> {html.escape(contact.phone) if contact.phone else 'N/A'}\n"
-                    f"🏢 <b>Company:</b> {html.escape(contact.company) if contact.company else 'N/A'}"
+                    f"🏢 <b>Company:</b> {html.escape(contact.company) if contact.company else 'N/A'}\n\n"
+                    f"💬 <b>Message:</b>\n{safe_message}"
                 )
             elif inquiry_type == "project":
                 message = (

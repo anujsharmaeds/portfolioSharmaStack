@@ -66,12 +66,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
       
       const formData = new FormData();
       
-      // Inject missing fields that might not be mounted
-      if (!data.subject && activeTab === 'plan') {
+      // Force inject missing fields that might not be mounted or contain partial data
+      if (activeTab === 'plan') {
         data.subject = defaultSubject || 'Plan Inquiry';
-      }
-      if (!data.message && activeTab === 'plan') {
         data.message = `New plan selection inquiry for: ${defaultSubject}`;
+      } else {
+        if (!data.subject && activeTab === 'general') {
+          data.subject = 'General Inquiry';
+        }
       }
       
       Object.entries(data).forEach(([key, value]) => {
