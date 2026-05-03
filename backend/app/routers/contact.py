@@ -119,7 +119,7 @@ async def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "service": "contact-api"}
 
-async def send_contact_confirmation(email: str, name: str, subject: str):
+def send_contact_confirmation(email: str, name: str, subject: str):
     """Send confirmation email to contact"""
     try:
         msg = MIMEMultipart()
@@ -150,7 +150,7 @@ async def send_contact_confirmation(email: str, name: str, subject: str):
     except Exception as e:
         print(f"Failed to send confirmation email: {e}")
 
-async def send_admin_notification(contact: ContactCreate, resume_filename: str = None, resume_bytes: bytes = None):
+def send_admin_notification(contact: ContactCreate, resume_filename: str = None, resume_bytes: bytes = None):
     """Send notification to admin about new contact"""
     # Send Telegram notification if configured
     if settings.TELEGRAM_BOT_TOKEN and settings.TELEGRAM_CHAT_ID:
@@ -253,27 +253,35 @@ async def send_admin_notification(contact: ContactCreate, resume_filename: str =
             traceback.print_exc()
 
     try:
-        msg = MIMEMultipart()
+        msg = MIMEMultipart("alternative")
         msg["From"] = settings.EMAIL_FROM
-        msg["To"] = "anujankur13@gmail.com"
-        msg["Subject"] = f"New Contact: {contact.subject}"
+        msg["To"] = "contact@sharmastack.com"
+        msg["Subject"] = f"New Lead: {inquiry_type.replace('_', ' ').title()} from {safe_name}"
         
-        body = f"""
-        New contact form submission:
-        
-        Name: {contact.name}
-        Email: {contact.email}
-        Phone: {contact.phone or 'Not provided'}
-        Company: {contact.company or 'Not provided'}
-        Subject: {contact.subject}
-        Message: {contact.message}
-        Budget: {contact.budget or 'Not specified'}
-        Timeline: {contact.timeline or 'Not specified'}
-        
-        Timestamp: {datetime.utcnow()}
+        # Format the telegram message into HTML for email
+        html_message = message.replace('\n', '<br>')
+        html_body = f"""
+        <html>
+          <body style="font-family: sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaea; border-radius: 8px;">
+              <h2 style="color: #2563eb; margin-top: 0;">Portfolio Notification</h2>
+              <div style="background: #f8fafc; padding: 15px; border-radius: 6px;">
+                {html_message}
+              </div>
+            </div>
+          </body>
+        </html>
         """
         
-        msg.attach(MIMEText(body, "plain"))
+        msg.attach(MIMEText(message, "plain"))
+        msg.attach(MIMEText(html_body, "html"))
+        
+        # Attach resume if present
+        if resume_bytes and resume_filename:
+            from email.mime.application import MIMEApplication
+            part = MIMEApplication(resume_bytes, Name=resume_filename)
+            part['Content-Disposition'] = f'attachment; filename="{resume_filename}"'
+            msg.attach(part)
         
         # Only send if SMTP is configured
         if settings.SMTP_HOST and settings.SMTP_USER:
@@ -281,5 +289,6 @@ async def send_admin_notification(contact: ContactCreate, resume_filename: str =
                 server.starttls()
                 server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
                 server.send_message(msg)
+                print("Admin email notification sent successfully to contact@sharmastack.com")
     except Exception as e:
-        print(f"Failed to send admin notification: {e}")
+        print(f"Failed to send admin notification email: {e}")

@@ -403,7 +403,7 @@ const Services: React.FC = () => {
               <div className="p-6 overflow-y-auto">
                 <ContactForm 
                   activeTab="plan" 
-                  defaultSubject={`Plan Inquiry: ${selectedPlan.name} (${billingCycle})`} 
+                  defaultSubject={`Plan Inquiry: ${selectedPlan.name} | ${billingCycle === 'monthly' ? 'Monthly' : 'Project-Based'} | Price: ${selectedPlan.price}`} 
                 />
               </div>
             </motion.div>
