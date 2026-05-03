@@ -16,7 +16,7 @@ const resources = {
       // Hero Section
       'hero.title': '',
       'hero.subtitle': 'MERN Stack • Next.js • NestJS • AI Integration',
-      'hero.description': '5+ years crafting scalable web applications. Open to relocation in Europe.',
+      'hero.description': '5+ years crafting scalable web applications.',
       'hero.cta.hire': 'Hire Me',
       'hero.cta.projects': 'View Projects',
       'hero.based': 'Based in Gurugram, Haryana, India',
@@ -98,7 +98,7 @@ const resources = {
 
       // Status
       'status.available': 'Available for hire',
-      'status.europe': 'Open to European relocation',
+      'status.europe': 'Open to European Opportunities',
       'status.remote': 'Remote work available',
     }
   },
@@ -212,7 +212,7 @@ const resources = {
 
       'hero.title': 'Développeur Full Stack Senior',
       'hero.subtitle': 'MERN Stack • Next.js • NestJS • IA',
-      'hero.description': 'Plus de 4,5 ans dans la création d\'applications web évolutives. Ouvert à une relocalisation en Europe.',
+      'hero.description': 'Plus de 4,5 ans dans la création d\'applications web évolutives. Ouvert à une opportunités en Europe.',
       'hero.cta.hire': 'Embauchez-Moi',
       'hero.cta.projects': 'Voir les Projets',
       'hero.based': 'Basé à Gurugram, Haryana, Inde',

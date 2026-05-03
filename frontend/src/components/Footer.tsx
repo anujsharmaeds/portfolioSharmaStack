@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
             </div>
             <p className="text-gray-400 mb-6">
               Building scalable web applications with modern technologies.
-              Open to European opportunities and relocation.
+              Open to European opportunities.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
                 <span className="text-gray-400">
                   Gurugram, Haryana, India
                   <br />
-                  <span className="text-sm">Open to European Relocation</span>
+                  <span className="text-sm">Open to European Opportunities</span>
                 </span>
               </li>
             </ul>

@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: t('contact.info.location'),
-      value: 'Gurugram, Haryana, India | Open to European Relocation',
+      value: 'Gurugram, Haryana, India',
       link: 'https://maps.google.com/?q=Gurugram+Haryana+India',
     },
     {

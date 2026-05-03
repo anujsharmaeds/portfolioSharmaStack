@@ -24,7 +24,7 @@ const EuropeFocus: React.FC = () => {
     },
     {
       icon: <Plane className="w-6 h-6" />,
-      title: 'Relocation Planning',
+      title: 'Discuss',
       description: 'Travel, accommodation, and setup assistance'
     },
     {
@@ -53,12 +53,12 @@ const EuropeFocus: React.FC = () => {
             <Globe className="w-4 h-4 mr-2" />
             European Market Focus
           </div>
-          
+
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready for <span className="europe-gradient bg-clip-text text-transparent">European</span> Opportunities
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Open to relocation across Europe with comprehensive preparation for seamless integration
+            Open to Discuss across Europe with comprehensive preparation for seamless integration
           </p>
         </motion.div>
 
@@ -121,9 +121,9 @@ const EuropeFocus: React.FC = () => {
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-              Relocation Process
+              Discussion Process
             </h3>
-            
+
             {relocationSteps.map((step, index) => (
               <motion.div
                 key={step.title}
