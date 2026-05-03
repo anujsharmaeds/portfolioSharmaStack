@@ -41,6 +41,8 @@ frontend_url = os.getenv("FRONTEND_URL", "")
 origins = [
     "http://localhost:3000",
     "http://localhost:5173",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173",
 ]
 if frontend_url:
     origins.extend([url.strip() for url in frontend_url.split(",")])
