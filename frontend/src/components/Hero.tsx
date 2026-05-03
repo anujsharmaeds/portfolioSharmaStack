@@ -242,7 +242,7 @@ const Hero: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Link
-                    to="/contact"
+                    to="/contact?tab=career"
                     className="group relative inline-flex items-center justify-center px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)]"
                   >
                     <span className="relative z-10 flex items-center">

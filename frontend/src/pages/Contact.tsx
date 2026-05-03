@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send, Clock, CheckCircle } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 
 const Contact: React.FC = () => {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState('general');
+  const location = useLocation();
+  
+  // Initialize tab from URL or default to 'general'
+  const [activeTab, setActiveTab] = useState(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get('tab') || 'general';
+  });
 
   const contactInfo = [
     {
@@ -213,6 +220,7 @@ const Contact: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="lg:col-span-2"
+            id="contact-form-section"
           >
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
               <div className="mb-8">
@@ -234,7 +242,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <ContactForm />
+              <ContactForm activeTab={activeTab} />
 
               {/* Process Timeline */}
               <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
@@ -313,7 +321,11 @@ const Contact: React.FC = () => {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="/contact"
+                href="#contact-form-section"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="px-8 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
                 {t('contact.cta.start')}

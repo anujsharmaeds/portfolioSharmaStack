@@ -1,4 +1,5 @@
-from fastapi import APIRouter, HTTPException, BackgroundTasks, Depends, Request
+from fastapi import APIRouter, HTTPException, BackgroundTasks, Depends, Request, Form, File, UploadFile
+from typing import Optional
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -19,16 +20,51 @@ limiter = Limiter(key_func=get_remote_address)
 @limiter.limit("3/minute")
 async def create_contact(
     request: Request,
-    contact: ContactCreate,
     background_tasks: BackgroundTasks,
-    db: AsyncIOMotorDatabase = Depends(get_database)
+    db: AsyncIOMotorDatabase = Depends(get_database),
+    name: str = Form(...),
+    email: str = Form(...),
+    subject: str = Form(...),
+    message: str = Form(...),
+    phone: Optional[str] = Form(None),
+    company: Optional[str] = Form(None),
+    budget: Optional[str] = Form(None),
+    timeline: Optional[str] = Form(None),
+    role: Optional[str] = Form(None),
+    website: Optional[str] = Form(None),
+    linkedin: Optional[str] = Form(None),
+    inquiryType: Optional[str] = Form("general"),
+    resume: Optional[UploadFile] = File(None)
 ):
     """Create a new contact message"""
+    
+    resume_bytes = None
+    resume_filename = None
+    if resume:
+        resume_bytes = await resume.read()
+        resume_filename = resume.filename
+
+    contact = ContactCreate(
+        name=name,
+        email=email,
+        subject=subject,
+        message=message,
+        phone=phone,
+        company=company,
+        budget=budget,
+        timeline=timeline,
+        role=role,
+        website=website,
+        linkedin=linkedin,
+        inquiryType=inquiryType
+    )
+
     contact_data = {
         **contact.dict(),
         "status": "pending",
         "created_at": datetime.utcnow(),
-        "responded_at": None
+        "responded_at": None,
+        "has_resume": bool(resume)
     }
     
     result = await db.contacts.insert_one(contact_data)
@@ -37,7 +73,9 @@ async def create_contact(
     # If the email system hangs (due to Render blocking SMTP), we still get the Telegram message!
     background_tasks.add_task(
         send_admin_notification,
-        contact
+        contact,
+        resume_filename,
+        resume_bytes
     )
 
     # Send confirmation email in background
@@ -112,7 +150,7 @@ async def send_contact_confirmation(email: str, name: str, subject: str):
     except Exception as e:
         print(f"Failed to send confirmation email: {e}")
 
-async def send_admin_notification(contact: ContactCreate):
+async def send_admin_notification(contact: ContactCreate, resume_filename: str = None, resume_bytes: bytes = None):
     """Send notification to admin about new contact"""
     # Send Telegram notification if configured
     if settings.TELEGRAM_BOT_TOKEN and settings.TELEGRAM_CHAT_ID:
@@ -127,24 +165,84 @@ async def send_admin_notification(contact: ContactCreate):
             safe_subject = html.escape(contact.subject)
             safe_message = html.escape(contact.message)
             
-            message = (
-                f"🚀 <b>New Portfolio Contact!</b>\n\n"
-                f"👤 <b>Name:</b> {safe_name}\n"
-                f"📧 <b>Email:</b> {safe_email}\n"
-                f"📱 <b>Phone:</b> {html.escape(contact.phone) if contact.phone else 'N/A'}\n"
-                f"🏢 <b>Company:</b> {html.escape(contact.company) if contact.company else 'N/A'}\n"
-                f"📝 <b>Subject:</b> {safe_subject}\n"
-                f"💰 <b>Budget:</b> {html.escape(contact.budget) if contact.budget else 'N/A'}\n"
-                f"⏳ <b>Timeline:</b> {html.escape(contact.timeline) if contact.timeline else 'N/A'}\n\n"
-                f"💬 <b>Message:</b>\n{safe_message}"
-            )
+            inquiry_type = getattr(contact, 'inquiryType', 'general')
+            
+            if inquiry_type == "plan":
+                message = (
+                    f"🛒 <b>New Plan Selection!</b>\n\n"
+                    f"📦 <b>Plan Details:</b> {safe_subject}\n"
+                    f"👤 <b>Name:</b> {safe_name}\n"
+                    f"📧 <b>Email:</b> {safe_email}\n"
+                    f"📱 <b>Phone:</b> {html.escape(contact.phone) if contact.phone else 'N/A'}\n"
+                    f"🏢 <b>Company:</b> {html.escape(contact.company) if contact.company else 'N/A'}"
+                )
+            elif inquiry_type == "project":
+                message = (
+                    f"💼 <b>New Project Discussion!</b>\n\n"
+                    f"👤 <b>Name:</b> {safe_name}\n"
+                    f"📧 <b>Email:</b> {safe_email}\n"
+                    f"📱 <b>Phone:</b> {html.escape(contact.phone) if contact.phone else 'N/A'}\n"
+                    f"🏢 <b>Company:</b> {html.escape(contact.company) if contact.company else 'N/A'}\n"
+                    f"💰 <b>Budget:</b> {html.escape(contact.budget) if contact.budget else 'N/A'}\n"
+                    f"⏳ <b>Timeline:</b> {html.escape(contact.timeline) if contact.timeline else 'N/A'}\n\n"
+                    f"📝 <b>Subject:</b> {safe_subject}\n"
+                    f"💬 <b>Message:</b>\n{safe_message}"
+                )
+            elif inquiry_type == "career":
+                message = (
+                    f"👔 <b>New Job Application!</b>\n\n"
+                    f"👤 <b>Name:</b> {safe_name}\n"
+                    f"📧 <b>Email:</b> {safe_email}\n"
+                    f"📱 <b>Phone:</b> {html.escape(contact.phone) if contact.phone else 'N/A'}\n"
+                    f"🎯 <b>Role/Position:</b> {html.escape(contact.role) if contact.role else 'N/A'}\n"
+                    f"🔗 <b>LinkedIn:</b> {html.escape(contact.linkedin) if getattr(contact, 'linkedin', None) else 'N/A'}\n"
+                    f"🔗 <b>Portfolio/Link:</b> {html.escape(contact.website) if contact.website else 'N/A'}\n\n"
+                    f"📎 <b>Resume Attached:</b> {'Yes' if resume_bytes else 'No'}\n\n"
+                    f"📝 <b>Subject:</b> {safe_subject}\n"
+                    f"💬 <b>Cover Letter / Message:</b>\n{safe_message}"
+                )
+            elif inquiry_type == "collaboration":
+                message = (
+                    f"🤝 <b>Collaboration Request!</b>\n\n"
+                    f"👤 <b>Name:</b> {safe_name}\n"
+                    f"📧 <b>Email:</b> {safe_email}\n"
+                    f"📱 <b>Phone:</b> {html.escape(contact.phone) if contact.phone else 'N/A'}\n"
+                    f"🏢 <b>Company/Org:</b> {html.escape(contact.company) if contact.company else 'N/A'}\n"
+                    f"🔗 <b>Website/Social:</b> {html.escape(contact.website) if contact.website else 'N/A'}\n\n"
+                    f"📝 <b>Subject:</b> {safe_subject}\n"
+                    f"💬 <b>Message:</b>\n{safe_message}"
+                )
+            elif "Newsletter" in safe_subject:
+                message = (
+                    f"📰 <b>New Newsletter Subscriber!</b>\n\n"
+                    f"📧 <b>Email:</b> {safe_email}"
+                )
+            else:
+                message = (
+                    f"📬 <b>General Inquiry!</b>\n\n"
+                    f"👤 <b>Name:</b> {safe_name}\n"
+                    f"📧 <b>Email:</b> {safe_email}\n\n"
+                    f"📝 <b>Subject:</b> {safe_subject}\n"
+                    f"💬 <b>Message:</b>\n{safe_message}"
+                )
             
             import requests
-            resp = requests.post(telegram_url, json={
-                "chat_id": chat_id,
-                "text": message,
-                "parse_mode": "HTML"
-            }, timeout=10)
+            if resume_bytes and inquiry_type == "career":
+                url = f"https://api.telegram.org/bot{token}/sendDocument"
+                resp = requests.post(url, data={
+                    "chat_id": chat_id,
+                    "caption": message,
+                    "parse_mode": "HTML"
+                }, files={
+                    "document": (resume_filename, resume_bytes)
+                }, timeout=15)
+            else:
+                url = f"https://api.telegram.org/bot{token}/sendMessage"
+                resp = requests.post(url, json={
+                    "chat_id": chat_id,
+                    "text": message,
+                    "parse_mode": "HTML"
+                }, timeout=10)
             
             print(f"Telegram API Response: {resp.status_code} - {resp.text}")
             if resp.status_code != 200:

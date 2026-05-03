@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { Send, Loader2 } from 'lucide-react';
@@ -14,10 +14,19 @@ interface ContactFormData {
   company?: string;
   budget?: string;
   timeline?: string;
+  role?: string;
+  website?: string;
+  linkedin?: string;
+  resume?: FileList;
   inquiryType: string;
 }
 
-const ContactForm: React.FC = () => {
+interface ContactFormProps {
+  activeTab?: string;
+  defaultSubject?: string;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaultSubject = '' }) => {
   const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -28,9 +37,25 @@ const ContactForm: React.FC = () => {
     formState: { errors },
   } = useForm<ContactFormData>({
     defaultValues: {
-      inquiryType: 'general',
+      inquiryType: activeTab,
+      subject: defaultSubject,
     },
   });
+
+  useEffect(() => {
+    reset((formValues) => ({
+      ...formValues,
+      inquiryType: activeTab,
+      subject: defaultSubject || formValues.subject,
+      message: activeTab === 'plan' ? `New plan selection inquiry for: ${defaultSubject}` : formValues.message,
+    }));
+  }, [activeTab, defaultSubject, reset]);
+
+  const showCompany = ['project', 'collaboration', 'plan'].includes(activeTab);
+  const showPhone = ['project', 'career', 'collaboration', 'plan'].includes(activeTab);
+  const showBudgetAndTimeline = ['project'].includes(activeTab);
+  const showRoleAndWebsite = ['career', 'collaboration'].includes(activeTab);
+  const showSubjectAndMessage = ['project', 'career', 'collaboration', 'general'].includes(activeTab);
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -38,12 +63,21 @@ const ContactForm: React.FC = () => {
     try {
       // Simulate API call - replace with actual backend endpoint
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        if (key !== 'resume' && value !== undefined && value !== null && value !== '') {
+          formData.append(key, value as string);
+        }
+      });
+      
+      if (data.resume && data.resume.length > 0) {
+        formData.append('resume', data.resume[0]);
+      }
+
       const response = await fetch(`${apiUrl}/api/contact/`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
       if (response.ok) {
@@ -131,115 +165,217 @@ const ContactForm: React.FC = () => {
       </div>
 
       {/* Phone & Company */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium mb-2">
-            {t('contact.form.phone')}
-          </label>
-          <input
-            type="tel"
-            {...register('phone')}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            placeholder={t('contact.form.phone.ph', '+91 XXXXXXXXXX')}
-            disabled={isSubmitting}
-          />
-        </div>
+      {(showPhone || showCompany) && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {showPhone && (
+            <div className={!showCompany ? 'md:col-span-2' : ''}>
+              <label className="block text-sm font-medium mb-2">
+                {t('contact.form.phone')}
+              </label>
+              <input
+                type="tel"
+                {...register('phone')}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                placeholder={t('contact.form.phone.ph', '+91 XXXXXXXXXX')}
+                disabled={isSubmitting}
+              />
+            </div>
+          )}
 
-        <div>
-          <label className="block text-sm font-medium mb-2">
-            {t('contact.form.company')}
-          </label>
-          <input
-            {...register('company')}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            placeholder={t('contact.form.company.ph', 'Your Company Name')}
-            disabled={isSubmitting}
-          />
+          {showCompany && (
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                {t('contact.form.company')}
+              </label>
+              <input
+                {...register('company')}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                placeholder={t('contact.form.company.ph', 'Your Company Name')}
+                disabled={isSubmitting}
+              />
+            </div>
+          )}
         </div>
-      </div>
+      )}
+
+      {/* Role, Website, LinkedIn, Resume */}
+      {showRoleAndWebsite && (
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                {activeTab === 'career' ? 'Applying For Position' : 'Your Role'} *
+              </label>
+              {activeTab === 'career' ? (
+                <select
+                  {...register('role', { required: 'Position is required' })}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  disabled={isSubmitting}
+                >
+                  <option value="">Select Position</option>
+                  <option value="Frontend Developer">Frontend Developer</option>
+                  <option value="Backend Developer">Backend Developer</option>
+                  <option value="Full Stack Developer">Full Stack Developer</option>
+                  <option value="AI / ML Engineer">AI / ML Engineer</option>
+                  <option value="Product Designer">Product Designer</option>
+                  <option value="Other">Other</option>
+                </select>
+              ) : (
+                <input
+                  {...register('role', { required: 'Role is required' })}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  placeholder="e.g. Content Creator"
+                  disabled={isSubmitting}
+                />
+              )}
+              {errors.role && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.role.message}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                {activeTab === 'career' ? 'Portfolio Link' : 'Website / Social Link'}
+              </label>
+              <input
+                type="url"
+                {...register('website')}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                placeholder="https://"
+                disabled={isSubmitting}
+              />
+            </div>
+          </div>
+
+          {activeTab === 'career' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  LinkedIn Profile
+                </label>
+                <input
+                  type="url"
+                  {...register('linkedin')}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  placeholder="https://linkedin.com/in/..."
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Upload Resume / CV *
+                </label>
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  {...register('resume', { required: 'Resume is required' })}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-gray-300"
+                  disabled={isSubmitting}
+                />
+                {errors.resume && (
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.resume.message}</p>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Subject */}
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          {t('contact.form.subject')} *
-        </label>
-        <input
-          {...register('subject', {
-            required: 'Subject is required',
-            minLength: { value: 5, message: 'Subject must be at least 5 characters' }
-          })}
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-          placeholder={t('contact.form.subject.ph', 'Project Inquiry: Web Development')}
-          disabled={isSubmitting}
-        />
-        {errors.subject && (
-          <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.subject.message}</p>
-        )}
-      </div>
+      {showSubjectAndMessage && (
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            {t('contact.form.subject')} *
+          </label>
+          <input
+            {...register('subject', {
+              required: showSubjectAndMessage ? 'Subject is required' : false,
+              minLength: { value: 5, message: 'Subject must be at least 5 characters' }
+            })}
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            placeholder={t('contact.form.subject.ph', 'Project Inquiry: Web Development')}
+            disabled={isSubmitting}
+          />
+          {errors.subject && (
+            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.subject.message}</p>
+          )}
+        </div>
+      )}
 
       {/* Budget & Timeline */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium mb-2">
-            {t('contact.form.budget')}
-          </label>
-          <select
-            {...register('budget')}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            disabled={isSubmitting}
-          >
-            {budgetOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
+      {showBudgetAndTimeline && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium mb-2">
+              {t('contact.form.budget')}
+            </label>
+            <select
+              {...register('budget')}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              disabled={isSubmitting}
+            >
+              {budgetOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-2">
-            {t('contact.form.timeline')}
-          </label>
-          <select
-            {...register('timeline')}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            disabled={isSubmitting}
-          >
-            {timelineOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <div>
+            <label className="block text-sm font-medium mb-2">
+              {t('contact.form.timeline')}
+            </label>
+            <select
+              {...register('timeline')}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              disabled={isSubmitting}
+            >
+              {timelineOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Inquiry Type (Hidden) */}
       <input type="hidden" {...register('inquiryType')} />
+      {!showSubjectAndMessage && (
+        <>
+          <input type="hidden" {...register('subject')} />
+          <input type="hidden" {...register('message')} />
+        </>
+      )}
 
       {/* Message */}
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          {t('contact.form.message')} *
-        </label>
-        <textarea
-          {...register('message', {
-            required: 'Message is required',
-            minLength: { value: 10, message: 'Message must be at least 10 characters' },
-            maxLength: { value: 2000, message: 'Message must be less than 2000 characters' }
-          })}
-          rows={6}
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-          placeholder={t('contact.form.message.ph', 'Tell me about your project, requirements, and goals...')}
-          disabled={isSubmitting}
-        />
-        {errors.message && (
-          <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>
-        )}
-        <div className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-          {t('contact.form.msgDesc')}
+      {showSubjectAndMessage && (
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            {t('contact.form.message')} *
+          </label>
+          <textarea
+            {...register('message', {
+              required: showSubjectAndMessage ? 'Message is required' : false,
+              minLength: { value: 10, message: 'Message must be at least 10 characters' },
+              maxLength: { value: 2000, message: 'Message must be less than 2000 characters' }
+            })}
+            rows={6}
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+            placeholder={t('contact.form.message.ph', 'Tell me about your project, requirements, and goals...')}
+            disabled={isSubmitting}
+          />
+          {errors.message && (
+            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>
+          )}
+          <div className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            {t('contact.form.msgDesc')}
+          </div>
         </div>
-      </div>
+      )}
 
 
 

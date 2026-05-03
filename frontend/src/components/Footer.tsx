@@ -1,10 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, MapPin, Loader2 } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+
+  const handleSubscribe = async () => {
+    if (!email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubscribing(true);
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/contact/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Newsletter Subscriber',
+          email: email,
+          subject: 'Newsletter Subscription',
+          message: `New subscription request from ${email}`,
+          inquiryType: 'general'
+        }),
+      });
+
+      if (response.ok) {
+        toast.success('Successfully subscribed to the newsletter!');
+        setEmail('');
+      } else {
+        throw new Error('Failed to subscribe');
+      }
+    } catch (error) {
+      console.error('Error subscribing:', error);
+      toast.error('Something went wrong. Please try again later.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   const currentYear = new Date().getFullYear();
 
@@ -118,6 +156,8 @@ const Footer: React.FC = () => {
                 <Mail className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
                 <a
                   href="mailto:contact@sharmastack.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   contact@sharmastack.com
@@ -144,11 +184,19 @@ const Footer: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSubscribe()}
                 placeholder={t('footer.newsletter.placeholder')}
                 className="flex-grow px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                disabled={isSubscribing}
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
-                {t('footer.newsletter.btn')}
+              <button 
+                onClick={handleSubscribe}
+                disabled={isSubscribing}
+                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center min-w-[120px]"
+              >
+                {isSubscribing ? <Loader2 className="w-5 h-5 animate-spin" /> : t('footer.newsletter.btn')}
               </button>
             </div>
             <p className="text-center text-gray-500 text-sm mt-2">

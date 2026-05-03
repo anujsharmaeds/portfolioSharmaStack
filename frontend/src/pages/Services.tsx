@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Check, X, ArrowRight, Zap, Shield, Clock, Users } from 'lucide-react';
+import ContactForm from '../components/ContactForm';
+import { AnimatePresence } from 'framer-motion';
 
 const Services: React.FC = () => {
   const { t } = useTranslation();
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'project'>('project');
+  const [selectedPlan, setSelectedPlan] = useState<{name: string, price: string} | null>(null);
 
   const servicePackages = [
     {
@@ -256,6 +259,7 @@ const Services: React.FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => setSelectedPlan(pkg)}
                   className={`w-full py-3 rounded-lg font-medium transition-colors ${pkg.popular
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:opacity-90'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
@@ -362,6 +366,50 @@ const Services: React.FC = () => {
           </div>
         </div>
       </section>
+      {/* Plan Selection Modal */}
+      <AnimatePresence>
+        {selectedPlan && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => setSelectedPlan(null)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
+            >
+              <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-700">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                    {selectedPlan.name}
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    {billingCycle === 'monthly' ? 'Monthly Retainer' : 'Project-Based'} • {selectedPlan.price}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSelectedPlan(null)}
+                  className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="p-6 overflow-y-auto">
+                <ContactForm 
+                  activeTab="plan" 
+                  defaultSubject={`Plan Inquiry: ${selectedPlan.name} (${billingCycle})`} 
+                />
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

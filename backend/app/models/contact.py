@@ -1,4 +1,4 @@
-﻿from datetime import datetime
+from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, EmailStr, Field
 from enum import Enum
@@ -17,6 +17,9 @@ class ContactCreate(BaseModel):
     company: Optional[str] = None
     budget: Optional[str] = None
     timeline: Optional[str] = None
+    role: Optional[str] = None
+    website: Optional[str] = None
+    linkedin: Optional[str] = None
     inquiryType: Optional[str] = "general"
 
 class ContactResponse(BaseModel):

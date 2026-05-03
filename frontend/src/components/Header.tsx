@@ -42,7 +42,7 @@ const Header: React.FC = () => {
               <h1 className="text-lg font-semibold text-white">
                 SharmaStack
               </h1>
-              <p className="text-[10px] uppercase tracking-wider text-gray-400">
+              <p className="text-[10px] uppercase tracking-wider font-bold text-green-500 dark:text-green-300">
                 {t('header.subtitle', 'Web Development • AI • IoT • FinTech • Scalable Systems • 5+ Years')}
               </p>
             </div>
@@ -123,36 +123,38 @@ const Header: React.FC = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-800 pt-4">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`text-base font-medium py-2 ${location.pathname === item.path
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                    }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
-                <Link
-                  to="/contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="inline-flex items-center justify-center w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
-                >
-                  {t('cta.hire')}
-                </Link>
+        {
+          isMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-800 pt-4">
+              <div className="flex flex-col space-y-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`text-base font-medium py-2 ${location.pathname === item.path
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                      }`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
+                  <Link
+                    to="/contact"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="inline-flex items-center justify-center w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                  >
+                    {t('cta.hire')}
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
-    </header>
+          )
+        }
+      </div >
+    </header >
   );
 };
 
