@@ -12,20 +12,20 @@ const Services: React.FC = () => {
       name: t('service.basic'),
       price: billingCycle === 'monthly' ? '$999' : '$2,500',
       period: billingCycle === 'monthly' ? t('service.price.monthly') : t('service.price.project'),
-      description: 'Perfect for startups and small projects',
+      description: t('service.pkg.basic.desc'),
       features: [
-        'Responsive Website Development',
-        'Basic SEO Optimization',
-        'Contact Form Integration',
-        'Up to 3 Revisions',
-        '1 Month Support',
-        'Basic Analytics Setup',
+        t('service.pkg.basic.f1'),
+        t('service.pkg.basic.f2'),
+        t('service.pkg.basic.f3'),
+        t('service.pkg.basic.f4'),
+        t('service.pkg.basic.f5'),
+        t('service.pkg.basic.f6'),
       ],
       excluded: [
-        'Advanced AI Features',
-        'Enterprise Scalability',
-        'Dedicated Project Manager',
-        '24/7 Priority Support',
+        t('service.pkg.basic.e1'),
+        t('service.pkg.basic.e2'),
+        t('service.pkg.basic.e3'),
+        t('service.pkg.basic.e4'),
       ],
       popular: false,
     },
@@ -33,39 +33,39 @@ const Services: React.FC = () => {
       name: t('service.pro'),
       price: billingCycle === 'monthly' ? '$2,499' : '$7,500',
       period: billingCycle === 'monthly' ? t('service.price.monthly') : t('service.price.project'),
-      description: 'Ideal for growing businesses',
+      description: t('service.pkg.pro.desc'),
       features: [
-        'Everything in Basic',
-        'Full Stack Application',
-        'Database Design & Integration',
-        'API Development',
-        'Advanced SEO',
-        '3 Months Support',
-        'Performance Optimization',
-        'Basic AI Integration',
+        t('service.pkg.pro.f1'),
+        t('service.pkg.pro.f2'),
+        t('service.pkg.pro.f3'),
+        t('service.pkg.pro.f4'),
+        t('service.pkg.pro.f5'),
+        t('service.pkg.pro.f6'),
+        t('service.pkg.pro.f7'),
+        t('service.pkg.pro.f8'),
       ],
       excluded: [
-        'Custom AI Models',
-        'Enterprise Security Audit',
-        'Dedicated DevOps',
+        t('service.pkg.pro.e1'),
+        t('service.pkg.pro.e2'),
+        t('service.pkg.pro.e3'),
       ],
       popular: true,
     },
     {
-      name: "AI Agent Development",
+      name: t('service.ai.name'),
       price: billingCycle === 'monthly' ? '$3,999' : '$10,000',
       period: billingCycle === 'monthly' ? t('service.price.monthly') : t('service.price.project'),
-      description: 'Fully autonomous AI bots and LLM agents',
+      description: t('service.pkg.ai.desc'),
       features: [
-        'Custom LLM Integration',
-        'RAG (Retrieval-Augmented Generation)',
-        'Telegram / Discord Bot Agents',
-        'Autonomous Task Execution',
-        'Voice & Text AI Interfaces',
-        'Vector Database Setup',
+        t('service.pkg.ai.f1'),
+        t('service.pkg.ai.f2'),
+        t('service.pkg.ai.f3'),
+        t('service.pkg.ai.f4'),
+        t('service.pkg.ai.f5'),
+        t('service.pkg.ai.f6'),
       ],
       excluded: [
-        'Enterprise On-Prem Hosting',
+        t('service.pkg.ai.e1'),
       ],
       popular: false,
     },
@@ -73,18 +73,18 @@ const Services: React.FC = () => {
       name: t('service.enterprise'),
       price: billingCycle === 'monthly' ? '$4,999+' : '$15,000+',
       period: billingCycle === 'monthly' ? t('service.price.monthly') : t('service.price.project'),
-      description: 'For large enterprises and complex projects',
+      description: t('service.pkg.ent.desc'),
       features: [
-        'Everything in Professional',
-        'Custom AI/ML Solutions',
-        'Microservices Architecture',
-        'Enterprise Security',
-        'Dedicated Project Manager',
-        '24/7 Priority Support',
-        'DevOps & CI/CD Setup',
-        'Scalability Planning',
-        'Team Training',
-        'Ongoing Maintenance',
+        t('service.pkg.ent.f1'),
+        t('service.pkg.ent.f2'),
+        t('service.pkg.ent.f3'),
+        t('service.pkg.ent.f4'),
+        t('service.pkg.ent.f5'),
+        t('service.pkg.ent.f6'),
+        t('service.pkg.ent.f7'),
+        t('service.pkg.ent.f8'),
+        t('service.pkg.ent.f9'),
+        t('service.pkg.ent.f10'),
       ],
       excluded: [],
       popular: false,
@@ -95,53 +95,53 @@ const Services: React.FC = () => {
     {
       icon: <Zap className="w-8 h-8" />,
       title: t('service.webdev'),
-      description: 'Modern web applications with React, Next.js, and TypeScript',
+      description: t('service.cat.web.desc'),
       details: [
-        'Single Page Applications (SPA)',
-        'Progressive Web Apps (PWA)',
-        'Server-Side Rendering (SSR)',
-        'Responsive & Mobile-First Design',
-        'Performance Optimization',
-        'SEO Best Practices',
+        t('service.cat.web.d1', 'Single Page Applications (SPA)'),
+        t('service.cat.web.d2', 'Progressive Web Apps (PWA)'),
+        t('service.cat.web.d3', 'Server-Side Rendering (SSR)'),
+        t('service.cat.web.d4', 'Responsive & Mobile-First Design'),
+        t('service.cat.web.d5', 'Performance Optimization'),
+        t('service.cat.web.d6', 'SEO Best Practices'),
       ],
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: t('service.api'),
-      description: 'Secure and scalable APIs with Node.js, NestJS, and FastAPI',
+      description: t('service.cat.api.desc'),
       details: [
-        'REST & GraphQL APIs',
-        'Authentication & Authorization',
-        'Rate Limiting & Throttling',
-        'API Documentation',
-        'Microservices Architecture',
-        'WebSocket Integration',
+        t('service.cat.api.d1', 'REST & GraphQL APIs'),
+        t('service.cat.api.d2', 'Authentication & Authorization'),
+        t('service.cat.api.d3', 'Rate Limiting & Throttling'),
+        t('service.cat.api.d4', 'API Documentation'),
+        t('service.cat.api.d5', 'Microservices Architecture'),
+        t('service.cat.api.d6', 'WebSocket Integration'),
       ],
     },
     {
       icon: <Clock className="w-8 h-8" />,
       title: t('service.ai'),
-      description: 'AI integration and machine learning solutions',
+      description: t('service.cat.ai.desc'),
       details: [
-        'OpenAI Integration',
-        'Custom ML Models',
-        'Natural Language Processing',
-        'Computer Vision',
-        'Predictive Analytics',
-        'Automation & Bots',
+        t('service.cat.ai.d1', 'OpenAI Integration'),
+        t('service.cat.ai.d2', 'Custom ML Models'),
+        t('service.cat.ai.d3', 'Natural Language Processing'),
+        t('service.cat.ai.d4', 'Computer Vision'),
+        t('service.cat.ai.d5', 'Predictive Analytics'),
+        t('service.cat.ai.d6', 'Automation & Bots'),
       ],
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: t('service.consulting'),
-      description: 'Technical guidance and architecture design',
+      description: t('service.cat.cons.desc'),
       details: [
-        'System Architecture Review',
-        'Technical Roadmapping',
-        'Code Review & Optimization',
-        'Team Mentoring',
-        'Technology Stack Selection',
-        'Performance Audits',
+        t('service.cat.cons.d1', 'System Architecture Review'),
+        t('service.cat.cons.d2', 'Technical Roadmapping'),
+        t('service.cat.cons.d3', 'Code Review & Optimization'),
+        t('service.cat.cons.d4', 'Team Mentoring'),
+        t('service.cat.cons.d5', 'Technology Stack Selection'),
+        t('service.cat.cons.d6', 'Performance Audits'),
       ],
     },
   ];
@@ -172,7 +172,7 @@ const Services: React.FC = () => {
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                   }`}
               >
-                {t('service.billing.project', 'Project-Based')}
+                {t('service.billing.project')}
               </button>
               <button
                 onClick={() => setBillingCycle('monthly')}
@@ -181,7 +181,7 @@ const Services: React.FC = () => {
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                   }`}
               >
-                {t('service.billing.monthly', 'Monthly Retainer')}
+                {t('service.billing.monthly')}
               </button>
             </div>
           </div>
@@ -207,7 +207,7 @@ const Services: React.FC = () => {
                 {pkg.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                     <span className="px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium rounded-full">
-                      Most Popular
+                      {t('service.badge.popular')}
                     </span>
                   </div>
                 )}
@@ -240,7 +240,7 @@ const Services: React.FC = () => {
                 {pkg.excluded.length > 0 && (
                   <div className="space-y-4 mb-8">
                     <h4 className="font-semibold text-gray-700 dark:text-gray-300">
-                      Not Included:
+                      {t('service.notIncluded')}
                     </h4>
                     <ul className="space-y-3">
                       {pkg.excluded.map((item) => (
@@ -276,10 +276,10 @@ const Services: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {t('service.categories.title', 'Service Categories').split(' ')[0]} <span className="gradient-text">{t('service.categories.title', 'Service Categories').split(' ').slice(1).join(' ')}</span>
+              {t('service.categories.title').split(' ')[0]} <span className="gradient-text">{t('service.categories.title').split(' ').slice(1).join(' ')}</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              {t('service.categories.subtitle', 'Comprehensive solutions across modern web technologies')}
+              {t('service.categories.subtitle')}
             </p>
           </div>
 
@@ -322,7 +322,7 @@ const Services: React.FC = () => {
                   whileHover={{ x: 5 }}
                   className="mt-6 flex items-center text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                 >
-                  Learn More
+                  {t('service.cat.learnMore')}
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </motion.button>
               </motion.div>
@@ -336,10 +336,10 @@ const Services: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              {t('service.custom.title', 'Need a Custom Solution?')}
+              {t('service.custom.title')}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-              {t('service.custom.subtitle', 'Every project is unique. Let\'s discuss your specific requirements and create a tailored plan.')}
+              {t('service.custom.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
@@ -348,7 +348,7 @@ const Services: React.FC = () => {
                 href="/contact"
                 className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
-                {t('service.custom.btn1', 'Get a Custom Quote')}
+                {t('service.custom.btn1')}
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.05 }}
@@ -356,7 +356,7 @@ const Services: React.FC = () => {
                 href="#"
                 className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all"
               >
-                {t('service.custom.btn2', 'Schedule a Consultation')}
+                {t('service.custom.btn2')}
               </motion.a>
             </div>
           </div>

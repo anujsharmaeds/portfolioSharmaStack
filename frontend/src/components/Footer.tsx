@@ -16,11 +16,11 @@ const Footer: React.FC = () => {
   ];
 
   const services = [
-    'Web Development',
-    'API Development',
-    'AI Integration',
-    'IoT Solutions',
-    'Technical Consulting',
+    t('service.webdev'),
+    t('service.api'),
+    t('service.ai'),
+    t('service.iot'),
+    t('service.consulting'),
   ];
 
   const socialLinks = [
@@ -57,8 +57,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-400 mb-6">
-              Building scalable web applications with modern technologies.
-              Open to European opportunities.
+              {t('footer.desc')}
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -78,7 +77,7 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">{t('footer.quickLinks')}</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.path}>
@@ -95,7 +94,7 @@ const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-6">Services</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">{t('footer.services')}</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
@@ -109,7 +108,7 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-6">Contact</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">{t('contact.info.title')}</h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
@@ -127,9 +126,9 @@ const Footer: React.FC = () => {
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
                 <span className="text-gray-400">
-                  Gurugram, Haryana, India
+                  {t('hero.based', 'Gurugram, Haryana, India')}
                   <br />
-                  <span className="text-sm">Open to European Opportunities</span>
+                  <span className="text-sm">{t('status.europe')}</span>
                 </span>
               </li>
             </ul>
@@ -140,20 +139,20 @@ const Footer: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="max-w-md mx-auto">
             <h3 className="text-lg font-semibold text-white text-center mb-4">
-              Stay Updated
+              {t('footer.newsletter.title')}
             </h3>
             <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t('footer.newsletter.placeholder')}
                 className="flex-grow px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
               />
               <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
-                Subscribe
+                {t('footer.newsletter.btn')}
               </button>
             </div>
             <p className="text-center text-gray-500 text-sm mt-2">
-              Get updates on new projects and tech insights
+              {t('footer.newsletter.desc')}
             </p>
           </div>
         </div>

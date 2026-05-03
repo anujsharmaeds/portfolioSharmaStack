@@ -5,9 +5,9 @@ import { ArrowRight, MapPin, Globe, Calendar, X, Code, Server, Database, Cloud, 
 import { Link } from 'react-router-dom';
 
 // Technology data with icons and categories
-const technologies = {
+const getTechnologies = (t: any) => ({
   frontend: {
-    title: "Frontend & UI",
+    title: t('hero.techs.title.frontend', 'Frontend & UI'),
     icon: <Code className="w-5 h-5" />,
     techs: [
       { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
@@ -16,57 +16,51 @@ const technologies = {
     ]
   },
   backend: {
-    title: "Backend & APIs",
+    title: t('hero.techs.title.backend', 'Backend & APIs'),
     icon: <Server className="w-5 h-5" />,
     techs: [
       { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "NestJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" },
       { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-      { name: "Django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
-      { name: "Flask", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" },
-      { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
-      { name: "Nest.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg" },
-      { name: "Dot Net", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" },
     ]
   },
   database: {
-    title: "Databases",
+    title: t('hero.techs.title.database', 'Databases'),
     icon: <Database className="w-5 h-5" />,
     techs: [
       { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
       { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-      { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
     ]
   },
   cloud: {
-    title: "Cloud & DevOps",
+    title: t('hero.techs.title.cloud', 'Cloud & DevOps'),
     icon: <Cloud className="w-5 h-5" />,
     techs: [
       { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
       { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-      { name: "DevOps", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
     ]
   },
   versionControl: {
-    title: "Version Control",
+    title: t('hero.techs.title.vc', 'Version Control'),
     icon: <GitBranch className="w-5 h-5" />,
     techs: [
       { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
       { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-      { name: "GitLab", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
     ]
   },
   iot: {
-    title: "IoT & AI",
+    title: t('hero.techs.title.iot', 'IoT & AI'),
     icon: <Cpu className="w-5 h-5" />,
     techs: [
       { name: "IoT", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" },
-      { name: "Predictive Maintenance", icon: <Brain className="w-6 h-6" /> },
+      { name: t('hero.techs.item.predictive', 'Predictive Maintenance'), icon: <Brain className="w-6 h-6" /> },
     ]
   }
-};
+});
 
 const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
+  const technologies = getTechnologies(t);
   return (
     <AnimatePresence>
       {isOpen && (
@@ -271,9 +265,9 @@ const Hero: React.FC = () => {
               {/* Quick Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
                 {[
-                  { value: '5+', label: t('about.experience', 'Years Experience') },
-                  { value: '50+', label: t('about.projects', 'Projects') },
-                  { value: '30+', label: t('about.clients', 'Happy Clients') },
+                  { value: '5+', label: t('hero.stats.experience', 'Years Experience') },
+                  { value: '50+', label: t('hero.stats.projects', 'Projects') },
+                  { value: '30+', label: t('hero.stats.clients', 'Happy Clients') },
                   { value: '100%', label: t('status.remote', 'Remote Ready') },
                 ].map((stat, index) => (
                   <motion.div
@@ -299,7 +293,7 @@ const Hero: React.FC = () => {
                 transition={{ duration: 1, delay: 0.5 }}
                 className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800"
               >
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 uppercase tracking-wider font-semibold">Trusted by Innovative Companies Worldwide</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 uppercase tracking-wider font-semibold">{t('hero.trustedBy')}</p>
                 <div className="flex flex-wrap justify-center gap-8 opacity-60 grayscale transition-all duration-500">
                   {['TechCorp', 'InnovateJS', 'CloudScale', 'NextGen AI'].map(name => (
                     <div key={name} className="text-xl font-bold text-gray-800 dark:text-gray-300 flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">

@@ -61,7 +61,7 @@ const ContactForm: React.FC = () => {
   };
 
   const budgetOptions = [
-    { value: '', label: 'Select budget' },
+    { value: '', label: t('contact.form.budget.select', 'Select budget') },
     { value: '$1k - $5k', label: '$1,000 - $5,000' },
     { value: '$5k - $10k', label: '$5,000 - $10,000' },
     { value: '$10k - $25k', label: '$10,000 - $25,000' },
@@ -71,12 +71,12 @@ const ContactForm: React.FC = () => {
   ];
 
   const timelineOptions = [
-    { value: '', label: 'Select timeline' },
-    { value: 'urgent', label: 'ASAP (Within 2 weeks)' },
-    { value: '1month', label: '1 Month' },
-    { value: '3months', label: '1-3 Months' },
-    { value: '3plus', label: '3+ Months' },
-    { value: 'flexible', label: 'Flexible' },
+    { value: '', label: t('contact.form.timeline.select', 'Select timeline') },
+    { value: 'urgent', label: t('contact.form.timeline.urgent', 'ASAP (Within 2 weeks)') },
+    { value: '1month', label: t('contact.form.timeline.1m', '1 Month') },
+    { value: '3months', label: t('contact.form.timeline.3m', '1-3 Months') },
+    { value: '3plus', label: t('contact.form.timeline.3p', '3+ Months') },
+    { value: 'flexible', label: t('contact.form.timeline.flex', 'Flexible') },
   ];
 
   return (
@@ -99,7 +99,7 @@ const ContactForm: React.FC = () => {
               minLength: { value: 2, message: 'Name must be at least 2 characters' }
             })}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            placeholder="John Doe"
+            placeholder={t('contact.form.name.ph', 'John Doe')}
             disabled={isSubmitting}
           />
           {errors.name && (
@@ -121,7 +121,7 @@ const ContactForm: React.FC = () => {
               },
             })}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            placeholder="john@example.com"
+            placeholder={t('contact.form.email.ph', 'john@example.com')}
             disabled={isSubmitting}
           />
           {errors.email && (
@@ -134,25 +134,25 @@ const ContactForm: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium mb-2">
-            Phone (Optional)
+            {t('contact.form.phone')}
           </label>
           <input
             type="tel"
             {...register('phone')}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            placeholder="+91 XXXXXXXXXX"
+            placeholder={t('contact.form.phone.ph', '+91 XXXXXXXXXX')}
             disabled={isSubmitting}
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium mb-2">
-            Company (Optional)
+            {t('contact.form.company')}
           </label>
           <input
             {...register('company')}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            placeholder="Your Company Name"
+            placeholder={t('contact.form.company.ph', 'Your Company Name')}
             disabled={isSubmitting}
           />
         </div>
@@ -169,7 +169,7 @@ const ContactForm: React.FC = () => {
             minLength: { value: 5, message: 'Subject must be at least 5 characters' }
           })}
           className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-          placeholder="Project Inquiry: Web Development"
+          placeholder={t('contact.form.subject.ph', 'Project Inquiry: Web Development')}
           disabled={isSubmitting}
         />
         {errors.subject && (
@@ -181,7 +181,7 @@ const ContactForm: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium mb-2">
-            Budget Range (Optional)
+            {t('contact.form.budget')}
           </label>
           <select
             {...register('budget')}
@@ -198,7 +198,7 @@ const ContactForm: React.FC = () => {
 
         <div>
           <label className="block text-sm font-medium mb-2">
-            Project Timeline (Optional)
+            {t('contact.form.timeline')}
           </label>
           <select
             {...register('timeline')}
@@ -230,14 +230,14 @@ const ContactForm: React.FC = () => {
           })}
           rows={6}
           className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-          placeholder="Tell me about your project, requirements, and goals..."
+          placeholder={t('contact.form.message.ph', 'Tell me about your project, requirements, and goals...')}
           disabled={isSubmitting}
         />
         {errors.message && (
           <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>
         )}
         <div className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-          Please include details about your project scope, technical requirements, and any specific deadlines.
+          {t('contact.form.msgDesc')}
         </div>
       </div>
 
@@ -254,7 +254,7 @@ const ContactForm: React.FC = () => {
         {isSubmitting ? (
           <>
             <Loader2 className="w-5 h-5 animate-spin" />
-            <span>Sending...</span>
+            <span>{t('contact.form.sending', 'Sending...')}</span>
           </>
         ) : (
           <>
@@ -267,8 +267,7 @@ const ContactForm: React.FC = () => {
       {/* Privacy Note */}
       <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
         <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-          Your information is secure and will only be used to respond to your inquiry.
-          I never share your data with third parties.
+          {t('contact.form.privacy')}
         </p>
       </div>
     </motion.form>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -10,6 +11,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, features }) => {
+  const { t } = useTranslation();
   return (
     <motion.div
       whileHover={{ y: -8 }}
@@ -30,7 +32,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
       </div>
       
       <div className="space-y-3">
-        <h4 className="font-medium text-gray-700 dark:text-gray-300">Key Features:</h4>
+        <h4 className="font-medium text-gray-700 dark:text-gray-300">{t('service.features', 'Key Features:')}</h4>
         <ul className="space-y-2">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start">
@@ -46,7 +48,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
         whileTap={{ scale: 0.98 }}
         className="w-full mt-6 px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg font-medium transition-all duration-300"
       >
-        Learn More
+        {t('service.cat.learnMore', 'Learn More')}
       </motion.button>
     </motion.div>
   );

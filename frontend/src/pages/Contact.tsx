@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Mail, Phone, MapPin, Linkedin, Send, Clock, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock, CheckCircle } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 
 const Contact: React.FC = () => {
@@ -24,15 +24,15 @@ const Contact: React.FC = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: t('contact.info.location'),
-      value: 'Gurugram, Haryana, India',
+      value: t('hero.based', 'Gurugram, Haryana, India'),
       link: 'https://maps.google.com/?q=Gurugram+Haryana+India',
     },
-    {
-      icon: <Linkedin className="w-6 h-6" />,
-      title: t('contact.info.linkedin'),
-      value: 'linkedin.com/in/konnecto-iot',
-      link: 'https://www.linkedin.com/company/konnecto-iot/',
-    },
+    // {
+    //   icon: <Linkedin className="w-6 h-6" />,
+    //   title: t('contact.info.linkedin'),
+    //   value: 'linkedin.com/in/konnecto-iot',
+    //   link: 'https://www.linkedin.com/company/konnecto-iot/',
+    // },
     // {
     //   icon: <Github className="w-6 h-6" />,
     //   title: t('contact.info.github'),
@@ -44,35 +44,35 @@ const Contact: React.FC = () => {
   const inquiryTypes = [
     {
       id: 'general',
-      title: 'General Inquiry',
-      description: 'Have questions or want to learn more about my services?',
-      responseTime: 'Within 24 hours',
+      title: t('contact.inquiry.general.title'),
+      description: t('contact.inquiry.general.desc'),
+      responseTime: t('contact.inquiry.general.time'),
     },
     {
       id: 'project',
-      title: 'Project Discussion',
-      description: 'Ready to start a new project or need technical consultation?',
-      responseTime: 'Within 12 hours',
+      title: t('contact.inquiry.project.title'),
+      description: t('contact.inquiry.project.desc'),
+      responseTime: t('contact.inquiry.project.time'),
     },
     {
       id: 'career',
-      title: 'Career Opportunity',
-      description: 'Interested in hiring me for your European team?',
-      responseTime: 'Within 6 hours',
+      title: t('contact.inquiry.career.title'),
+      description: t('contact.inquiry.career.desc'),
+      responseTime: t('contact.inquiry.career.time'),
     },
     {
       id: 'collaboration',
-      title: 'Collaboration',
-      description: 'Want to collaborate on an open-source or joint project?',
-      responseTime: 'Within 24 hours',
+      title: t('contact.inquiry.collab.title'),
+      description: t('contact.inquiry.collab.desc'),
+      responseTime: t('contact.inquiry.collab.time'),
     },
   ];
 
   const europeAvailability = [
-    { timezone: 'CET (Berlin)', hours: '9:00 AM - 6:00 PM' },
-    { timezone: 'GMT (London)', hours: '8:00 AM - 5:00 PM' },
-    { timezone: 'IST (India)', hours: '1:30 PM - 10:30 PM' },
-    { timezone: 'EST (New York)', hours: '3:00 AM - 12:00 PM' },
+    { timezone: t('contact.tz.cet', 'CET (Berlin)'), hours: t('contact.tz.cet.hours', '9:00 AM - 6:00 PM') },
+    { timezone: t('contact.tz.gmt', 'GMT (London)'), hours: t('contact.tz.gmt.hours', '8:00 AM - 5:00 PM') },
+    { timezone: t('contact.tz.ist', 'IST (India)'), hours: t('contact.tz.ist.hours', '1:30 PM - 10:30 PM') },
+    { timezone: t('contact.tz.est', 'EST (New York)'), hours: t('contact.tz.est.hours', '3:00 AM - 12:00 PM') },
   ];
 
   return (
@@ -140,7 +140,7 @@ const Contact: React.FC = () => {
               className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
             >
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
-                What can I help you with?
+                {t('contact.help.title')}
               </h3>
 
               <div className="space-y-4">
@@ -166,7 +166,7 @@ const Contact: React.FC = () => {
                     </p>
                     <div className="flex items-center text-sm text-gray-500 dark:text-gray-500">
                       <Clock className="w-4 h-4 mr-2" />
-                      Response: {type.responseTime}
+                      {t('contact.help.response')} {type.responseTime}
                     </div>
                   </button>
                 ))}
@@ -183,7 +183,7 @@ const Contact: React.FC = () => {
             >
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
                 <Clock className="w-6 h-6 mr-2" />
-                European Availability
+                {t('contact.europe.title')}
               </h3>
 
               <div className="space-y-4">
@@ -201,7 +201,7 @@ const Contact: React.FC = () => {
 
               <div className="mt-6 p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  <span className="font-semibold">Note:</span> Available for synchronous meetings during CET business hours. Quick responses available 24/7 via email.
+                  <span className="font-semibold">{t('contact.europe.noteLabel')}</span> {t('contact.europe.note')}
                 </p>
               </div>
             </motion.div>
@@ -219,12 +219,11 @@ const Contact: React.FC = () => {
                 <div className="flex items-center space-x-2 mb-2">
                   <Send className="w-6 h-6 text-blue-500" />
                   <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-                    Send me a message
+                    {t('contact.msg.title')}
                   </h2>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Fill out the form below and I'll get back to you as soon as possible.
-                  For urgent matters, please call directly.
+                  {t('contact.msg.desc')}
                 </p>
               </div>
 
@@ -240,25 +239,25 @@ const Contact: React.FC = () => {
               {/* Process Timeline */}
               <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
-                  What happens next?
+                  {t('contact.next.title')}
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {[
                     {
                       step: '1',
-                      title: 'Initial Response',
-                      description: 'I\'ll respond within 24 hours to acknowledge your inquiry'
+                      title: t('contact.next.s1.title'),
+                      description: t('contact.next.s1.desc')
                     },
                     {
                       step: '2',
-                      title: 'Detailed Discussion',
-                      description: 'We\'ll schedule a call to discuss your requirements in detail'
+                      title: t('contact.next.s2.title'),
+                      description: t('contact.next.s2.desc')
                     },
                     {
                       step: '3',
-                      title: 'Proposal & Timeline',
-                      description: 'You\'ll receive a detailed proposal with timeline and costs'
+                      title: t('contact.next.s3.title'),
+                      description: t('contact.next.s3.desc')
                     },
                   ].map((item) => (
                     <div key={item.step} className="text-center">
@@ -280,10 +279,10 @@ const Contact: React.FC = () => {
             {/* Trust Signals */}
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: 'Secure & Encrypted', icon: '🔒' },
-                { label: 'No Spam Guarantee', icon: '🚫' },
-                { label: 'Quick Response', icon: '⚡' },
-                { label: 'Confidential', icon: '🤝' },
+                { label: t('contact.trust.s1'), icon: '🔒' },
+                { label: t('contact.trust.s2'), icon: '🚫' },
+                { label: t('contact.trust.s3'), icon: '⚡' },
+                { label: t('contact.trust.s4'), icon: '🤝' },
               ].map((signal) => (
                 <div
                   key={signal.label}
@@ -305,10 +304,10 @@ const Contact: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Let's Build Something <span className="gradient-text">Amazing</span> Together
+              {t('contact.cta.title.1')} <span className="gradient-text">{t('contact.cta.title.2')}</span> {t('contact.cta.title.3')}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-              Whether it's a small project or a large enterprise solution, I'm ready to help you succeed.
+              {t('contact.cta.desc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
@@ -317,7 +316,7 @@ const Contact: React.FC = () => {
                 href="/contact"
                 className="px-8 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
-                Start a Conversation
+                {t('contact.cta.start')}
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.05 }}
@@ -325,7 +324,7 @@ const Contact: React.FC = () => {
                 href="tel:+917525071752"
                 className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all"
               >
-                Call Directly
+                {t('contact.cta.call')}
               </motion.a>
             </div>
           </div>

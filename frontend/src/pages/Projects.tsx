@@ -12,132 +12,132 @@ const Projects: React.FC = () => {
   const projects = [
     {
       id: 1,
-      title: 'Publish Ads And Keep The Track',
-      description: 'AI-powered analytics platform for enterprise clients with automated budget allocation',
-      longDescription: 'Led development of enterprise-scale media analytics platform using Next.js and NestJS. Implemented AI-driven budget optimization system using prompt engineering and data analysis.',
+      title: t('projects.items.p1.title'),
+      description: t('projects.items.p1.desc'),
+      longDescription: t('projects.items.p1.longDesc'),
       technologies: ['Next.js', 'NestJS', 'MongoDB', 'AWS', 'OpenAI', 'Redis'],
       category: 'ai',
-      metrics: '60% reduction in manual effort',
+      metrics: t('projects.items.p1.metrics'),
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800',
       liveUrl: '#',
       codeUrl: '#',
-      client: 'Adglobal360',
-      timeline: '6 months',
-      teamSize: '8 members',
+      client: t('projects.items.p1.client', 'Adglobal360'),
+      timeline: t('projects.items.p1.timeline', '6 months'),
+      teamSize: t('projects.items.p1.teamSize', '8 members'),
       results: [
-        'Reduced manual campaign management by 60%',
-        'Improved ad performance by 35%',
-        'Handled 50K+ daily data points',
+        t('projects.items.p1.r1', 'Reduced manual campaign management by 60%'),
+        t('projects.items.p1.r2', 'Improved ad performance by 35%'),
+        t('projects.items.p1.r3', 'Handled 50K+ daily data points'),
       ],
     },
     {
       id: 2,
-      title: 'Real-time Betting Platform',
-      description: 'Scalable Casino platform handling 10K+ concurrent users with live event streaming',
-      longDescription: 'Engineered real-time casino betting platforms with React.js and Node.js. Implemented Socket.IO for live event streaming and optimized MongoDB for high-performance transactions.',
+      title: t('projects.items.p2.title'),
+      description: t('projects.items.p2.desc'),
+      longDescription: t('projects.items.p2.longDesc'),
       technologies: ['React.js', 'Node.js', 'Socket.IO', 'MongoDB', 'Docker', 'Redis'],
       category: 'scalable',
-      metrics: '30% faster transaction processing',
+      metrics: t('projects.items.p2.metrics'),
       image: 'https://images.pexels.com/photos/6664179/pexels-photo-6664179.jpeg?auto=compress&cs=tinysrgb&w=800',
       liveUrl: '#',
       codeUrl: '#',
-      client: 'Block-Star Pvt. Ltd.',
-      timeline: '4 months',
-      teamSize: '6 members',
+      client: t('projects.items.p2.client', 'Block-Star Pvt. Ltd.'),
+      timeline: t('projects.items.p2.timeline', '4 months'),
+      teamSize: t('projects.items.p2.teamSize', '6 members'),
       results: [
-        'Supported 10K+ concurrent users',
-        'Reduced data latency by 20%',
-        '30% improvement in API response times',
+        t('projects.items.p2.r1', 'Supported 10K+ concurrent users'),
+        t('projects.items.p2.r2', 'Reduced data latency by 20%'),
+        t('projects.items.p2.r3', '30% improvement in API response times'),
       ],
     },
     {
       id: 3,
-      title: 'Industrial IoT Dashboard',
-      description: 'Real-time monitoring system for manufacturing clients across multiple industrial sites',
-      longDescription: 'Developed real-time IoT monitoring dashboards for industrial clients including Holcim and Sierratek. Built secure RESTful APIs with JWT authentication and implemented AWS IoT Core.',
+      title: t('projects.items.p3.title'),
+      description: t('projects.items.p3.desc'),
+      longDescription: t('projects.items.p3.longDesc'),
       technologies: ['React.js', 'AWS IoT', 'WebSocket', 'PostgreSQL', 'Chart.js', 'JWT'],
       category: 'iot',
-      metrics: '40% latency reduction',
+      metrics: t('projects.items.p3.metrics'),
       image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800',
       liveUrl: '#',
       codeUrl: '#',
-      client: 'Yash Technologies',
-      timeline: '3 months',
-      teamSize: '4 members',
+      client: t('projects.items.p3.client', 'Yash Technologies'),
+      timeline: t('projects.items.p3.timeline', '3 months'),
+      teamSize: t('projects.items.p3.teamSize', '4 members'),
       results: [
-        'Monitored 5+ industrial sites',
-        'Reduced system latency by 40%',
-        'Improved data accuracy by 25%',
+        t('projects.items.p3.r1', 'Monitored 5+ industrial sites'),
+        t('projects.items.p3.r2', 'Reduced system latency by 40%'),
+        t('projects.items.p3.r3', 'Improved data accuracy by 25%'),
       ],
     },
     {
       id: 4,
-      title: 'Tourism Portal',
-      description: 'SEO-optimized tourism portal with responsive design and booking system',
-      longDescription: 'Designed and developed SEO-optimized tourism portal using React.js and Node.js. Implemented responsive design principles and optimized website performance.',
+      title: t('projects.items.p4.title'),
+      description: t('projects.items.p4.desc'),
+      longDescription: t('projects.items.p4.longDesc'),
       technologies: ['React.js', 'Node.js', 'PostgreSQL', 'Stripe', 'SEO', 'PWA'],
       category: 'web',
-      metrics: '25% increase in mobile engagement',
+      metrics: t('projects.items.p4.metrics'),
       image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800',
       liveUrl: '#',
       codeUrl: '#',
-      client: 'Paryatan Guru Holidays',
-      timeline: '2 months',
-      teamSize: '3 members',
+      client: t('projects.items.p4.client', 'Paryatan Guru Holidays'),
+      timeline: t('projects.items.p4.timeline', '2 months'),
+      teamSize: t('projects.items.p4.teamSize', '3 members'),
       results: [
-        '25% increase in mobile user engagement',
-        '15% improvement in average session duration',
-        'Top 3 search ranking for key terms',
+        t('projects.items.p4.r1', '25% increase in mobile user engagement'),
+        t('projects.items.p4.r2', '15% improvement in average session duration'),
+        t('projects.items.p4.r3', 'Top 3 search ranking for key terms'),
       ],
     },
     {
       id: 5,
-      title: 'E-commerce Platform',
-      description: 'Full-featured e-commerce platform with inventory management and analytics',
-      longDescription: 'Built scalable e-commerce platform with microservices architecture. Implemented real-time inventory management and advanced analytics dashboard.',
+      title: t('projects.items.p5.title'),
+      description: t('projects.items.p5.desc'),
+      longDescription: t('projects.items.p5.longDesc'),
       technologies: ['Next.js', 'NestJS', 'Microservices', 'Redis', 'Kafka', 'Elasticsearch'],
       category: 'scalable',
-      metrics: '50% faster page loads',
+      metrics: t('projects.items.p5.metrics'),
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800',
       liveUrl: '#',
       codeUrl: '#',
-      client: 'Confidential',
-      timeline: '5 months',
-      teamSize: '10 members',
+      client: t('projects.items.p5.client', 'Confidential'),
+      timeline: t('projects.items.p5.timeline', '5 months'),
+      teamSize: t('projects.items.p5.teamSize', '10 members'),
       results: [
-        '50% faster page load times',
-        '99.9% system uptime',
-        'Scaled to 100K+ products',
+        t('projects.items.p5.r1', '50% faster page load times'),
+        t('projects.items.p5.r2', '99.9% system uptime'),
+        t('projects.items.p5.r3', 'Scaled to 100K+ products'),
       ],
     },
     {
       id: 6,
-      title: 'Healthcare Analytics Dashboard',
-      description: 'AI-powered healthcare analytics with predictive modeling and data visualization',
-      longDescription: 'Developed healthcare analytics platform with predictive modeling capabilities. Integrated machine learning algorithms for patient outcome predictions.',
+      title: t('projects.items.p6.title'),
+      description: t('projects.items.p6.desc'),
+      longDescription: t('projects.items.p6.longDesc'),
       technologies: ['React.js', 'Python', 'TensorFlow', 'FastAPI', 'PostgreSQL', 'D3.js'],
       category: 'ai',
-      metrics: '95% prediction accuracy',
+      metrics: t('projects.items.p6.metrics'),
       image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800',
       liveUrl: '#',
       codeUrl: '#',
-      client: 'Healthcare Provider',
-      timeline: '4 months',
-      teamSize: '5 members',
+      client: t('projects.items.p6.client', 'Healthcare Provider'),
+      timeline: t('projects.items.p6.timeline', '4 months'),
+      teamSize: t('projects.items.p6.teamSize', '5 members'),
       results: [
-        '95% accuracy in predictions',
-        'Reduced analysis time by 70%',
-        'Integrated 10+ data sources',
+        t('projects.items.p6.r1', '95% accuracy in predictions'),
+        t('projects.items.p6.r2', 'Reduced analysis time by 70%'),
+        t('projects.items.p6.r3', 'Integrated 10+ data sources'),
       ],
     },
   ];
 
   const filters = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'ai', label: 'AI & Machine Learning' },
-    { id: 'iot', label: 'IoT Solutions' },
-    { id: 'scalable', label: 'Scalable Platforms' },
-    { id: 'web', label: 'Web Applications' },
+    { id: 'all', label: t('projects.filter.all') },
+    { id: 'ai', label: t('projects.filter.ai') },
+    { id: 'iot', label: t('projects.filter.iot') },
+    { id: 'scalable', label: t('projects.filter.scalable') },
+    { id: 'web', label: t('projects.filter.web') },
   ];
 
   const filteredProjects = projects.filter(project => {
@@ -163,9 +163,9 @@ const Projects: React.FC = () => {
           {/* Stats */}
           <div className="flex flex-wrap justify-center gap-8 mb-12">
             {[
-              { icon: <Calendar className="w-6 h-6" />, value: '50+', label: 'Projects Completed' },
-              { icon: <Users className="w-6 h-6" />, value: '30+', label: 'Happy Clients' },
-              { icon: <Zap className="w-6 h-6" />, value: '40%', label: 'Avg. Performance Gain' },
+              { icon: <Calendar className="w-6 h-6" />, value: '50+', label: t('projects.stats.completed') },
+              { icon: <Users className="w-6 h-6" />, value: '30+', label: t('projects.stats.clients') },
+              { icon: <Zap className="w-6 h-6" />, value: '40%', label: t('projects.stats.performance') },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -198,7 +198,7 @@ const Projects: React.FC = () => {
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <input
                     type="text"
-                    placeholder="Search projects by name, tech, or description..."
+                    placeholder={t('projects.search.placeholder')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -209,7 +209,7 @@ const Projects: React.FC = () => {
               {/* Filter Button (Mobile) */}
               <button className="md:hidden flex items-center justify-center px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl">
                 <Filter className="w-5 h-5 mr-2" />
-                Filter
+                {t('projects.search.filterBtn')}
               </button>
             </div>
 
@@ -232,7 +232,7 @@ const Projects: React.FC = () => {
             {/* Results Count */}
             <div className="mb-8">
               <p className="text-gray-600 dark:text-gray-400">
-                Showing {filteredProjects.length} of {projects.length} projects
+                {t('projects.results.showing')} {filteredProjects.length} {t('projects.results.of')} {projects.length} {t('projects.results.projects')}
               </p>
             </div>
           </div>
@@ -246,10 +246,10 @@ const Projects: React.FC = () => {
             <div className="text-center py-20">
               <div className="text-5xl mb-4">🔍</div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-                No projects found
+                {t('projects.empty.title')}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Try adjusting your search or filter criteria
+                {t('projects.empty.desc')}
               </p>
             </div>
           ) : (
@@ -275,10 +275,10 @@ const Projects: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Have a <span className="gradient-text">Project in Mind</span>?
+              {t('projects.cta.title.1')} <span className="gradient-text">{t('projects.cta.title.2')}</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-              Let's collaborate to build something amazing. Share your ideas and let's make them reality.
+              {t('projects.cta.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
@@ -287,7 +287,7 @@ const Projects: React.FC = () => {
                 href="/contact"
                 className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
-                Start a Project
+                {t('projects.cta.start')}
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.05 }}
@@ -295,7 +295,7 @@ const Projects: React.FC = () => {
                 href="#"
                 className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all"
               >
-                View Case Studies
+                {t('projects.cta.view')}
               </motion.a>
             </div>
           </div>

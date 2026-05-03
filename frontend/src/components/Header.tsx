@@ -43,7 +43,7 @@ const Header: React.FC = () => {
                 SharmaStack
               </h1>
               <p className="text-[10px] uppercase tracking-wider text-gray-400">
-                Web Development • AI • IoT • FinTech • Scalable Systems • 5+ Years
+                {t('header.subtitle', 'Web Development • AI • IoT • FinTech • Scalable Systems • 5+ Years')}
               </p>
             </div>
 

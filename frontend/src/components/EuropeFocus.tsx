@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import { MapPin, Plane, Globe, Clock, MessageSquare, CheckCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const EuropeFocus: React.FC = () => {
+  const { t } = useTranslation();
 
 
   const europeanCountries = [
@@ -14,23 +16,23 @@ const EuropeFocus: React.FC = () => {
   const relocationSteps = [
     {
       icon: <MessageSquare className="w-6 h-6" />,
-      title: 'Initial Discussion',
-      description: 'Understand requirements and expectations'
+      title: t('europe.step1.title', 'Initial Discussion'),
+      description: t('europe.step1.desc', 'Understand requirements and expectations')
     },
     {
       icon: <CheckCircle className="w-6 h-6" />,
-      title: 'Visa & Documentation',
-      description: 'Handle all paperwork and legal requirements'
+      title: t('europe.step2.title', 'Visa & Documentation'),
+      description: t('europe.step2.desc', 'Handle all paperwork and legal requirements')
     },
     {
       icon: <Plane className="w-6 h-6" />,
-      title: 'Discuss',
-      description: 'Travel, accommodation, and setup assistance'
+      title: t('europe.step3.title', 'Discuss'),
+      description: t('europe.step3.desc', 'Travel, accommodation, and setup assistance')
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: 'Time Zone Adaptation',
-      description: 'Flexible hours for European time zones'
+      title: t('europe.step4.title', 'Time Zone Adaptation'),
+      description: t('europe.step4.desc', 'Flexible hours for European time zones')
     },
   ];
 
@@ -51,14 +53,14 @@ const EuropeFocus: React.FC = () => {
         >
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-europe-blue to-europe-red text-white text-sm font-medium mb-4">
             <Globe className="w-4 h-4 mr-2" />
-            European Market Focus
+            {t('europe.badge', 'European Market Focus')}
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready for <span className="europe-gradient bg-clip-text text-transparent">European</span> Opportunities
+            {t('europe.title.1', 'Ready for')} <span className="europe-gradient bg-clip-text text-transparent">{t('europe.title.2', 'European')}</span> {t('europe.title.3', 'Opportunities')}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Open to Discuss across Europe with comprehensive preparation for seamless integration
+            {t('europe.subtitle', 'Open to Discuss across Europe with comprehensive preparation for seamless integration')}
           </p>
         </motion.div>
 
@@ -73,7 +75,7 @@ const EuropeFocus: React.FC = () => {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
                 <MapPin className="w-6 h-6 mr-2 text-europe-blue" />
-                Target Countries
+                {t('europe.targets', 'Target Countries')}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {europeanCountries.map((country) => (
@@ -89,7 +91,7 @@ const EuropeFocus: React.FC = () => {
 
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
-                Language Proficiency
+                {t('europe.lang', 'Language Proficiency')}
               </h3>
               <div className="space-y-4">
                 {languageProgress.map((lang) => (
@@ -121,7 +123,7 @@ const EuropeFocus: React.FC = () => {
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-              Discussion Process
+              {t('europe.process', 'Discussion Process')}
             </h3>
 
             {relocationSteps.map((step, index) => (
@@ -152,22 +154,22 @@ const EuropeFocus: React.FC = () => {
             {/* Timezone Info */}
             <div className="mt-8 bg-gradient-to-r from-europe-blue/10 to-europe-red/10 dark:from-europe-blue/5 dark:to-europe-red/5 rounded-2xl p-6">
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-bold text-gray-800 dark:text-white">Timezone Compatibility</h4>
+                <h4 className="font-bold text-gray-800 dark:text-white">{t('europe.timezone', 'Timezone Compatibility')}</h4>
                 <Clock className="w-5 h-5 text-europe-blue" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-europe-blue">IST</div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">India Standard Time</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{t('europe.ist', 'India Standard Time')}</p>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-europe-red">CET</div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Central European Time</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{t('europe.cet', 'Central European Time')}</p>
                 </div>
               </div>
               <div className="mt-4 text-center">
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Overlap: 2:30 PM - 5:30 PM IST / 9:00 AM - 12:00 PM CET
+                  {t('europe.overlap', 'Overlap: 2:30 PM - 5:30 PM IST / 9:00 AM - 12:00 PM CET')}
                 </span>
               </div>
             </div>
@@ -184,10 +186,10 @@ const EuropeFocus: React.FC = () => {
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
             <div className="text-left">
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
-                Interested in European Talent?
+                {t('europe.cta.title', 'Interested in European Talent?')}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Let's discuss how I can contribute to your European team
+                {t('europe.cta.desc', 'Let\'s discuss how I can contribute to your European team')}
               </p>
             </div>
             <motion.a
@@ -196,7 +198,7 @@ const EuropeFocus: React.FC = () => {
               href="/contact"
               className="px-6 py-3 bg-gradient-to-r from-europe-blue to-europe-red text-white rounded-lg font-medium hover:shadow-lg transition-all"
             >
-              Schedule a Call
+              {t('europe.cta.btn', 'Schedule a Call')}
             </motion.a>
           </div>
         </motion.div>

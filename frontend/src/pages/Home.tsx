@@ -15,53 +15,53 @@ const Home: React.FC = () => {
     {
       icon: <Code className="w-8 h-8" />,
       title: t('service.webdev'),
-      description: 'Modern web applications with React, Next.js, TypeScript',
-      features: ['Responsive Design', 'Performance Optimized', 'SEO Friendly'],
+      description: t('service.cat.web.desc'),
+      features: [t('service.pkg.basic.f1'), t('service.pkg.basic.f2'), t('service.pkg.basic.f3')],
     },
     {
       icon: <Database className="w-8 h-8" />,
       title: t('service.api'),
-      description: 'Scalable REST & GraphQL APIs with Node.js, NestJS, FastAPI',
-      features: ['Microservices', 'Authentication', 'Rate Limiting'],
+      description: t('service.cat.api.desc'),
+      features: [t('service.pkg.pro.f4'), t('service.pkg.pro.f3'), t('service.pkg.basic.f1')],
     },
     {
       icon: <Cpu className="w-8 h-8" />,
       title: t('service.ai'),
-      description: 'AI integration, prompt engineering, ML model deployment',
-      features: ['OpenAI Integration', 'Custom ML Models', 'Data Analysis'],
+      description: t('service.cat.ai.desc'),
+      features: [t('service.pkg.pro.f8'), t('service.pkg.pro.e1'), t('service.pkg.pro.e2')],
     },
     {
       icon: <Zap className="w-8 h-8" />,
       title: t('service.iot'),
-      description: 'Real-time IoT dashboards with WebSocket & MQTT',
-      features: ['Real-time Updates', 'Device Management', 'Data Visualization'],
+      description: t('service.cat.cons.desc'),
+      features: [t('service.pkg.ent.f6'), t('service.pkg.ent.f9'), t('service.pkg.ent.f10')],
     },
   ];
 
   const projects = [
     {
-      title: 'Publish Ads And Keep The Track',
-      description: 'AI-powered analytics platform for enterprise clients',
+      title: t('projects.items.p1.title'),
+      description: t('projects.items.p1.desc'),
       technologies: ['Next.js', 'NestJS', 'MongoDB', 'AWS'],
-      metrics: '60% reduction in manual effort',
+      metrics: t('projects.items.p1.metrics'),
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800',
       liveUrl: '#',
       codeUrl: '#',
     },
     {
-      title: 'Real-time Betting Platform',
-      description: 'Scalable Casino platform handling 10K+ concurrent users',
+      title: t('projects.items.p2.title'),
+      description: t('projects.items.p2.desc'),
       technologies: ['React.js', 'Node.js', 'Socket.IO', 'MongoDB'],
-      metrics: '30% faster transaction processing',
+      metrics: t('projects.items.p2.metrics'),
       image: 'https://images.pexels.com/photos/6664179/pexels-photo-6664179.jpeg?auto=compress&cs=tinysrgb&w=800',
       liveUrl: '#',
       codeUrl: '#',
     },
     {
-      title: 'Industrial IoT Dashboard',
-      description: 'Real-time monitoring system for manufacturing clients',
+      title: t('projects.items.p3.title'),
+      description: t('projects.items.p3.desc'),
       technologies: ['React.js', 'AWS IoT', 'WebSocket', 'PostgreSQL'],
-      metrics: '40% latency reduction',
+      metrics: t('projects.items.p3.metrics'),
       image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800',
       liveUrl: '#',
       codeUrl: '#',
@@ -95,7 +95,7 @@ const Home: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
             >
-              View All Services
+              {t('home.services.preview.btn')}
               <ArrowRight className="ml-2 w-5 h-5" />
             </motion.a>
           </div>

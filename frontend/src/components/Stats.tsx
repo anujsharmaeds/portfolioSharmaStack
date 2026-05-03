@@ -10,38 +10,38 @@ const Stats: React.FC = () => {
     {
       icon: <Code className="w-8 h-8" />,
       value: '5+',
-      label: t('about.experience'),
-      description: 'Years in Full Stack Development'
+      label: t('hero.stats.experience', 'Years Experience'),
+      description: t('stats.desc.experience', 'Years in Full Stack Development')
     },
     {
       icon: <Users className="w-8 h-8" />,
       value: '30+',
-      label: t('about.clients'),
-      description: 'Satisfied clients worldwide'
+      label: t('hero.stats.clients', 'Happy Clients'),
+      description: t('stats.desc.clients', 'Satisfied clients worldwide')
     },
     {
       icon: <Target className="w-8 h-8" />,
       value: '50+',
-      label: t('about.projects'),
-      description: 'Successful projects delivered'
+      label: t('hero.stats.projects', 'Projects'),
+      description: t('stats.desc.projects', 'Successful projects delivered')
     },
     {
       icon: <Globe className="w-8 h-8" />,
       value: '5+',
-      label: 'Countries',
-      description: 'Clients across 5+ countries'
+      label: t('stats.countries', 'Countries'),
+      description: t('stats.countries.desc', 'Clients across 5+ countries')
     },
     {
       icon: <Award className="w-8 h-8" />,
       value: '100%',
-      label: 'Success Rate',
-      description: 'Project delivery success'
+      label: t('stats.success', 'Success Rate'),
+      description: t('stats.success.desc', 'Project delivery success')
     },
     {
       icon: <Clock className="w-8 h-8" />,
       value: '24/7',
-      label: 'Availability',
-      description: 'Support & communication'
+      label: t('stats.availability', 'Availability'),
+      description: t('stats.availability.desc', 'Support & communication')
     },
   ];
 
@@ -55,10 +55,10 @@ const Stats: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            By The <span className="gradient-text">Numbers</span>
+            {t('stats.title.1', 'By The')} <span className="gradient-text">{t('stats.title.2', 'Numbers')}</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Quantifying success through measurable achievements and consistent delivery
+            {t('stats.subtitle', 'Quantifying success through measurable achievements and consistent delivery')}
           </p>
         </motion.div>
 
@@ -106,15 +106,15 @@ const Stats: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-2xl font-bold text-gray-800 dark:text-white mb-2">10,000+</div>
-              <p className="text-gray-600 dark:text-gray-400">Concurrent Users Handled</p>
+              <p className="text-gray-600 dark:text-gray-400">{t('stats.extra.1', 'Concurrent Users Handled')}</p>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-gray-800 dark:text-white mb-2">40%</div>
-              <p className="text-gray-600 dark:text-gray-4">Average Performance Improvement</p>
+              <p className="text-gray-600 dark:text-gray-4">{t('stats.extra.2', 'Average Performance Improvement')}</p>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-gray-800 dark:text-white mb-2">60%</div>
-              <p className="text-gray-600 dark:text-gray-400">Process Automation Achieved</p>
+              <p className="text-gray-600 dark:text-gray-400">{t('stats.extra.3', 'Process Automation Achieved')}</p>
             </div>
           </div>
         </motion.div>
