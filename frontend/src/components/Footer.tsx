@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Mail, Phone, MapPin, Loader2 } from 'lucide-react';
+import { Linkedin, Mail, Phone, MapPin, Loader2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 const Footer: React.FC = () => {
@@ -186,7 +186,7 @@ const Footer: React.FC = () => {
                 className="flex-grow px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
                 disabled={isSubscribing}
               />
-              <button 
+              <button
                 onClick={handleSubscribe}
                 disabled={isSubscribing}
                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center min-w-[120px]"
