@@ -40,12 +40,6 @@ const Contact: React.FC = () => {
     //   value: 'linkedin.com/in/konnecto-iot',
     //   link: 'https://www.linkedin.com/company/konnecto-iot/',
     // },
-    // {
-    //   icon: <Github className="w-6 h-6" />,
-    //   title: t('contact.info.github'),
-    //   value: 'github.com/anujsharma',
-    //   link: 'https://github.com/anujsharma',
-    // },
   ];
 
   const inquiryTypes = [

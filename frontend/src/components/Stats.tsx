@@ -11,7 +11,7 @@ const Stats: React.FC = () => {
       icon: <Code className="w-8 h-8" />,
       value: '5+',
       label: t('hero.stats.experience', 'Years Experience'),
-      description: t('stats.desc.experience', 'Years in Full Stack Development')
+      description: t('stats.desc.experience', 'Years in Software Development')
     },
     {
       icon: <Users className="w-8 h-8" />,

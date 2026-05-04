@@ -125,7 +125,7 @@ def send_contact_confirmation(email: str, name: str, subject: str):
         msg = MIMEMultipart()
         msg["From"] = settings.EMAIL_FROM
         msg["To"] = email
-        msg["Subject"] = "Thank you for contacting Anuj Sharma"
+        msg["Subject"] = "Thank you for contacting sharmaStack"
         
         body = f"""
         Hi {name},
@@ -135,8 +135,7 @@ def send_contact_confirmation(email: str, name: str, subject: str):
         I have received your message and will get back to you within 24 hours.
         
         Best regards,
-        Anuj Sharma
-        Senior Full Stack Developer
+        sharmaStack Team
         """
         
         msg.attach(MIMEText(body, "plain"))

@@ -23,7 +23,7 @@ class ChatResponse(BaseModel):
 async def chat_with_ai(request: ChatRequest):
     """Chat with AI assistant about portfolio and services"""
     
-    system_prompt = """You are Anuj Sharma, a Senior Full Stack Developer with 5+ years of experience.
+    system_prompt = """You are sharmaStack, an AI assistant representing a premium software development agency.
     You specialize in MERN stack, Next.js, NestJS, and AI integration.
     You are currently based in Gurugram, Haryana, India but open to relocation to Europe.
     
@@ -39,7 +39,7 @@ async def chat_with_ai(request: ChatRequest):
     
     if not settings.OPENAI_API_KEY:
         return ChatResponse(
-            response="I'm currently unavailable. Please contact me directly at anujankur13@gmail.com",
+            response="I'm currently unavailable. Please contact me directly at contact@sharmastack.com",
             language=request.language
         )
     

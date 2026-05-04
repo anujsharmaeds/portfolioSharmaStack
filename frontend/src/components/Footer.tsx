@@ -68,13 +68,8 @@ const Footer: React.FC = () => {
       label: 'LinkedIn'
     },
     {
-      icon: <Github className="w-5 h-5" />,
-      href: 'https://github.com/anujsharma',
-      label: 'GitHub'
-    },
-    {
       icon: <Mail className="w-5 h-5" />,
-      href: 'mailto:anujankur13@gmail.com',
+      href: 'mailto:contact@sharmastack.com',
       label: 'Email'
     },
   ];
@@ -209,7 +204,7 @@ const Footer: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm">
-              © {currentYear} Anuj Sharma. {t('footer.rights')}
+              © {currentYear} sharmaStack. {t('footer.rights')}
             </p>
 
             <div className="flex space-x-6 mt-4 md:mt-0">

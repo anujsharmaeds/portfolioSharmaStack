@@ -63,9 +63,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
     try {
       // Simulate API call - replace with actual backend endpoint
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-      
+
       const formData = new FormData();
-      
+
       // Force inject missing fields that might not be mounted or contain partial data
       if (activeTab === 'plan') {
         data.subject = defaultSubject || 'Plan Inquiry';
@@ -75,18 +75,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
           data.subject = 'General Inquiry';
         }
       }
-      
+
       Object.entries(data).forEach(([key, value]) => {
         if (key !== 'resume' && value !== undefined && value !== null && value !== '') {
           formData.append(key, value as string);
         }
       });
-      
+
       // Always ensure inquiryType is set
       if (!data.inquiryType) {
         formData.set('inquiryType', activeTab);
       }
-      
+
       if (data.resume && data.resume.length > 0) {
         formData.append('resume', data.resume[0]);
       }
@@ -241,9 +241,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
                   <option value="">Select Position</option>
                   <option value="Frontend Developer">Frontend Developer</option>
                   <option value="Backend Developer">Backend Developer</option>
-                  <option value="Full Stack Developer">Full Stack Developer</option>
+                  <option value="sharmaStack Engineer">sharmaStack Engineer</option>
                   <option value="AI / ML Engineer">AI / ML Engineer</option>
                   <option value="Product Designer">Product Designer</option>
+                  <option value="Business Development">Business Development</option>
+                  <option value="Sales">Sales</option>
                   <option value="Other">Other</option>
                 </select>
               ) : (

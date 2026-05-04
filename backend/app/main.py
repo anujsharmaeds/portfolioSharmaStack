@@ -25,7 +25,7 @@ async def lifespan(app: FastAPI):
     print("❌ Database disconnected")
 
 app = FastAPI(
-    title="Anuj Sharma Portfolio API",
+    title="sharmaStack API",
     description="Backend API for portfolio website",
     version="1.0.0",
     docs_url="/api/docs",
@@ -69,7 +69,7 @@ async def health_check():
 @app.get("/")
 async def root():
     return {
-        "message": "Welcome to Anuj Sharma Portfolio API",
+        "message": "Welcome to sharmaStack API",
         "endpoints": {
             "contact": "/api/contact",
             "health": "/api/health",

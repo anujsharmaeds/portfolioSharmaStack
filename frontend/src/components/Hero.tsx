@@ -203,7 +203,7 @@ const Hero: React.FC = () => {
               {/* Name centered at top */}
               <div className="mb-8">
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
-                  {/* <span className="text-gray-900 dark:text-white">Anuj Sharma</span> */}
+                  {/* <span className="text-gray-900 dark:text-white">sharmaStack</span> */}
                   {/* <span className="hidden md:inline text-gray-300 dark:text-gray-700">|</span> */}
                   <span className="gradient-text">SharmaStack</span>
                 </h1>
