@@ -11,7 +11,7 @@ interface ProjectCardProps {
   metrics: string;
   image: string;
   liveUrl: string;
-  codeUrl: string;
+  // codeUrl: string;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -21,7 +21,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   metrics,
   image,
   liveUrl,
-  codeUrl,
+  // codeUrl,
 }) => {
   const { t } = useTranslation();
 

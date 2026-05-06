@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Loader2 } from 'lucide-react';
+import { Mail, MapPin, Loader2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 const Footer: React.FC = () => {
