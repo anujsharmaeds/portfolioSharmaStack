@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     setIsSubscribing(true);
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-      
+
       const formData = new FormData();
       formData.append('name', 'Newsletter Subscriber');
       formData.append('email', email);
@@ -145,8 +145,8 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold text-white mb-6">{t('contact.info.title')}</h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
-                <Phone className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">+91 xxxxxxxxxx</span>
+                {/* <Phone className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" /> */}
+                {/* <span className="text-gray-400"></span> */}
               </li>
               <li className="flex items-start space-x-3">
                 <Mail className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />

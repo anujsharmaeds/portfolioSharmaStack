@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import { Mail, Phone, MapPin, Send, Clock, CheckCircle } from 'lucide-react';
+import { Mail, MapPin, Send, Clock, CheckCircle } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 
 const Contact: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  
+
   // Initialize tab from URL or default to 'general'
   const [activeTab, setActiveTab] = useState(() => {
     const params = new URLSearchParams(location.search);
@@ -16,12 +16,12 @@ const Contact: React.FC = () => {
   });
 
   const contactInfo = [
-    {
-      icon: <Phone className="w-6 h-6" />,
-      title: t('contact.info.phone'),
-      value: '+91 XXXXXXXXX',
-      link: 'tel:+91XXXXXXXXX',
-    },
+    // {
+    //   icon: <Phone className="w-6 h-6" />,
+    //   title: t('contact.info.phone'),
+    //   value: '+91 XXXXXXXXX',
+    //   link: 'tel:+91XXXXXXXXX',
+    // },
     {
       icon: <Mail className="w-6 h-6" />,
       title: t('contact.info.email'),
@@ -324,14 +324,14 @@ const Contact: React.FC = () => {
               >
                 {t('contact.cta.start')}
               </motion.a>
-              <motion.a
+              {/* <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="tel:+917525071752"
                 className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all"
               >
                 {t('contact.cta.call')}
-              </motion.a>
+              </motion.a> */}
             </div>
           </div>
         </div>

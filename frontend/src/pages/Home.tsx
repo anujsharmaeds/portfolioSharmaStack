@@ -119,6 +119,37 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Brand Identity Section (SEO Booster) */}
+      <section className="py-20 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">What is SharmaStack? Services, Projects & Vision</h2>
+            
+            <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p>
+                <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> is a premium 
+                software development agency focused on delivering cutting-edge digital experiences. We bridge the gap 
+                between stunning design and robust engineering. The <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> company 
+                was built with a singular vision: to empower global businesses with elite technology solutions.
+              </p>
+              
+              <p>
+                Our core <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack services</strong> include 
+                Full-Stack Web Development, custom API integration, AI-driven automation, and IoT ecosystem development. 
+                Using the latest tools like React, Next.js, Node.js, and NestJS, we ensure that every product shipped by 
+                <strong className="text-gray-900 dark:text-white font-semibold"> SharmaStack</strong> is highly scalable, secure, and ready for the future.
+              </p>
+
+              <p>
+                From dynamic web applications to complex cloud architectures, <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> 
+                stands as your trusted technical partner. Discover why ambitious startups and established enterprises alike choose 
+                <strong className="text-gray-900 dark:text-white font-semibold"> SharmaStack</strong> to lead their digital transformation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <EuropeFocus />
     </div>
   );

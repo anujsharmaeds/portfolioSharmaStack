@@ -362,7 +362,7 @@ const resources = {
       "contact.form.timeline.flex": "Flexible",
       "contact.form.name.ph": "John Doe",
       "contact.form.email.ph": "john@example.com",
-      "contact.form.phone.ph": "+91 XXXXXXXXXX",
+      "contact.form.phone.ph": "",
       "contact.form.company.ph": "Your Company Name",
       "contact.form.subject.ph": "Project Inquiry: Web Development",
       "contact.form.message.ph": "Tell me about your project, requirements, and goals...",

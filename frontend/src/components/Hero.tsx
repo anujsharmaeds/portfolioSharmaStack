@@ -201,16 +201,12 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.5 }}
             >
               {/* Name centered at top */}
-              <div className="mb-8">
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
-                  {/* <span className="text-gray-900 dark:text-white">sharmaStack</span> */}
-                  {/* <span className="hidden md:inline text-gray-300 dark:text-gray-700">|</span> */}
-                  <span className="gradient-text">SharmaStack</span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 flex flex-col items-center justify-center">
+                  <span className="gradient-text mb-2">SharmaStack</span>
+                  <span className="text-2xl md:text-4xl text-gray-900 dark:text-white mt-2">
+                    Web Development & AI Agency
+                  </span>
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400">
-                  {t('hero.title')}
-                </p>
-              </div>
 
               {/* Badges */}
               <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -234,8 +230,10 @@ const Hero: React.FC = () => {
               </p> */}
 
               {/* Description */}
-              <p className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12">
-                {t('hero.description')}
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+                <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> is a leading web development and AI agency based in India offering MERN stack, Next.js and IoT solutions. 
+                At <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>, we transform ideas into scalable, high-performance digital products. 
+                Whether you need a complex SaaS platform or intelligent automation, the <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> team delivers excellence.
               </p>
 
               {/* CTA Buttons with Tech Stack Button */}
