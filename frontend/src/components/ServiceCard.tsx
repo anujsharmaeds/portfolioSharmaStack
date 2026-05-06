@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-hot-toast';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -30,7 +31,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
           {description}
         </p>
       </div>
-      
+
       <div className="space-y-3">
         <h4 className="font-medium text-gray-700 dark:text-gray-300">{t('service.features', 'Key Features:')}</h4>
         <ul className="space-y-2">
@@ -42,10 +43,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
           ))}
         </ul>
       </div>
-      
+
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
+        onClick={() => toast(t('common.comingSoon', 'Coming Soon!'), { icon: '🚀' })}
         className="w-full mt-6 px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg font-medium transition-all duration-300"
       >
         {t('service.cat.learnMore', 'Learn More')}

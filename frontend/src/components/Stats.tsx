@@ -110,7 +110,7 @@ const Stats: React.FC = () => {
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-gray-800 dark:text-white mb-2">40%</div>
-              <p className="text-gray-600 dark:text-gray-4">{t('stats.extra.2', 'Average Performance Improvement')}</p>
+              <p className="text-gray-600 dark:text-gray-400">{t('stats.extra.2', 'Average Performance Improvement')}</p>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-gray-800 dark:text-white mb-2">60%</div>

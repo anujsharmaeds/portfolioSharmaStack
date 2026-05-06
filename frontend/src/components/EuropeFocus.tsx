@@ -60,7 +60,7 @@ const EuropeFocus: React.FC = () => {
             {t('europe.title.1', 'Ready for')} <span className="europe-gradient bg-clip-text text-transparent">{t('europe.title.2', 'European')}</span> {t('europe.title.3', 'Opportunities')}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            {t('europe.subtitle', 'Open to Discuss across Europe with comprehensive preparation for seamless integration')}
+            {t('europe.subtitle', 'Open to Discuss across Globe with comprehensive preparation for seamless integration')}
           </p>
         </motion.div>
 

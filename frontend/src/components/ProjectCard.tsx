@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-hot-toast';
 
 interface ProjectCardProps {
   title: string;
@@ -47,7 +48,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
           {title}
         </h3>
-        
+
         <p className="text-gray-600 dark:text-gray-400 mb-4">
           {description}
         </p>
@@ -90,8 +91,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             >
               <ExternalLink className="w-5 h-5" />
             </motion.a>
-            
-            <motion.a
+
+            {/* <motion.a
               whileHover={{ scale: 1.1, rotate: -5 }}
               whileTap={{ scale: 0.9 }}
               href={codeUrl}
@@ -101,11 +102,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               title={t('project.code')}
             >
               <Github className="w-5 h-5" />
-            </motion.a>
+            </motion.a> */}
           </div>
-          
+
           <motion.button
             whileHover={{ x: 5 }}
+            onClick={() => toast(t('common.comingSoon', 'Coming Soon!'), { icon: '🚀' })}
             className="flex items-center text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
           >
             {t('project.view')}

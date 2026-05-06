@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Linkedin, Mail, Phone, MapPin, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Loader2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 const Footer: React.FC = () => {
@@ -18,16 +18,17 @@ const Footer: React.FC = () => {
     setIsSubscribing(true);
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      
+      const formData = new FormData();
+      formData.append('name', 'Newsletter Subscriber');
+      formData.append('email', email);
+      formData.append('subject', 'Newsletter Subscription');
+      formData.append('message', `New subscription request from ${email}`);
+      formData.append('inquiryType', 'general');
+
       const response = await fetch(`${apiUrl}/api/contact/`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: 'Newsletter Subscriber',
-          email: email,
-          subject: 'Newsletter Subscription',
-          message: `New subscription request from ${email}`,
-          inquiryType: 'general'
-        }),
+        body: formData,
       });
 
       if (response.ok) {
@@ -62,11 +63,11 @@ const Footer: React.FC = () => {
   ];
 
   const socialLinks = [
-    {
-      icon: <Linkedin className="w-5 h-5" />,
-      href: 'https://linkedin.com/in/anujsharma007',
-      label: 'LinkedIn'
-    },
+    // {
+    //   icon: <Linkedin className="w-5 h-5" />,
+    //   href: 'https://linkedin.com/in/anujsharma007',
+    //   label: 'LinkedIn'
+    // },
     {
       icon: <Mail className="w-5 h-5" />,
       href: 'mailto:contact@sharmastack.com',
@@ -97,8 +98,8 @@ const Footer: React.FC = () => {
                 <a
                   key={social.label}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={social.href.startsWith('mailto:') ? "_self" : "_blank"}
+                  rel={social.href.startsWith('mailto:') ? "" : "noopener noreferrer"}
                   className="w-10 h-10 rounded-full bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors"
                   aria-label={social.label}
                 >
