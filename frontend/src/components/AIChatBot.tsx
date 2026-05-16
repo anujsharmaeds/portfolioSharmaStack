@@ -4,10 +4,9 @@ import { MessageSquare, X, Send, Bot, User, Sparkles, Briefcase, Rocket } from '
 import { useTranslation } from 'react-i18next';
 
 interface Message {
-  role: 'user' | 'bot';
+  role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-  isCustom?: boolean;
 }
 
 type FlowStep = 'idle' | 'name' | 'project_type' | 'budget' | 'timeline' | 'contact' | 'submitting' | 'finished';
@@ -38,20 +37,20 @@ const AIChatBot: React.FC = () => {
   }, [messages, isTyping]);
 
   const addBotMessage = (content: string) => {
-    setIsTyping(true);
-    setTimeout(() => {
-      setMessages(prev => [...prev, {
-        role: 'bot',
-        content,
-        timestamp: new Date()
-      }]);
-      setIsTyping(false);
-    }, 1000);
+    setMessages(prev => [...prev, {
+      role: 'assistant',
+      content,
+      timestamp: new Date()
+    }]);
   };
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      addBotMessage(t('bot.welcome', "Hello! I'm your SharmaStack AI assistant. How can I help you today? I can tell you about our services, or we can start a Quick Project Consultation."));
+      setIsTyping(true);
+      setTimeout(() => {
+        addBotMessage(t('bot.welcome', "Hello! I'm the SharmaStack AI Orchestrator. How can I help you today? I can discuss our IoT Lab, Bot Solutions, or start a Project Consultation."));
+        setIsTyping(false);
+      }, 1000);
     }
   }, [isOpen, messages.length, t]);
 
@@ -62,13 +61,48 @@ const AIChatBot: React.FC = () => {
       content: '🚀 Start Project Consultation',
       timestamp: new Date()
     }]);
-    addBotMessage(t('bot.flow.name', "Great! Let's get started. What is your name?"));
+    setIsTyping(true);
+    setTimeout(() => {
+      addBotMessage(t('bot.flow.name', "Great! Let's get started. What is your name?"));
+      setIsTyping(false);
+    }, 1000);
+  };
+
+  const handleNormalChat = async (text: string) => {
+    const userMsg: Message = { role: 'user', content: text, timestamp: new Date() };
+    setMessages(prev => [...prev, userMsg]);
+    setIsTyping(true);
+    setInput('');
+    
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/ai/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            messages: messages.concat(userMsg).map(m => ({
+                role: m.role,
+                content: m.content
+            }))
+        })
+      });
+      const data = await res.json();
+      addBotMessage(data.response || data.detail || "I'm having trouble thinking.");
+    } catch (err) {
+      console.error(err);
+      addBotMessage("My neural links are currently unstable. Please try again soon!");
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   const handleFlow = async (text: string) => {
     const userMsg: Message = { role: 'user', content: text, timestamp: new Date() };
     setMessages(prev => [...prev, userMsg]);
+    setIsTyping(true);
     setInput('');
+
+    const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+    await delay(800);
 
     switch (flowStep) {
       case 'name':
@@ -79,23 +113,22 @@ const AIChatBot: React.FC = () => {
       case 'project_type':
         setConsultationData(prev => ({ ...prev, project_type: text }));
         setFlowStep('budget');
-        addBotMessage(t('bot.flow.budget', "Understood. What is your approximate budget range for this project?"));
+        addBotMessage(t('bot.flow.budget', "Understood. What is your approximate budget range?"));
         break;
       case 'budget':
         setConsultationData(prev => ({ ...prev, budget: text }));
         setFlowStep('timeline');
-        addBotMessage(t('bot.flow.timeline', "Got it. And what is your target timeline for launch?"));
+        addBotMessage(t('bot.flow.timeline', "And what is your target timeline for launch?"));
         break;
       case 'timeline':
         setConsultationData(prev => ({ ...prev, timeline: text }));
         setFlowStep('contact');
-        addBotMessage(t('bot.flow.contact', "Almost done! Please provide your WhatsApp number or Email so we can reach out to you with the next steps."));
+        addBotMessage(t('bot.flow.contact', "Almost done! Please provide your WhatsApp number or Email so we can reach out with your quote."));
         break;
       case 'contact':
         const finalData = { ...consultationData, contact: text };
         setConsultationData(finalData);
         setFlowStep('submitting');
-        setIsTyping(true);
         
         try {
           const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/bot/consultation`, {
@@ -105,51 +138,39 @@ const AIChatBot: React.FC = () => {
           });
           if (res.ok) {
             setFlowStep('finished');
-            addBotMessage(t('bot.flow.finished', "Thank you! I've sent your requirements to our team. Anuj or one of our lead engineers will reach out to you shortly."));
+            addBotMessage(t('bot.flow.finished', "Success! Your requirements have been sent to our lead engineers. We will reach out shortly."));
           }
         } catch (err) {
-          addBotMessage("I'm having a bit of trouble reaching the server, but I've saved your info locally. I'll retry in a moment!");
+          addBotMessage("Something went wrong with the transmission, but I've saved your info. I'll retry in a moment!");
           setFlowStep('idle');
         }
         break;
-      default:
-        handleNormalChat(text);
     }
-  };
-
-  const handleNormalChat = (text: string) => {
-    setIsTyping(true);
-    setTimeout(() => {
-      let botResponse = "";
-      const lowerInput = text.toLowerCase();
-      if (lowerInput.includes('services')) botResponse = t('bot.resp.services', "We offer Web Development, AI Automation, and IoT ecosystems.");
-      else if (lowerInput.includes('price')) botResponse = t('bot.resp.price', "Projects start at $2,500. Custom AI/IoT solutions vary by complexity.");
-      else botResponse = t('bot.resp.default', "I'm specializing in project consultations right now! Would you like to start one?");
-      
-      setMessages(prev => [...prev, { role: 'bot', content: botResponse, timestamp: new Date() }]);
-      setIsTyping(false);
-    }, 1500);
+    setIsTyping(false);
   };
 
   const handleSend = () => {
     if (!input.trim()) return;
-    if (flowStep !== 'idle') handleFlow(input);
-    else handleNormalChat(input);
-    setInput('');
+    if (flowStep !== 'idle' && flowStep !== 'finished') {
+      handleFlow(input);
+    } else {
+      handleNormalChat(input);
+    }
   };
 
   const getQuickPills = () => {
-    if (flowStep === 'idle' && messages.length > 0) {
+    if (flowStep === 'idle' || flowStep === 'finished') {
       return [
-        { label: '🚀 Start Consultation', action: startConsultation, icon: <Rocket className="w-3 h-3" /> },
-        { label: '🛠 Services', action: () => handleNormalChat('What services do you offer?'), icon: <Briefcase className="w-3 h-3" /> }
+        { label: '🚀 Project Consultation', action: startConsultation, icon: <Rocket className="w-3 h-3" /> },
+        { label: '🔬 Innovation Lab', action: () => handleNormalChat('Tell me about the Innovation Lab'), icon: <Sparkles className="w-3 h-3" /> },
+        { label: '🛠 Tech Stack', action: () => handleNormalChat('What is your tech stack?'), icon: <Briefcase className="w-3 h-3" /> }
       ];
     }
     if (flowStep === 'project_type') {
       return [
         { label: 'Web Application', action: () => handleFlow('Web Application') },
-        { label: 'AI Bot / Agent', action: () => handleFlow('AI Bot / Agent') },
-        { label: 'IoT Ecosystem', action: () => handleFlow('IoT Ecosystem') }
+        { label: 'AI Agent / Bot', action: () => handleFlow('AI Agent / Bot') },
+        { label: 'Industrial IoT', action: () => handleFlow('Industrial IoT') }
       ];
     }
     if (flowStep === 'budget') {
@@ -199,7 +220,7 @@ const AIChatBot: React.FC = () => {
                   <h3 className="font-black text-white text-lg leading-tight">SharmaStack AI</h3>
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Consultation Mode</span>
+                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Enterprise Orchestrator</span>
                   </div>
                 </div>
               </div>
@@ -258,7 +279,7 @@ const AIChatBot: React.FC = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder={flowStep === 'idle' ? "Ask anything..." : "Type your answer..."}
+                  placeholder={flowStep === 'idle' || flowStep === 'finished' ? "Ask anything..." : "Type your answer..."}
                   className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 pr-14 text-white text-sm focus:outline-none focus:border-blue-500/50 transition-all"
                 />
                 <button onClick={handleSend} className="absolute right-2 top-2 bottom-2 px-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all">
@@ -266,7 +287,7 @@ const AIChatBot: React.FC = () => {
                 </button>
               </div>
               <p className="text-[10px] text-gray-600 mt-4 text-center flex items-center justify-center gap-1">
-                <Sparkles className="w-3 h-3" /> Powered by SharmaStack AI Orchestrator
+                <Sparkles className="w-3 h-3" /> Powered by SharmaStack AI • Llama 3.3 Versatile
               </p>
             </div>
           </motion.div>

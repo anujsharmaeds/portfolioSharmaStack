@@ -29,6 +29,7 @@ class Settings(BaseSettings):
     # AI
     OPENAI_API_KEY: Optional[str] = None
     ANTHROPIC_API_KEY: Optional[str] = None
+    GROQ_API_KEY: Optional[str] = None
     
     # Telegram Notifications
     TELEGRAM_BOT_TOKEN: Optional[str] = None

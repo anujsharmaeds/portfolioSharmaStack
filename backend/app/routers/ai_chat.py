@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
-from typing import List
-import openai
+from typing import List, Optional
+import httpx
 from pydantic import BaseModel
-
+import json
 from app.core.config import settings
 
 router = APIRouter()
@@ -21,58 +21,69 @@ class ChatResponse(BaseModel):
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat_with_ai(request: ChatRequest):
-    """Chat with AI assistant about portfolio and services"""
+    """Chat with Enterprise-Level Groq AI about sharmaStack services"""
     
-    system_prompt = """You are sharmaStack, an AI assistant representing a premium software development agency.
-    You specialize in MERN stack, Next.js, NestJS, and AI integration.
-    You are currently based in Gurugram, Haryana, India but open to relocation to Europe.
+    system_prompt = """You are the SharmaStack AI Orchestrator, an elite technical representative for sharmaStack agency.
     
-    You should:
-    1. Answer questions about your skills, experience, and projects
-    2. Discuss your services and pricing (but don't give exact prices, suggest contact)
-    3. Talk about your experience with specific technologies
-    4. Discuss your European relocation plans
-    5. Be professional but friendly
-    6. Always suggest scheduling a call for detailed discussions
+    CONTEXT:
+    - Agency: sharmaStack (founded by Anuj Sharma).
+    - Expertise: MERN Stack, AI Agentic Frameworks, Industrial IoT, and Enterprise Automation.
+    - Location: Gurugram, India (Open to Europe/Global).
     
-    Keep responses concise and helpful."""
+    CORE SHOWCASES:
+    1. INNOVATION LAB: A high-fidelity IoT simulator featuring 37 sensors (including Heartbeat, Flame, Laser, Magnetic Hall, and more) with real-time Edge Analytics.
+    2. AI & BOT SOLUTIONS: Custom autonomous agents for Telegram and WhatsApp, specializing in Lead Generation and Fintech (Market Sentinel).
     
-    if not settings.OPENAI_API_KEY:
+    PERSONALITY:
+    - Highly technical, professional, and efficient.
+    - Think like a Senior Solution Architect.
+    - If asked about pricing, mention that we offer premium custom solutions starting around $2,500.
+    
+    GOAL:
+    - Impress the user with technical depth.
+    - If they seem interested in a project, guide them to use the "Project Consultation" button in the chat menu.
+    """
+    
+    if not settings.GROQ_API_KEY:
         return ChatResponse(
-            response="I'm currently unavailable. Please contact me directly at contact@sharmastack.com",
+            response="I'm currently in maintenance mode. Please reach out to our team at contact@sharmastack.com",
             language=request.language
         )
     
     try:
-        openai.api_key = settings.OPENAI_API_KEY
+        url = "https://api.groq.com/openai/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {settings.GROQ_API_KEY}",
+            "Content-Type": "application/json"
+        }
         
-        messages = [
-            {"role": "system", "content": system_prompt}
-        ] + [msg.dict() for msg in request.messages]
+        # Prepare messages
+        messages = [{"role": "system", "content": system_prompt}]
+        for msg in request.messages:
+            messages.append({"role": msg.role, "content": msg.content})
+            
+        payload = {
+            "model": "llama-3.3-70b-versatile",
+            "messages": messages,
+            "temperature": 0.6,
+            "max_tokens": 800
+        }
         
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=messages,
-            temperature=0.7,
-            max_tokens=500
-        )
+        async with httpx.AsyncClient() as client:
+            resp = await client.post(url, headers=headers, json=payload, timeout=20)
+            
+        if resp.status_code != 200:
+            print(f"Groq API Error: {resp.text}")
+            return ChatResponse(response="I'm having trouble thinking right now. Please try again in a moment.", language=request.language)
+            
+        data = resp.json()
+        ai_message = data["choices"][0]["message"]["content"]
         
         return ChatResponse(
-            response=response.choices[0].message.content,
+            response=ai_message,
             language=request.language
         )
         
     except Exception as e:
+        print(f"AI Router Error: {e}")
         raise HTTPException(status_code=500, detail=f"AI service error: {str(e)}")
-
-@router.get("/languages")
-async def get_supported_languages():
-    """Get list of supported languages for chat"""
-    return {
-        "languages": [
-            {"code": "en", "name": "English"},
-            {"code": "de", "name": "Deutsch"},
-            {"code": "fr", "name": "Français"},
-            {"code": "es", "name": "Español"},
-        ]
-    }
