@@ -320,6 +320,16 @@ const Hero: React.FC = () => {
               </motion.div>
 
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <a
+                  href="#innovation-lab"
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 text-gray-900 dark:text-white rounded-2xl font-semibold text-lg hover:from-blue-600/30 hover:to-purple-600/30 transition-all duration-300 backdrop-blur-sm shadow-lg shadow-blue-500/10"
+                >
+                  <Cpu className="mr-3 w-5 h-5 text-blue-400 animate-pulse" />
+                  {t('hero.cta.lab', 'Innovation Lab')}
+                </a>
+              </motion.div>
+
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <button
                   onClick={() => setIsTechModalOpen(true)}
                   className="inline-flex items-center px-8 py-4 glass text-gray-900 dark:text-white rounded-2xl font-semibold text-lg hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300"

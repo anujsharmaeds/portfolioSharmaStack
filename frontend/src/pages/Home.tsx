@@ -6,6 +6,7 @@ import Hero from '../components/Hero';
 import ServiceCard from '../components/ServiceCard';
 import ProjectCard from '../components/ProjectCard';
 import Stats from '../components/Stats';
+import InnovationLab from '../components/InnovationLab';
 import EuropeFocus from '../components/EuropeFocus';
 
 const Home: React.FC = () => {
@@ -101,6 +102,8 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+      
+      <InnovationLab />
 
       {/* Projects Preview */}
       <section className="py-20">
