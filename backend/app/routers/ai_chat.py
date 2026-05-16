@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from typing import List, Optional
-import httpx
+import requests
 from pydantic import BaseModel
 import json
 from app.core.config import settings
@@ -20,8 +20,8 @@ class ChatResponse(BaseModel):
     language: str
 
 @router.post("/chat", response_model=ChatResponse)
-async def chat_with_ai(request: ChatRequest):
-    """Chat with Enterprise-Level Groq AI about sharmaStack services"""
+def chat_with_ai(request: ChatRequest):
+    """Chat with Enterprise-Level Groq AI about sharmaStack services (Sync version to avoid cgi issue)"""
     
     system_prompt = """You are the SharmaStack AI Orchestrator, an elite technical representative for sharmaStack agency.
     
@@ -69,8 +69,8 @@ async def chat_with_ai(request: ChatRequest):
             "max_tokens": 800
         }
         
-        async with httpx.AsyncClient() as client:
-            resp = await client.post(url, headers=headers, json=payload, timeout=20)
+        # Use requests (synchronous) to avoid the httpx/cgi module error on Python 3.13+
+        resp = requests.post(url, headers=headers, json=payload, timeout=20)
             
         if resp.status_code != 200:
             print(f"Groq API Error: {resp.text}")
