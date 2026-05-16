@@ -7,7 +7,7 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
-from app.routers import contact, lab
+from app.routers import contact, lab, bot
 from app.core.database import db
 
 load_dotenv()
@@ -58,6 +58,7 @@ app.add_middleware(
 # Include routers
 app.include_router(contact.router, prefix="/api/contact", tags=["Contact"])
 app.include_router(lab.router, prefix="/api/lab", tags=["Lab"])
+app.include_router(bot.router, prefix="/api/bot", tags=["Bot"])
 
 @app.get("/api/health")
 async def health_check():

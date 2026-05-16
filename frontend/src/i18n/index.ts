@@ -444,6 +444,20 @@ const resources = {
       "lab.iot.manual.title": "Manual Simulation Override",
       "lab.iot.manual.desc": "Toggle manual mode to interact with the sensor hardware simulator directly. Adjust values to see how the edge processing handles real-time data spikes.",
       "lab.iot.manual.auto": "AUTO-PILOT ACTIVE: Receiving live telemetry...",
+      "bot.welcome": "Hello! I'm your SharmaStack AI assistant. How can I help you today? I can tell you about our services, or we can start a Quick Project Consultation.",
+      "bot.flow.name": "Great! Let's get started. What is your name?",
+      "bot.flow.type": "Nice to meet you, {{name}}! What type of project are you planning? (Web, Mobile App, AI Agent, IoT, etc.)",
+      "bot.flow.budget": "Understood. What is your approximate budget range for this project?",
+      "bot.flow.timeline": "Got it. And what is your target timeline for launch?",
+      "bot.flow.contact": "Almost done! Please provide your WhatsApp number or Email so we can reach out to you with the next steps.",
+      "bot.flow.finished": "Thank you! I've sent your requirements to our team. Anuj or one of our lead engineers will reach out to you shortly.",
+      "bot.placeholder": "Ask anything...",
+      "bot.resp.services": "We offer elite Web Development, AI Automation (RAG & Agents), and Industrial IoT ecosystem development.",
+      "bot.resp.price": "Projects typically start at $2,500. Custom AI/IoT enterprise architectures provide custom quotes after a discovery call.",
+      "bot.resp.default": "I'm specializing in project consultations right now! Would you like to start one?",
+      "bot.qa.services": "View Services",
+      "bot.qa.contact": "Book a Call",
+      "bot.qa.about": "Who is SharmaStack?"
     }
   },
   "de": {

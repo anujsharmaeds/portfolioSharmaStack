@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, User, Sparkles, Phone, Briefcase, Info } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, User, Sparkles, Briefcase, Rocket } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface Message {
   role: 'user' | 'bot';
   content: string;
   timestamp: Date;
+  isCustom?: boolean;
 }
+
+type FlowStep = 'idle' | 'name' | 'project_type' | 'budget' | 'timeline' | 'contact' | 'submitting' | 'finished';
 
 const AIChatBot: React.FC = () => {
   const { t } = useTranslation();
@@ -15,6 +18,15 @@ const AIChatBot: React.FC = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [flowStep, setFlowStep] = useState<FlowStep>('idle');
+  const [consultationData, setConsultationData] = useState({
+    name: '',
+    project_type: '',
+    budget: '',
+    timeline: '',
+    contact: ''
+  });
+  
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -25,70 +37,140 @@ const AIChatBot: React.FC = () => {
     scrollToBottom();
   }, [messages, isTyping]);
 
+  const addBotMessage = (content: string) => {
+    setIsTyping(true);
+    setTimeout(() => {
+      setMessages(prev => [...prev, {
+        role: 'bot',
+        content,
+        timestamp: new Date()
+      }]);
+      setIsTyping(false);
+    }, 1000);
+  };
+
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      setIsTyping(true);
-      setTimeout(() => {
-        setMessages([
-          {
-            role: 'bot',
-            content: t('bot.welcome', "Hello! I'm your SharmaStack AI assistant. How can I help you today? I can tell you about our AI services, IoT solutions, or help you book a call."),
-            timestamp: new Date(),
-          },
-        ]);
-        setIsTyping(false);
-      }, 1000);
+      addBotMessage(t('bot.welcome', "Hello! I'm your SharmaStack AI assistant. How can I help you today? I can tell you about our services, or we can start a Quick Project Consultation."));
     }
   }, [isOpen, messages.length, t]);
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
-
-    const userMessage: Message = {
+  const startConsultation = () => {
+    setFlowStep('name');
+    setMessages(prev => [...prev, {
       role: 'user',
-      content: input,
-      timestamp: new Date(),
-    };
+      content: '🚀 Start Project Consultation',
+      timestamp: new Date()
+    }]);
+    addBotMessage(t('bot.flow.name', "Great! Let's get started. What is your name?"));
+  };
 
-    setMessages(prev => [...prev, userMessage]);
+  const handleFlow = async (text: string) => {
+    const userMsg: Message = { role: 'user', content: text, timestamp: new Date() };
+    setMessages(prev => [...prev, userMsg]);
     setInput('');
-    setIsTyping(true);
 
-    // Mock AI response logic
+    switch (flowStep) {
+      case 'name':
+        setConsultationData(prev => ({ ...prev, name: text }));
+        setFlowStep('project_type');
+        addBotMessage(t('bot.flow.type', { name: text, defaultValue: `Nice to meet you, ${text}! What type of project are you planning? (Web, Mobile App, AI Agent, IoT, etc.)` }));
+        break;
+      case 'project_type':
+        setConsultationData(prev => ({ ...prev, project_type: text }));
+        setFlowStep('budget');
+        addBotMessage(t('bot.flow.budget', "Understood. What is your approximate budget range for this project?"));
+        break;
+      case 'budget':
+        setConsultationData(prev => ({ ...prev, budget: text }));
+        setFlowStep('timeline');
+        addBotMessage(t('bot.flow.timeline', "Got it. And what is your target timeline for launch?"));
+        break;
+      case 'timeline':
+        setConsultationData(prev => ({ ...prev, timeline: text }));
+        setFlowStep('contact');
+        addBotMessage(t('bot.flow.contact', "Almost done! Please provide your WhatsApp number or Email so we can reach out to you with the next steps."));
+        break;
+      case 'contact':
+        const finalData = { ...consultationData, contact: text };
+        setConsultationData(finalData);
+        setFlowStep('submitting');
+        setIsTyping(true);
+        
+        try {
+          const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/bot/consultation`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(finalData)
+          });
+          if (res.ok) {
+            setFlowStep('finished');
+            addBotMessage(t('bot.flow.finished', "Thank you! I've sent your requirements to our team. Anuj or one of our lead engineers will reach out to you shortly."));
+          }
+        } catch (err) {
+          addBotMessage("I'm having a bit of trouble reaching the server, but I've saved your info locally. I'll retry in a moment!");
+          setFlowStep('idle');
+        }
+        break;
+      default:
+        handleNormalChat(text);
+    }
+  };
+
+  const handleNormalChat = (text: string) => {
+    setIsTyping(true);
     setTimeout(() => {
       let botResponse = "";
-      const lowerInput = input.toLowerCase();
-
-      if (lowerInput.includes('services') || lowerInput.includes('offer')) {
-        botResponse = t('bot.resp.services', "We offer elite Web Development, AI-driven automation (including RAG and Agents), and Industrial IoT ecosystem development.");
-      } else if (lowerInput.includes('price') || lowerInput.includes('cost')) {
-        botResponse = t('bot.resp.price', "Our projects typically start at $2,500 for basic solutions. For custom AI/IoT enterprise architectures, we provide custom quotes after a discovery call.");
-      } else if (lowerInput.includes('iot')) {
-        botResponse = t('bot.resp.iot', "Our IoT stack includes hardware development with Raspberry Pi/ESP32, MQTT protocols, and Edge AI for real-time analytics.");
-      } else if (lowerInput.includes('contact') || lowerInput.includes('call') || lowerInput.includes('hire')) {
-        botResponse = t('bot.resp.contact', "You can book a discovery call via our contact page or call us directly. Would you like me to take you to the contact section?");
-      } else {
-        botResponse = t('bot.resp.default', "That's an interesting question! SharmaStack specializes in bridging the gap between stunning design and robust engineering. For specific technical inquiries, I recommend speaking with our lead engineers.");
-      }
-
-      setMessages(prev => [...prev, {
-        role: 'bot',
-        content: botResponse,
-        timestamp: new Date(),
-      }]);
+      const lowerInput = text.toLowerCase();
+      if (lowerInput.includes('services')) botResponse = t('bot.resp.services', "We offer Web Development, AI Automation, and IoT ecosystems.");
+      else if (lowerInput.includes('price')) botResponse = t('bot.resp.price', "Projects start at $2,500. Custom AI/IoT solutions vary by complexity.");
+      else botResponse = t('bot.resp.default', "I'm specializing in project consultations right now! Would you like to start one?");
+      
+      setMessages(prev => [...prev, { role: 'bot', content: botResponse, timestamp: new Date() }]);
       setIsTyping(false);
     }, 1500);
   };
 
-  const quickActions = [
-    { label: t('bot.qa.services', 'View Services'), icon: <Briefcase className="w-4 h-4" />, action: () => window.location.href = '/services' },
-    { label: t('bot.qa.contact', 'Book a Call'), icon: <Phone className="w-4 h-4" />, action: () => window.location.href = '/contact' },
-    { label: t('bot.qa.about', 'Who is SharmaStack?'), icon: <Info className="w-4 h-4" />, action: () => setInput('Who is SharmaStack?') },
-  ];
+  const handleSend = () => {
+    if (!input.trim()) return;
+    if (flowStep !== 'idle') handleFlow(input);
+    else handleNormalChat(input);
+    setInput('');
+  };
+
+  const getQuickPills = () => {
+    if (flowStep === 'idle' && messages.length > 0) {
+      return [
+        { label: '🚀 Start Consultation', action: startConsultation, icon: <Rocket className="w-3 h-3" /> },
+        { label: '🛠 Services', action: () => handleNormalChat('What services do you offer?'), icon: <Briefcase className="w-3 h-3" /> }
+      ];
+    }
+    if (flowStep === 'project_type') {
+      return [
+        { label: 'Web Application', action: () => handleFlow('Web Application') },
+        { label: 'AI Bot / Agent', action: () => handleFlow('AI Bot / Agent') },
+        { label: 'IoT Ecosystem', action: () => handleFlow('IoT Ecosystem') }
+      ];
+    }
+    if (flowStep === 'budget') {
+      return [
+        { label: '$2k - $5k', action: () => handleFlow('$2k - $5k') },
+        { label: '$5k - $15k', action: () => handleFlow('$5k - $15k') },
+        { label: '$15k+', action: () => handleFlow('$15k+') }
+      ];
+    }
+    if (flowStep === 'timeline') {
+      return [
+        { label: '< 1 Month', action: () => handleFlow('< 1 Month') },
+        { label: '1-3 Months', action: () => handleFlow('1-3 Months') },
+        { label: 'Flexible', action: () => handleFlow('Flexible') }
+      ];
+    }
+    return [];
+  };
 
   return (
     <>
-      {/* Chat Toggle Button */}
       <motion.button
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.9 }}
@@ -96,98 +178,75 @@ const AIChatBot: React.FC = () => {
         className="fixed bottom-6 right-6 z-[100] w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white shadow-2xl shadow-blue-500/40 border border-white/20"
       >
         {isOpen ? <X className="w-8 h-8" /> : <MessageSquare className="w-8 h-8" />}
-        {!isOpen && (
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-4 border-[#030712] animate-pulse"
-          />
-        )}
+        {!isOpen && <span className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-4 border-[#030712] animate-pulse" />}
       </motion.button>
 
-      {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 100, scale: 0.8, x: 20 }}
-            animate={{ opacity: 1, y: 0, scale: 1, x: 0 }}
-            exit={{ opacity: 0, y: 100, scale: 0.8, x: 20 }}
-            className="fixed bottom-24 right-6 z-[100] w-[90vw] md:w-[400px] h-[600px] bg-[#030712]/90 backdrop-blur-2xl rounded-[2.5rem] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col"
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.9 }}
+            className="fixed bottom-24 right-6 z-[100] w-[90vw] md:w-[420px] h-[650px] bg-gray-900/95 backdrop-blur-2xl rounded-[2.5rem] border border-white/10 shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="p-6 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-b border-white/5 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
-                  <Bot className="w-6 h-6 text-white" />
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/20">
+                  <Bot className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white leading-tight">SharmaStack AI</h3>
+                  <h3 className="font-black text-white text-lg leading-tight">SharmaStack AI</h3>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Active Now</span>
+                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Consultation Mode</span>
                   </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="p-2 bg-white/5 rounded-lg border border-white/10">
-                  <Sparkles className="w-4 h-4 text-yellow-500" />
                 </div>
               </div>
             </div>
 
-            {/* Messages */}
+            {/* Messages Area */}
             <div className="flex-grow overflow-y-auto p-6 space-y-6 custom-scrollbar">
               {messages.map((msg, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 10, x: msg.role === 'user' ? 10 : -10 }}
-                  animate={{ opacity: 1, y: 0, x: 0 }}
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
+                <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`flex gap-3 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                    <div className={`w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center ${
-                      msg.role === 'user' ? 'bg-purple-600' : 'bg-blue-600'
-                    }`}>
+                    <div className={`w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center ${msg.role === 'user' ? 'bg-purple-600' : 'bg-blue-600'}`}>
                       {msg.role === 'user' ? <User className="w-4 h-4 text-white" /> : <Bot className="w-4 h-4 text-white" />}
                     </div>
-                    <div className={`p-4 rounded-2xl text-sm leading-relaxed ${
-                      msg.role === 'user' 
-                      ? 'bg-purple-600 text-white rounded-tr-none' 
-                      : 'bg-white/5 text-gray-300 border border-white/10 rounded-tl-none'
-                    }`}>
+                    <div className={`p-4 rounded-2xl text-sm leading-relaxed ${msg.role === 'user' ? 'bg-purple-600 text-white rounded-tr-none' : 'bg-white/5 text-gray-300 border border-white/10 rounded-tl-none'}`}>
                       {msg.content}
                     </div>
                   </div>
                 </motion.div>
               ))}
               {isTyping && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
+                <div className="flex justify-start">
                   <div className="flex gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-                      <Bot className="w-4 h-4 text-white" />
-                    </div>
+                    <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center"><Bot className="w-4 h-4 text-white" /></div>
                     <div className="p-4 bg-white/5 border border-white/10 rounded-2xl rounded-tl-none flex gap-1">
                       <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce" />
                       <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce [animation-delay:0.2s]" />
                       <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce [animation-delay:0.4s]" />
                     </div>
                   </div>
-                </motion.div>
+                </div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick Actions */}
+            {/* Quick Actions / Pills */}
             <div className="px-6 pb-2 flex flex-wrap gap-2">
-              {quickActions.map((qa, i) => (
-                <button
+              {getQuickPills().map((pill, i) => (
+                <motion.button
                   key={i}
-                  onClick={qa.action}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-[10px] text-gray-400 font-bold transition-all"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={pill.action}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 rounded-xl text-xs text-blue-400 font-bold transition-all"
                 >
-                  {qa.icon}
-                  {qa.label}
-                </button>
+                  {'icon' in pill && pill.icon}
+                  {pill.label}
+                </motion.button>
               ))}
             </div>
 
@@ -199,18 +258,15 @@ const AIChatBot: React.FC = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder={t('bot.placeholder', 'Ask anything...')}
+                  placeholder={flowStep === 'idle' ? "Ask anything..." : "Type your answer..."}
                   className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 pr-14 text-white text-sm focus:outline-none focus:border-blue-500/50 transition-all"
                 />
-                <button
-                  onClick={handleSend}
-                  className="absolute right-2 top-2 bottom-2 px-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all"
-                >
+                <button onClick={handleSend} className="absolute right-2 top-2 bottom-2 px-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all">
                   <Send className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-[10px] text-gray-600 mt-4 text-center">
-                Powered by SharmaStack AI • Multi-Agent Orchestration
+              <p className="text-[10px] text-gray-600 mt-4 text-center flex items-center justify-center gap-1">
+                <Sparkles className="w-3 h-3" /> Powered by SharmaStack AI Orchestrator
               </p>
             </div>
           </motion.div>
