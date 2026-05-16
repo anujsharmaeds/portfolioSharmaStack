@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, MapPin, Globe, Calendar, X, Code, Server, Database, Cloud, Cpu, Brain, GitBranch } from 'lucide-react';
+import { ArrowRight, MapPin, Globe, X, Code, Server, Database, Cloud, Cpu, Brain, GitBranch } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useScroll, useSpring } from 'framer-motion';
 
@@ -75,7 +75,7 @@ const getTechnologies = (t: any) => ({
 const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const technologies = getTechnologies(t);
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -133,7 +133,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
 
               {/* Modal Content */}
               <div className="p-8 overflow-y-auto flex-grow custom-scrollbar">
-                <motion.div 
+                <motion.div
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
@@ -185,7 +185,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
                             <span className="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-sm tracking-wide">
                               {tech.name}
                             </span>
-                            
+
                             {/* Animated highlight */}
                             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
                           </motion.div>
@@ -220,7 +220,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
 const Hero: React.FC = () => {
   const { t } = useTranslation();
   const [isTechModalOpen, setIsTechModalOpen] = useState(false);
-  
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -250,128 +250,128 @@ const Hero: React.FC = () => {
         <div className="relative container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col items-center justify-center mb-12"
-          >
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
-              <span className="gradient-text">SharmaStack</span>
-            </h1>
-            <span className="text-2xl md:text-4xl text-gray-900 dark:text-white mt-2 font-bold tracking-tight">
-              {t('hero.agencyTitle')}
-            </span>
-            
-            <div className="mt-8 relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-              <div className="relative px-6 py-2 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md rounded-full border border-gray-200 dark:border-gray-800 shadow-xl">
-                <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 font-medium tracking-wide">
-                  {t('hero.subtitle', 'Web Development • AI • IoT • FinTech • Scalable Systems • 5+ Years')}
-                </p>
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex flex-col items-center justify-center mb-12"
+            >
+              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
+                <span className="gradient-text">SharmaStack</span>
+              </h1>
+              <span className="text-2xl md:text-4xl text-gray-900 dark:text-white mt-2 font-bold tracking-tight">
+                {t('hero.agencyTitle')}
+              </span>
+
+              <div className="mt-8 relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative px-6 py-2 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md rounded-full border border-gray-200 dark:border-gray-800 shadow-xl">
+                  <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 font-medium tracking-wide">
+                    {t('hero.subtitle', 'Web Development • AI • IoT • FinTech • Scalable Systems • 5+ Years')}
+                  </p>
+                </div>
               </div>
+            </motion.div>
+
+            {/* Badges */}
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
+              <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-blue-300">
+                <MapPin className="w-4 h-4 mr-2" />
+                {t('hero.based')}
+              </motion.span>
+              <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-green-300">
+                <Globe className="w-4 h-4 mr-2" />
+                {t('hero.target')}
+              </motion.span>
+              <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-green-400">
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-2 relative">
+                  <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75" />
+                </div>
+                {t('status.available')}
+              </motion.span>
             </div>
-          </motion.div>
 
-              {/* Badges */}
-              <div className="flex flex-wrap justify-center gap-3 mb-10">
-                <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-blue-300">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  {t('hero.based')}
-                </motion.span>
-                <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-green-300">
-                  <Globe className="w-4 h-4 mr-2" />
-                  {t('hero.target')}
-                </motion.span>
-                <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-green-400">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2 relative">
-                    <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75" />
-                  </div>
-                  {t('status.available')}
-                </motion.span>
-              </div>
-
-              {/* Subtitle */}
-              {/* <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8">
+            {/* Subtitle */}
+            {/* <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8">
                 {t('hero.subtitle')}
               </p> */}
 
-              {/* Description */}
-              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-                {t('hero.description').split('SharmaStack').map((part, i, arr) => (
-                  <React.Fragment key={i}>
-                    {part}
-                    {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
-                  </React.Fragment>
-                ))}
-              </p>
+            {/* Description */}
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+              {t('hero.description').split('SharmaStack').map((part, i, arr) => (
+                <React.Fragment key={i}>
+                  {part}
+                  {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
+                </React.Fragment>
+              ))}
+            </p>
 
-              {/* CTA Buttons with Tech Stack Button */}
-              <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Link
-                    to="/contact?tab=career"
-                    className="group relative inline-flex items-center justify-center px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)]"
-                  >
-                    <span className="relative z-10 flex items-center">
-                      {t('hero.cta.hire')}
-                      <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Link>
-                </motion.div>
+            {/* CTA Buttons with Tech Stack Button */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  to="/contact?tab=career"
+                  className="group relative inline-flex items-center justify-center px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)]"
+                >
+                  <span className="relative z-10 flex items-center">
+                    {t('hero.cta.hire')}
+                    <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </motion.div>
 
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <button
-                    onClick={() => setIsTechModalOpen(true)}
-                    className="inline-flex items-center px-8 py-4 glass text-gray-900 dark:text-white rounded-2xl font-semibold text-lg hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300"
-                  >
-                    {t('hero.cta.techStack', 'View Tech Stack')}
-                  </button>
-                </motion.div>
-              </div>
-
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-                {[
-                  { value: '5+', label: t('hero.stats.experience', 'Years Experience') },
-                  { value: '50+', label: t('hero.stats.projects', 'Projects') },
-                  { value: '30+', label: t('hero.stats.clients', 'Happy Clients') },
-                  { value: '100%', label: t('status.remote', 'Remote Ready') },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="text-center"
-                  >
-                    <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-gray-600 dark:text-gray-400 text-sm">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              {/* Trust Badges */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800"
-              >
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 uppercase tracking-wider font-semibold">{t('hero.trustedBy')}</p>
-                <div className="flex flex-wrap justify-center gap-8 opacity-60 grayscale transition-all duration-500">
-                  {['TechCorp', 'InnovateJS', 'CloudScale', 'NextGen AI'].map(name => (
-                    <div key={name} className="text-xl font-bold text-gray-800 dark:text-gray-300 flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                      <Globe className="w-5 h-5 mr-2" />
-                      {name}
-                    </div>
-                  ))}
-                </div>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <button
+                  onClick={() => setIsTechModalOpen(true)}
+                  className="inline-flex items-center px-8 py-4 glass text-gray-900 dark:text-white rounded-2xl font-semibold text-lg hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300"
+                >
+                  {t('hero.cta.techStack', 'View Tech Stack')}
+                </button>
               </motion.div>
             </div>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+              {[
+                { value: '5+', label: t('hero.stats.experience', 'Years Experience') },
+                { value: '50+', label: t('hero.stats.projects', 'Projects') },
+                { value: '30+', label: t('hero.stats.clients', 'Happy Clients') },
+                { value: '100%', label: t('status.remote', 'Remote Ready') },
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-gray-600 dark:text-gray-400 text-sm">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            {/* Trust Badges */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800"
+            >
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 uppercase tracking-wider font-semibold">{t('hero.trustedBy')}</p>
+              <div className="flex flex-wrap justify-center gap-8 opacity-60 grayscale transition-all duration-500">
+                {['TechCorp', 'InnovateJS', 'CloudScale', 'NextGen AI'].map(name => (
+                  <div key={name} className="text-xl font-bold text-gray-800 dark:text-gray-300 flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    <Globe className="w-5 h-5 mr-2" />
+                    {name}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
+        </div>
 
         {/* Scroll Indicator */}
         <motion.div
