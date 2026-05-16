@@ -32,7 +32,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       viewport={{ once: true }}
       whileHover={{ y: -10, rotateX: 2, rotateY: -2 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="glass-card overflow-hidden group hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] hover:border-purple-500/40 relative"
+      className="glass-card overflow-hidden group hover:shadow-[0_20px_50px_rgba(59,130,246,0.15)] hover:border-blue-500/30 relative transition-all duration-500"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10 pointer-events-none" />
       {/* Project Image */}
@@ -69,7 +69,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             {technologies.map((tech, index) => (
               <span
                 key={index}
-                className="px-3 py-1 glass text-blue-300 rounded-full text-xs font-medium border-blue-500/20"
+                className="px-3 py-1 bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/20 transition-all duration-300"
               >
                 {tech}
               </span>

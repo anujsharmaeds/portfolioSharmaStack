@@ -29,11 +29,11 @@ const Header: React.FC = () => {
           <Link to="/" className="flex items-center space-x-3">
 
             {/* Logo Box */}
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
+            <div className="w-10 h-10 bg-transparent rounded-lg flex items-center justify-center overflow-hidden">
               <img
-                src="/sharmaStack_S_allwork.svg"
+                src="/logo.png"
                 alt="SharmaStack Logo"
-                className="w-72 h-72 md:w-72 md:h-72 object-contain"
+                className="w-full h-full object-contain"
               />
             </div>
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import { Mail, MapPin, Send, Clock, CheckCircle } from 'lucide-react';
+import { Mail, MapPin, Send, Clock, CheckCircle, Instagram, Linkedin } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 
 const Contact: React.FC = () => {
@@ -33,6 +33,18 @@ const Contact: React.FC = () => {
       title: t('contact.info.location'),
       value: t('hero.based', 'Gurugram, Haryana, India'),
       link: 'https://maps.google.com/?q=Gurugram+Haryana+India',
+    },
+    {
+      icon: <Linkedin className="w-6 h-6" />,
+      title: t('contact.info.linkedin'),
+      value: 'linkedin.com/in/anujsharma007',
+      link: 'https://linkedin.com/in/anujsharma007',
+    },
+    {
+      icon: <Instagram className="w-6 h-6" />,
+      title: 'Instagram',
+      value: '@sharmastack.official',
+      link: 'https://www.instagram.com/sharmastack.official/',
     },
     // {
     //   icon: <Linkedin className="w-6 h-6" />,

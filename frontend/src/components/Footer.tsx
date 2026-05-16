@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Loader2 } from 'lucide-react';
+import { Mail, MapPin, Loader2, Instagram, Linkedin } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 const Footer: React.FC = () => {
@@ -63,11 +63,16 @@ const Footer: React.FC = () => {
   ];
 
   const socialLinks = [
-    // {
-    //   icon: <Linkedin className="w-5 h-5" />,
-    //   href: 'https://linkedin.com/in/anujsharma007',
-    //   label: 'LinkedIn'
-    // },
+    {
+      icon: <Linkedin className="w-5 h-5" />,
+      href: 'https://linkedin.com/in/anujsharma007',
+      label: 'LinkedIn'
+    },
+    {
+      icon: <Instagram className="w-5 h-5" />,
+      href: 'https://www.instagram.com/sharmastack.official/',
+      label: 'Instagram'
+    },
     {
       icon: <Mail className="w-5 h-5" />,
       href: 'mailto:contact@sharmastack.com',

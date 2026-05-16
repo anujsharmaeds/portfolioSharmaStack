@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ArrowRight, Code, Cpu, Database, Zap } from 'lucide-react';
+import { ArrowRight, Code, Cpu, Database, Eye, Palette, Zap } from 'lucide-react';
 import Hero from '../components/Hero';
 import ServiceCard from '../components/ServiceCard';
 import ProjectCard from '../components/ProjectCard';
@@ -120,31 +120,83 @@ const Home: React.FC = () => {
       </section>
 
       {/* Brand Identity Section (SEO Booster) */}
-      <section className="py-20 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">What is SharmaStack? Services, Projects & Vision</h2>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text inline-block">{t('home.about.title')}</h2>
+              <div className="h-1.5 w-24 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
+            </div>
             
-            <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              <p>
-                <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> is a premium 
-                software development agency focused on delivering cutting-edge digital experiences. We bridge the gap 
-                between stunning design and robust engineering. The <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> company 
-                was built with a singular vision: to empower global businesses with elite technology solutions.
-              </p>
-              
-              <p>
-                Our core <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack services</strong> include 
-                Full-Stack Web Development, custom API integration, AI-driven automation, and IoT ecosystem development. 
-                Using the latest tools like React, Next.js, Node.js, and NestJS, we ensure that every product shipped by 
-                <strong className="text-gray-900 dark:text-white font-semibold"> SharmaStack</strong> is highly scalable, secure, and ready for the future.
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+              <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p>
+                  {t('home.about.p1').split('SharmaStack').map((part, i, arr) => (
+                    <React.Fragment key={i}>
+                      {part}
+                      {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
+                    </React.Fragment>
+                  ))}
+                </p>
+                
+                <p>
+                  {t('home.about.p2').split('SharmaStack').map((part, i, arr) => (
+                    <React.Fragment key={i}>
+                      {part}
+                      {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
+                    </React.Fragment>
+                  ))}
+                </p>
+              </div>
 
-              <p>
-                From dynamic web applications to complex cloud architectures, <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> 
-                stands as your trusted technical partner. Discover why ambitious startups and established enterprises alike choose 
-                <strong className="text-gray-900 dark:text-white font-semibold"> SharmaStack</strong> to lead their digital transformation.
-              </p>
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-10" />
+                <div className="relative bg-gray-50 dark:bg-gray-800/50 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl">
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
+                    {t('home.about.p3').split('SharmaStack').map((part, i, arr) => (
+                      <React.Fragment key={i}>
+                        {part}
+                        {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
+                      </React.Fragment>
+                    ))}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="p-8 bg-blue-50/50 dark:bg-blue-900/10 rounded-3xl border border-blue-100 dark:border-blue-800/50 shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-500/20">
+                  <Eye className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 dark:text-white">Our Vision</h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">Empowering global businesses with elite technology solutions.</p>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="p-8 bg-purple-50/50 dark:bg-purple-900/10 rounded-3xl border border-purple-100 dark:border-purple-800/50 shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-purple-500/20">
+                  <Palette className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 dark:text-white">Stunning Design</h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">Crafting high-end digital experiences that wow users.</p>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="p-8 bg-green-50/50 dark:bg-green-900/10 rounded-3xl border border-green-100 dark:border-green-800/50 shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-green-500/20">
+                  <Zap className="w-7 h-7" />
+                </div>
+                <h3 className="text-2xl font-bold mb-3 dark:text-white">Robust Engineering</h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">Building scalable, secure, and future-ready architectures.</p>
+              </motion.div>
             </div>
           </div>
         </div>

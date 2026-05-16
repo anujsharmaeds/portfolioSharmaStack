@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, MapPin, Globe, Calendar, X, Code, Server, Database, Cloud, Cpu, Brain, GitBranch } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useScroll, useSpring } from 'framer-motion';
 
 // Technology data with icons and categories
 const getTechnologies = (t: any) => ({
@@ -11,8 +12,11 @@ const getTechnologies = (t: any) => ({
     icon: <Code className="w-5 h-5" />,
     techs: [
       { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
       { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
       { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "Angular", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
+      { name: "Tailwind", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
     ]
   },
   backend: {
@@ -22,6 +26,8 @@ const getTechnologies = (t: any) => ({
       { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
       { name: "NestJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" },
       { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+      { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+      { name: "Go", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" },
     ]
   },
   database: {
@@ -30,6 +36,8 @@ const getTechnologies = (t: any) => ({
     techs: [
       { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
       { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "DynamoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dynamodb/dynamodb-original.svg" },
+      { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
     ]
   },
   cloud: {
@@ -37,7 +45,9 @@ const getTechnologies = (t: any) => ({
     icon: <Cloud className="w-5 h-5" />,
     techs: [
       { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+      { name: "GCP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
       { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { name: "Kubernetes", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
     ]
   },
   versionControl: {
@@ -46,14 +56,18 @@ const getTechnologies = (t: any) => ({
     techs: [
       { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
       { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+      { name: "GitLab", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
     ]
   },
-  iot: {
-    title: t('hero.techs.title.iot', 'IoT & AI'),
+  ai: {
+    title: t('hero.techs.title.iot', 'AI & Machine Learning'),
     icon: <Cpu className="w-5 h-5" />,
     techs: [
+      { name: "OpenAI", icon: "https://static.cdnlogo.com/logos/o/38/openai.svg" },
+      { name: "LangChain", icon: <Brain className="w-6 h-6" /> },
+      { name: "TensorFlow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
+      { name: "PyTorch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
       { name: "IoT", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" },
-      { name: t('hero.techs.item.predictive', 'Predictive Maintenance'), icon: <Brain className="w-6 h-6" /> },
     ]
   }
 });
@@ -61,6 +75,22 @@ const getTechnologies = (t: any) => ({
 const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const technologies = getTechnologies(t);
+  
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -71,101 +101,113 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md z-50"
           />
 
           {/* Modal */}
-          <div className="fixed inset-0 flex items-center justify-center z-50 px-4">
+          <div className="fixed inset-0 flex items-center justify-center z-50 px-4 py-8">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={{ opacity: 0, scale: 0.9, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ type: "spring", damping: 25 }}
-              className="bg-white dark:bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              exit={{ opacity: 0, scale: 0.9, y: 40 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="bg-white dark:bg-[#0f172a] rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.2)] border border-gray-200 dark:border-blue-500/20 flex flex-col"
             >
               {/* Modal Header */}
-              <div className="sticky top-0 bg-black dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 p-2 rounded-t-2xl z-20">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2">
-                      {t('hero.modal.subtitle', 'Explore my tech stack and expertise across different domains')}
-                    </p>
-                  </div>
-                  <button
-                    onClick={onClose}
-                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
+              <div className="p-6 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl">
+                <div>
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    {t('hero.cta.techStack')}
+                  </h2>
+                  <p className="text-gray-600 dark:text-gray-400 mt-1">
+                    {t('hero.modal.subtitle')}
+                  </p>
                 </div>
+                <button
+                  onClick={onClose}
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:rotate-90"
+                >
+                  <X className="w-6 h-6" />
+                </button>
               </div>
 
               {/* Modal Content */}
-              <div className="p-6">
-                {Object.entries(technologies).map(([key, category]) => (
-                  <div key={key} className="mb-8 last:mb-0">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
-                        {category.icon}
+              <div className="p-8 overflow-y-auto flex-grow custom-scrollbar">
+                <motion.div 
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="space-y-12"
+                >
+                  {Object.entries(technologies).map(([key, category]) => (
+                    <div key={key}>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="p-2.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl shadow-inner">
+                          {category.icon}
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 tracking-tight">
+                          {category.title}
+                        </h3>
+                        <div className="h-px flex-grow bg-gradient-to-r from-blue-500/20 to-transparent ml-4" />
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                        {category.title}
-                      </h3>
-                    </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                      {category.techs.map((tech) => (
-                        <motion.div
-                          key={tech.name}
-                          whileHover={{ y: -2 }}
-                          className="group relative bg-gray-50 dark:bg-gray-800/50 hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-gray-200 dark:border-gray-700 rounded-xl p-4 flex flex-col items-center justify-center text-center transition-all duration-300"
-                        >
-                          {typeof tech.icon === 'string' ? (
-                            <img
-                              src={tech.icon}
-                              alt={tech.name}
-                              className="w-10 h-10 mb-3 object-contain"
-                              loading="lazy"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.style.display = 'none';
-                                const fallback = document.createElement('div');
-                                fallback.className = "w-10 h-10 mb-3 flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg";
-                                fallback.textContent = tech.name.charAt(0);
-                                target.parentNode?.insertBefore(fallback, target);
-                              }}
-                            />
-                          ) : (
-                            <div className="w-10 h-10 mb-3 flex items-center justify-center text-purple-600 dark:text-purple-400">
-                              {tech.icon}
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                        {category.techs.map((tech) => (
+                          <motion.div
+                            key={tech.name}
+                            variants={itemVariants}
+                            whileHover={{ y: -5, scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="group relative bg-white dark:bg-gray-800/40 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 border border-gray-100 dark:border-gray-700/50 rounded-2xl p-5 flex flex-col items-center justify-center text-center transition-all duration-300 shadow-sm hover:shadow-xl hover:border-blue-500/30"
+                          >
+                            <div className="w-12 h-12 mb-4 relative flex items-center justify-center">
+                              {typeof tech.icon === 'string' ? (
+                                <img
+                                  src={tech.icon}
+                                  alt={tech.name}
+                                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                                  loading="lazy"
+                                  onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.style.display = 'none';
+                                    const fallback = document.createElement('div');
+                                    fallback.className = "w-full h-full flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-bold text-xl shadow-lg";
+                                    fallback.textContent = tech.name.charAt(0);
+                                    target.parentNode?.appendChild(fallback);
+                                  }}
+                                />
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:text-purple-500 transition-colors duration-300">
+                                  {tech.icon}
+                                </div>
+                              )}
                             </div>
-                          )}
-                          <span className="font-medium text-gray-800 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                            {tech.name}
-                          </span>
-
-                          {/* Hover effect */}
-                          <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/30 dark:group-hover:border-blue-400/30 rounded-xl transition-all duration-300" />
-                        </motion.div>
-                      ))}
+                            <span className="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-sm tracking-wide">
+                              {tech.name}
+                            </span>
+                            
+                            {/* Animated highlight */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </motion.div>
               </div>
 
               {/* Modal Footer */}
-              <div className="sticky bottom-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 p-2 rounded-b-2xl">
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t('hero.modal.footer', 'Continuously learning and adapting to new technologies')}
-                  </p>
-                  <button
-                    onClick={onClose}
-                    className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
-                  >
-                    {t('hero.modal.close', 'Got it!')}
-                  </button>
-                </div>
+              <div className="p-6 bg-gray-50 dark:bg-gray-900/80 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 flex items-center">
+                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
+                  {t('hero.modal.footer')}
+                </p>
+                <button
+                  onClick={onClose}
+                  className="w-full sm:w-auto px-10 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all duration-300 transform active:scale-95"
+                >
+                  {t('hero.modal.close')}
+                </button>
               </div>
             </motion.div>
           </div>
@@ -178,10 +220,22 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
 const Hero: React.FC = () => {
   const { t } = useTranslation();
   const [isTechModalOpen, setIsTechModalOpen] = useState(false);
+  
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
     <>
-      <section className="relative overflow-hidden pt-32 pb-40">
+      <section className="relative min-h-screen pt-32 pb-20 overflow-hidden flex items-center bg-white dark:bg-gray-900">
+        {/* Scroll Progress Bar */}
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-purple-600 z-[60] origin-left"
+          style={{ scaleX }}
+        />
         {/* Premium Dark Mesh Gradient Background */}
         <div className="absolute inset-0 bg-gray-50 dark:bg-[#030712] transition-colors duration-300">
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-600/20 blur-[120px] mix-blend-screen animate-float" />
@@ -196,17 +250,27 @@ const Hero: React.FC = () => {
         <div className="relative container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* Name centered at top */}
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 flex flex-col items-center justify-center">
-                  <span className="gradient-text mb-2">SharmaStack</span>
-                  <span className="text-2xl md:text-4xl text-gray-900 dark:text-white mt-2">
-                    Web Development & AI Agency
-                  </span>
-                </h1>
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-col items-center justify-center mb-12"
+          >
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
+              <span className="gradient-text">SharmaStack</span>
+            </h1>
+            <span className="text-2xl md:text-4xl text-gray-900 dark:text-white mt-2 font-bold tracking-tight">
+              {t('hero.agencyTitle')}
+            </span>
+            
+            <div className="mt-8 relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative px-6 py-2 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md rounded-full border border-gray-200 dark:border-gray-800 shadow-xl">
+                <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 font-medium tracking-wide">
+                  {t('hero.subtitle', 'Web Development • AI • IoT • FinTech • Scalable Systems • 5+ Years')}
+                </p>
+              </div>
+            </div>
+          </motion.div>
 
               {/* Badges */}
               <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -218,8 +282,10 @@ const Hero: React.FC = () => {
                   <Globe className="w-4 h-4 mr-2" />
                   {t('hero.target')}
                 </motion.span>
-                <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-purple-300">
-                  <Calendar className="w-4 h-4 mr-2" />
+                <motion.span whileHover={{ scale: 1.05 }} className="px-4 py-2 glass rounded-full text-sm font-medium flex items-center text-green-400">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2 relative">
+                    <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75" />
+                  </div>
                   {t('status.available')}
                 </motion.span>
               </div>
@@ -231,9 +297,12 @@ const Hero: React.FC = () => {
 
               {/* Description */}
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-                <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> is a leading web development and AI agency based in India offering MERN stack, Next.js and IoT solutions. 
-                At <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>, we transform ideas into scalable, high-performance digital products. 
-                Whether you need a complex SaaS platform or intelligent automation, the <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong> team delivers excellence.
+                {t('hero.description').split('SharmaStack').map((part, i, arr) => (
+                  <React.Fragment key={i}>
+                    {part}
+                    {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
+                  </React.Fragment>
+                ))}
               </p>
 
               {/* CTA Buttons with Tech Stack Button */}
@@ -301,9 +370,8 @@ const Hero: React.FC = () => {
                   ))}
                 </div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
-        </div>
 
         {/* Scroll Indicator */}
         <motion.div
