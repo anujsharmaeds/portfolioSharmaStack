@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import { MapPin, Plane, Globe, Clock, MessageSquare, CheckCircle } from 'lucide-react';
+import { MapPin, Globe, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const EuropeFocus: React.FC = () => {
@@ -13,28 +13,28 @@ const EuropeFocus: React.FC = () => {
     'Spain', 'Italy', 'Austria', 'Denmark', 'Norway', 'Finland'
   ];
 
-  const relocationSteps = [
-    {
-      icon: <MessageSquare className="w-6 h-6" />,
-      title: t('europe.step1.title', 'Initial Discussion'),
-      description: t('europe.step1.desc', 'Understand requirements and expectations')
-    },
-    {
-      icon: <CheckCircle className="w-6 h-6" />,
-      title: t('europe.step2.title', 'Visa & Documentation'),
-      description: t('europe.step2.desc', 'Handle all paperwork and legal requirements')
-    },
-    {
-      icon: <Plane className="w-6 h-6" />,
-      title: t('europe.step3.title', 'Discuss'),
-      description: t('europe.step3.desc', 'Travel, accommodation, and setup assistance')
-    },
-    {
-      icon: <Clock className="w-6 h-6" />,
-      title: t('europe.step4.title', 'Time Zone Adaptation'),
-      description: t('europe.step4.desc', 'Flexible hours for European time zones')
-    },
-  ];
+  // const relocationSteps = [
+  //   {
+  //     icon: <MessageSquare className="w-6 h-6" />,
+  //     title: t('europe.step1.title', 'Initial Discussion'),
+  //     description: t('europe.step1.desc', 'Understand requirements and expectations')
+  //   },
+  //   {
+  //     icon: <CheckCircle className="w-6 h-6" />,
+  //     title: t('europe.step2.title', 'Visa & Documentation'),
+  //     description: t('europe.step2.desc', 'Handle all paperwork and legal requirements')
+  //   },
+  //   {
+  //     icon: <Plane className="w-6 h-6" />,
+  //     title: t('europe.step3.title', 'Discuss'),
+  //     description: t('europe.step3.desc', 'Travel, accommodation, and setup assistance')
+  //   },
+  //   {
+  //     icon: <Clock className="w-6 h-6" />,
+  //     title: t('europe.step4.title', 'Time Zone Adaptation'),
+  //     description: t('europe.step4.desc', 'Flexible hours for European time zones')
+  //   },
+  // ];
 
   const languageProgress = [
     { language: 'English', level: 'Fluent', percentage: 100 },
@@ -126,7 +126,7 @@ const EuropeFocus: React.FC = () => {
               {t('europe.process', 'Discussion Process')}
             </h3>
 
-            {relocationSteps.map((step, index) => (
+            {/* {relocationSteps.map((step, index) => (
               <motion.div
                 key={step.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -149,7 +149,7 @@ const EuropeFocus: React.FC = () => {
                   </p>
                 </div>
               </motion.div>
-            ))}
+            ))} */}
 
             {/* Timezone Info */}
             <div className="mt-8 bg-gradient-to-r from-europe-blue/10 to-europe-red/10 dark:from-europe-blue/5 dark:to-europe-red/5 rounded-2xl p-6">
