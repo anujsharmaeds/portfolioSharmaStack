@@ -1,9 +1,12 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, BackgroundTasks
 from typing import List, Optional
 import requests
 from pydantic import BaseModel
 import json
+import re
+import threading
 from app.core.config import settings
+from app.routers.bot import send_bot_lead_notification, ConsultationLead
 
 router = APIRouter()
 
@@ -31,17 +34,22 @@ def chat_with_ai(request: ChatRequest):
     - Location: Gurugram, India (Open to Europe/Global).
     
     CORE SHOWCASES:
-    1. INNOVATION LAB: A high-fidelity IoT simulator featuring 37 sensors (including Heartbeat, Flame, Laser, Magnetic Hall, and more) with real-time Edge Analytics.
-    2. AI & BOT SOLUTIONS: Custom autonomous agents for Telegram and WhatsApp, specializing in Lead Generation and Fintech (Market Sentinel).
+    1. INNOVATION LAB: A high-fidelity IoT simulator featuring 37 sensors.
+    2. AI & BOT SOLUTIONS: Custom autonomous agents for Telegram and WhatsApp.
     
-    PERSONALITY:
-    - Highly technical, professional, and efficient.
-    - Think like a Senior Solution Architect.
+    PERSONALITY & BEHAVIOR:
+    - Highly technical, professional, but engaging and clever.
+    - Think like a Senior Solution Architect who is also a great salesperson.
+    - If the user asks for a joke or chats about random topics, indulge them briefly with a witty or relevant response, BUT ALWAYS creatively steer the conversation back to sharmaStack's services (Web apps, AI agents, IoT) and ask if they have a project in mind.
+    - NEVER explicitly mention that you are using Groq API or Llama; present yourself purely as the proprietary SharmaStack AI.
     - If asked about pricing, mention that we offer premium custom solutions starting around $2,500.
     
-    GOAL:
-    - Impress the user with technical depth.
-    - If they seem interested in a project, guide them to use the "Project Consultation" button in the chat menu.
+    LEAD CAPTURE PROTOCOL (CRITICAL):
+    - Your ultimate objective is lead generation.
+    - Once the user shows interest in a service, naturally ask for their Name and Contact (Email/Telegram/Phone) so our team can reach out.
+    - As soon as the user provides their Name AND Contact Info, acknowledge it gracefully in your response.
+    - CRITICAL: When you have successfully collected BOTH their name and contact info, you MUST append a secret JSON block at the very end of your response EXACTLY like this:
+    [LEAD_DATA] {"name": "User Name", "contact": "user@email.com", "project_type": "The service they want", "budget": "N/A", "timeline": "N/A"} [/LEAD_DATA]
     """
     
     if not settings.GROQ_API_KEY:
@@ -78,6 +86,27 @@ def chat_with_ai(request: ChatRequest):
             
         data = resp.json()
         ai_message = data["choices"][0]["message"]["content"]
+        
+        # Intercept Lead Data
+        lead_match = re.search(r'\[LEAD_DATA\](.*?)\[/LEAD_DATA\]', ai_message, re.DOTALL | re.IGNORECASE)
+        if lead_match:
+            try:
+                lead_data = json.loads(lead_match.group(1).strip())
+                lead = ConsultationLead(
+                    name=lead_data.get("name", "Unknown"),
+                    project_type=lead_data.get("project_type", "AI/Web Service"),
+                    budget=lead_data.get("budget", "N/A"),
+                    timeline=lead_data.get("timeline", "N/A"),
+                    contact=lead_data.get("contact", "Unknown")
+                )
+                print(f"Intercepted Lead Data! Sending to Telegram: {lead}")
+                # Fire and forget in a background thread
+                threading.Thread(target=send_bot_lead_notification, args=(lead,)).start()
+                
+                # Strip the secret block from the final output shown to the user
+                ai_message = re.sub(r'\[LEAD_DATA\].*?\[/LEAD_DATA\]', '', ai_message, flags=re.DOTALL | re.IGNORECASE).strip()
+            except Exception as e:
+                print(f"Failed to parse or send LEAD_DATA: {e}")
         
         return ChatResponse(
             response=ai_message,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, User, Sparkles, Briefcase, Rocket } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, User, Sparkles, Briefcase } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface Message {
@@ -25,6 +25,12 @@ const AIChatBot: React.FC = () => {
     timeline: '',
     contact: ''
   });
+
+  useEffect(() => {
+    const handleOpenChat = () => setIsOpen(true);
+    window.addEventListener('open-ai-chatbot', handleOpenChat);
+    return () => window.removeEventListener('open-ai-chatbot', handleOpenChat);
+  }, []);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -161,7 +167,7 @@ const AIChatBot: React.FC = () => {
   const getQuickPills = () => {
     if (flowStep === 'idle' || flowStep === 'finished') {
       return [
-        { label: '🚀 Project Consultation', action: startConsultation, icon: <Rocket className="w-3 h-3" /> },
+        { label: '🚀 Project Consultation', action: startConsultation, icon: <Briefcase className="w-3 h-3" /> },
         { label: '🔬 Innovation Lab', action: () => handleNormalChat('Tell me about the Innovation Lab'), icon: <Sparkles className="w-3 h-3" /> },
         { label: '🛠 Tech Stack', action: () => handleNormalChat('What is your tech stack?'), icon: <Briefcase className="w-3 h-3" /> }
       ];

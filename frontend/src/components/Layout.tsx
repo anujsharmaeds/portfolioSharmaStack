@@ -1,6 +1,7 @@
 import Header from './Header';
 import Footer from './Footer';
 import AIChatBot from './AIChatBot';
+import WalkingAssistant from './WalkingAssistant';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </main>
         <Footer />
         <AIChatBot />
+        <WalkingAssistant />
       </div>
     </div>
   );
