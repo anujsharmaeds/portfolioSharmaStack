@@ -156,7 +156,7 @@ const Projects: React.FC = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             {t('projects.title')}
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-white max-w-3xl mx-auto mb-8">
             {t('projects.subtitle')}
           </p>
 
@@ -180,7 +180,7 @@ const Projects: React.FC = () => {
                   </div>
                 </div>
                 <div className="text-2xl font-bold gradient-text">{stat.value}</div>
-                <div className="text-gray-600 dark:text-gray-400">{stat.label}</div>
+                <div className="text-white">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -195,7 +195,7 @@ const Projects: React.FC = () => {
               {/* Search */}
               <div className="flex-grow">
                 <div className="relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white" />
                   <input
                     type="text"
                     placeholder={t('projects.search.placeholder')}
@@ -221,7 +221,7 @@ const Projects: React.FC = () => {
                   onClick={() => setActiveFilter(filter.id)}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeFilter === filter.id
                       ? 'bg-gradient-to-r from-orange-600 to-orange-600 text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                      : 'bg-gray-100 dark:bg-gray-800 text-white hover:bg-gray-200 dark:hover:bg-gray-700'
                     }`}
                 >
                   {filter.label}
@@ -231,7 +231,7 @@ const Projects: React.FC = () => {
 
             {/* Results Count */}
             <div className="mb-8">
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-white">
                 {t('projects.results.showing')} {filteredProjects.length} {t('projects.results.of')} {projects.length} {t('projects.results.projects')}
               </p>
             </div>
@@ -245,10 +245,10 @@ const Projects: React.FC = () => {
           {filteredProjects.length === 0 ? (
             <div className="text-center py-20">
               <div className="text-5xl mb-4">🔍</div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+              <h3 className="text-2xl font-bold text-white mb-2">
                 {t('projects.empty.title')}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-white">
                 {t('projects.empty.desc')}
               </p>
             </div>
@@ -277,7 +277,7 @@ const Projects: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               {t('projects.cta.title.1')} <span className="gradient-text">{t('projects.cta.title.2')}</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
+            <p className="text-xl text-white mb-8">
               {t('projects.cta.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -293,7 +293,7 @@ const Projects: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="#"
-                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all"
+                className="px-8 py-4 bg-white dark:bg-gray-800 text-white border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all"
               >
                 {t('projects.cta.view')}
               </motion.a>

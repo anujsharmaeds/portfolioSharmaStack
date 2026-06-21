@@ -80,7 +80,7 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('services.title')}</h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-white max-w-2xl mx-auto">
               {t('services.subtitle')}
             </p>
           </div>
@@ -110,7 +110,7 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('projects.title')}</h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-white max-w-2xl mx-auto">
               {t('projects.subtitle')}
             </p>
           </div>
@@ -132,12 +132,12 @@ const Home: React.FC = () => {
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-              <div className="space-y-6 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-6 text-lg text-white leading-relaxed">
                 <p>
                   {t('home.about.p1').split('SharmaStack').map((part, i, arr) => (
                     <React.Fragment key={i}>
                       {part}
-                      {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
+                      {i < arr.length - 1 && <strong className="text-white font-semibold">SharmaStack</strong>}
                     </React.Fragment>
                   ))}
                 </p>
@@ -146,7 +146,7 @@ const Home: React.FC = () => {
                   {t('home.about.p2').split('SharmaStack').map((part, i, arr) => (
                     <React.Fragment key={i}>
                       {part}
-                      {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
+                      {i < arr.length - 1 && <strong className="text-white font-semibold">SharmaStack</strong>}
                     </React.Fragment>
                   ))}
                 </p>
@@ -155,11 +155,11 @@ const Home: React.FC = () => {
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 to-orange-600 rounded-2xl blur-2xl opacity-10" />
                 <div className="relative bg-gray-50 dark:bg-gray-800/50 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl">
-                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
+                  <p className="text-lg text-white leading-relaxed italic">
                     {t('home.about.p3').split('SharmaStack').map((part, i, arr) => (
                       <React.Fragment key={i}>
                         {part}
-                        {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
+                        {i < arr.length - 1 && <strong className="text-white font-semibold">SharmaStack</strong>}
                       </React.Fragment>
                     ))}
                   </p>
@@ -175,8 +175,8 @@ const Home: React.FC = () => {
                 <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-orange-500/20">
                   <Eye className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 dark:text-white">Our Vision</h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">Empowering global businesses with elite technology solutions.</p>
+                <h3 className="text-2xl font-bold mb-3 text-white">Our Vision</h3>
+                <p className="text-white leading-relaxed">Empowering global businesses with elite technology solutions.</p>
               </motion.div>
 
               <motion.div 
@@ -186,8 +186,8 @@ const Home: React.FC = () => {
                 <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-orange-500/20">
                   <Palette className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 dark:text-white">Stunning Design</h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">Crafting high-end digital experiences that wow users.</p>
+                <h3 className="text-2xl font-bold mb-3 text-white">Stunning Design</h3>
+                <p className="text-white leading-relaxed">Crafting high-end digital experiences that wow users.</p>
               </motion.div>
 
               <motion.div 
@@ -197,8 +197,8 @@ const Home: React.FC = () => {
                 <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-orange-500/20">
                   <Zap className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 dark:text-white">Robust Engineering</h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">Building scalable, secure, and future-ready architectures.</p>
+                <h3 className="text-2xl font-bold mb-3 text-white">Robust Engineering</h3>
+                <p className="text-white leading-relaxed">Building scalable, secure, and future-ready architectures.</p>
               </motion.div>
             </div>
           </div>

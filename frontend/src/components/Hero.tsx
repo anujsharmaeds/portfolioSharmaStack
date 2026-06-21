@@ -119,7 +119,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
                   <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-600 bg-clip-text text-transparent">
                     {t('hero.cta.techStack')}
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  <p className="text-white mt-1">
                     {t('hero.modal.subtitle')}
                   </p>
                 </div>
@@ -145,7 +145,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
                         <div className="p-2.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-xl shadow-inner">
                           {category.icon}
                         </div>
-                        <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 tracking-tight">
+                        <h3 className="text-xl font-bold text-white tracking-tight">
                           {category.title}
                         </h3>
                         <div className="h-px flex-grow bg-gradient-to-r from-orange-500/20 to-transparent ml-4" />
@@ -182,7 +182,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
                                 </div>
                               )}
                             </div>
-                            <span className="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400 text-sm tracking-wide">
+                            <span className="font-semibold text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 text-sm tracking-wide">
                               {tech.name}
                             </span>
 
@@ -198,7 +198,7 @@ const TechModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen,
 
               {/* Modal Footer */}
               <div className="p-6 bg-gray-50 dark:bg-gray-900/80 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 flex items-center">
+                <p className="text-sm font-medium text-white flex items-center">
                   <span className="w-2 h-2 bg-orange-500 rounded-full mr-2 animate-pulse" />
                   {t('hero.modal.footer')}
                 </p>
@@ -258,14 +258,14 @@ const Hero: React.FC = () => {
               <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
                 <span className="gradient-text">SharmaStack</span>
               </h1>
-              <span className="text-2xl md:text-4xl text-gray-900 dark:text-white mt-2 font-bold tracking-tight">
+              <span className="text-2xl md:text-4xl text-white mt-2 font-bold tracking-tight">
                 {t('hero.agencyTitle')}
               </span>
 
               <div className="mt-8 relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 to-orange-600 rounded-full blur opacity-20 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                 <div className="relative px-6 py-2 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md rounded-full border border-gray-200 dark:border-gray-800 shadow-xl">
-                  <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 font-medium tracking-wide">
+                  <p className="text-base md:text-lg text-white font-medium tracking-wide">
                     {t('hero.subtitle', 'Web Development • AI • IoT • FinTech • Scalable Systems • 5+ Years')}
                   </p>
                 </div>
@@ -291,16 +291,16 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Subtitle */}
-            {/* <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8">
+            {/* <p className="text-xl md:text-2xl text-white mb-8">
                 {t('hero.subtitle')}
               </p> */}
 
             {/* Description */}
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+            <p className="text-lg text-white max-w-3xl mx-auto mb-12 leading-relaxed">
               {t('hero.description').split('SharmaStack').map((part, i, arr) => (
                 <React.Fragment key={i}>
                   {part}
-                  {i < arr.length - 1 && <strong className="text-gray-900 dark:text-white font-semibold">SharmaStack</strong>}
+                  {i < arr.length - 1 && <strong className="text-white font-semibold">SharmaStack</strong>}
                 </React.Fragment>
               ))}
             </p>
@@ -310,7 +310,7 @@ const Hero: React.FC = () => {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Link
                   to="/contact?tab=career"
-                  className="group relative inline-flex items-center justify-center px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-950 rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)]"
+                  className="group relative inline-flex items-center justify-center px-8 py-4 bg-gray-900 dark:bg-white text-white rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)]"
                 >
                   <span className="relative z-10 flex items-center">
                     {t('hero.cta.hire')}
@@ -322,7 +322,7 @@ const Hero: React.FC = () => {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <a
                   href="#innovation-lab"
-                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-600/20 to-orange-600/20 border border-orange-500/30 text-gray-900 dark:text-white rounded-2xl font-semibold text-lg hover:from-orange-600/30 hover:to-orange-600/30 transition-all duration-300 backdrop-blur-sm shadow-lg shadow-orange-500/10"
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-600/20 to-orange-600/20 border border-orange-500/30 text-white rounded-2xl font-semibold text-lg hover:from-orange-600/30 hover:to-orange-600/30 transition-all duration-300 backdrop-blur-sm shadow-lg shadow-orange-500/10"
                 >
                   <Cpu className="mr-3 w-5 h-5 text-orange-400 animate-pulse" />
                   {t('hero.cta.lab', 'Innovation Lab')}
@@ -332,7 +332,7 @@ const Hero: React.FC = () => {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <button
                   onClick={() => setIsTechModalOpen(true)}
-                  className="inline-flex items-center px-8 py-4 glass text-gray-900 dark:text-white rounded-2xl font-semibold text-lg hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300"
+                  className="inline-flex items-center px-8 py-4 glass text-white rounded-2xl font-semibold text-lg hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300"
                 >
                   {t('hero.cta.techStack', 'View Tech Stack')}
                 </button>
@@ -357,7 +357,7 @@ const Hero: React.FC = () => {
                   <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-gray-600 dark:text-gray-400 text-sm">
+                  <div className="text-white text-sm">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -370,10 +370,10 @@ const Hero: React.FC = () => {
               transition={{ duration: 1, delay: 0.5 }}
               className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800"
             >
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 uppercase tracking-wider font-semibold">{t('hero.trustedBy')}</p>
+              <p className="text-sm text-white mb-6 uppercase tracking-wider font-semibold">{t('hero.trustedBy')}</p>
               <div className="flex flex-wrap justify-center gap-8 opacity-60 grayscale transition-all duration-500">
                 {['TechCorp', 'InnovateJS', 'CloudScale', 'NextGen AI'].map(name => (
-                  <div key={name} className="text-xl font-bold text-gray-800 dark:text-gray-300 flex items-center hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
+                  <div key={name} className="text-xl font-bold text-white flex items-center hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
                     <Globe className="w-5 h-5 mr-2" />
                     {name}
                   </div>

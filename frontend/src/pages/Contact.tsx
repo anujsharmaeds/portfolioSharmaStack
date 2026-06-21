@@ -96,7 +96,7 @@ const Contact: React.FC = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             {t('contact.title')}
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             {t('contact.subtitle')}
           </p>
         </div>
@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
               viewport={{ once: true }}
               className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
             >
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+              <h2 className="text-2xl font-bold text-white mb-6">
                 {t('contact.info.title')}
               </h2>
 
@@ -132,10 +132,10 @@ const Contact: React.FC = () => {
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">
+                      <h3 className="font-semibold text-white group-hover:text-orange-600 dark:group-hover:text-orange-400">
                         {info.title}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-300">
+                      <p className="text-white group-hover:text-white dark:group-hover:text-white">
                         {info.value}
                       </p>
                     </div>
@@ -152,7 +152,7 @@ const Contact: React.FC = () => {
               transition={{ delay: 0.1 }}
               className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
             >
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
+              <h3 className="text-xl font-bold text-white mb-6">
                 {t('contact.help.title')}
               </h3>
 
@@ -167,17 +167,17 @@ const Contact: React.FC = () => {
                       }`}
                   >
                     <div className="flex items-start justify-between mb-2">
-                      <h4 className="font-semibold text-gray-800 dark:text-white">
+                      <h4 className="font-semibold text-white">
                         {type.title}
                       </h4>
                       {activeTab === type.id && (
                         <CheckCircle className="w-5 h-5 text-orange-500" />
                       )}
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    <p className="text-sm text-white mb-2">
                       {type.description}
                     </p>
-                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-500">
+                    <div className="flex items-center text-sm text-white">
                       <Clock className="w-4 h-4 mr-2" />
                       {t('contact.help.response')} {type.responseTime}
                     </div>
@@ -194,7 +194,7 @@ const Contact: React.FC = () => {
               transition={{ delay: 0.2 }}
               className="bg-gradient-to-br from-orange-500/10 to-orange-500/10 dark:from-orange-500/5 dark:to-orange-500/5 rounded-2xl p-8 border border-orange-200/50 dark:border-orange-500/20"
             >
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+              <h3 className="text-xl font-bold text-white mb-6 flex items-center">
                 <Clock className="w-6 h-6 mr-2" />
                 {t('contact.europe.title')}
               </h3>
@@ -202,10 +202,10 @@ const Contact: React.FC = () => {
               <div className="space-y-4">
                 {europeAvailability.map((zone) => (
                   <div key={zone.timezone} className="flex justify-between items-center">
-                    <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    <span className="text-white font-medium">
                       {zone.timezone}
                     </span>
-                    <span className="text-gray-600 dark:text-gray-400">
+                    <span className="text-white">
                       {zone.hours}
                     </span>
                   </div>
@@ -213,7 +213,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="mt-6 p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-white">
                   <span className="font-semibold">{t('contact.europe.noteLabel')}</span> {t('contact.europe.note')}
                 </p>
               </div>
@@ -232,11 +232,11 @@ const Contact: React.FC = () => {
               <div className="mb-8">
                 <div className="flex items-center space-x-2 mb-2">
                   <Send className="w-6 h-6 text-orange-500" />
-                  <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+                  <h2 className="text-2xl font-bold text-white">
                     {t('contact.msg.title')}
                   </h2>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-white">
                   {t('contact.msg.desc')}
                 </p>
               </div>
@@ -252,7 +252,7 @@ const Contact: React.FC = () => {
 
               {/* Process Timeline */}
               <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
+                <h3 className="text-xl font-bold text-white mb-6">
                   {t('contact.next.title')}
                 </h3>
 
@@ -278,10 +278,10 @@ const Contact: React.FC = () => {
                       <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-500 flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
                         {item.step}
                       </div>
-                      <h4 className="font-semibold text-gray-800 dark:text-white mb-2">
+                      <h4 className="font-semibold text-white mb-2">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-white">
                         {item.description}
                       </p>
                     </div>
@@ -303,7 +303,7 @@ const Contact: React.FC = () => {
                   className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 text-center border border-gray-200 dark:border-gray-700"
                 >
                   <div className="text-2xl mb-2">{signal.icon}</div>
-                  <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <div className="text-sm font-medium text-white">
                     {signal.label}
                   </div>
                 </div>
@@ -320,7 +320,7 @@ const Contact: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               {t('contact.cta.title.1')} <span className="gradient-text">{t('contact.cta.title.2')}</span> {t('contact.cta.title.3')}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
+            <p className="text-xl text-white mb-8">
               {t('contact.cta.desc')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -340,7 +340,7 @@ const Contact: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="tel:+917525071752"
-                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all"
+                className="px-8 py-4 bg-white dark:bg-gray-800 text-white border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all"
               >
                 {t('contact.cta.call')}
               </motion.a> */}

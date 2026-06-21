@@ -171,7 +171,7 @@ const Services: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-white max-w-3xl mx-auto leading-relaxed"
           >
             {t('services.subtitle')}
           </motion.p>
@@ -187,7 +187,7 @@ const Services: React.FC = () => {
                 onClick={() => setBillingCycle('project')}
                 className={`px-8 py-3 rounded-lg font-medium transition-all ${billingCycle === 'project'
                     ? 'bg-orange-600 text-white'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                    : 'text-white hover:text-white dark:hover:text-white'
                   }`}
               >
                 {t('service.billing.project')}
@@ -196,7 +196,7 @@ const Services: React.FC = () => {
                 onClick={() => setBillingCycle('monthly')}
                 className={`px-8 py-3 rounded-lg font-medium transition-all ${billingCycle === 'monthly'
                     ? 'bg-orange-600 text-white'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                    : 'text-white hover:text-white dark:hover:text-white'
                   }`}
               >
                 {t('service.billing.monthly')}
@@ -231,25 +231,25 @@ const Services: React.FC = () => {
                 )}
 
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+                  <h3 className="text-2xl font-bold text-white mb-2">
                     {pkg.name}
                   </h3>
                   <div className="mb-4">
                     <span className="text-5xl font-bold gradient-text">{pkg.price}</span>
-                    <span className="text-gray-600 dark:text-gray-400">{pkg.period}</span>
+                    <span className="text-white">{pkg.period}</span>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400">{pkg.description}</p>
+                  <p className="text-white">{pkg.description}</p>
                 </div>
 
                 <div className="space-y-4 mb-8">
-                  <h4 className="font-semibold text-gray-700 dark:text-gray-300">
+                  <h4 className="font-semibold text-white">
                     {t('service.features')}:
                   </h4>
                   <ul className="space-y-3">
                     {pkg.features.map((feature) => (
                       <li key={feature} className="flex items-start">
                         <Check className="w-5 h-5 text-orange-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-600 dark:text-gray-400">{feature}</span>
+                        <span className="text-white">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -257,14 +257,14 @@ const Services: React.FC = () => {
 
                 {pkg.excluded.length > 0 && (
                   <div className="space-y-4 mb-8">
-                    <h4 className="font-semibold text-gray-700 dark:text-gray-300">
+                    <h4 className="font-semibold text-white">
                       {t('service.notIncluded')}
                     </h4>
                     <ul className="space-y-3">
                       {pkg.excluded.map((item) => (
                         <li key={item} className="flex items-start">
-                          <X className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-500 dark:text-gray-500">{item}</span>
+                          <X className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
+                          <span className="text-white">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -277,7 +277,7 @@ const Services: React.FC = () => {
                   onClick={() => setSelectedPlan(pkg)}
                   className={`w-full py-3 rounded-lg font-medium transition-colors ${pkg.popular
                       ? 'bg-gradient-to-r from-orange-600 to-orange-600 text-white hover:opacity-90'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
+                      : 'bg-gray-100 dark:bg-gray-700 text-white hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                 >
                   {pkg.name === t('service.enterprise')
@@ -297,7 +297,7 @@ const Services: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               {t('service.categories.title').split(' ')[0]} <span className="gradient-text">{t('service.categories.title').split(' ').slice(1).join(' ')}</span>
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-white max-w-2xl mx-auto">
               {t('service.categories.subtitle')}
             </p>
           </div>
@@ -320,10 +320,10 @@ const Services: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+                    <h3 className="text-xl font-bold text-white mb-2">
                       {category.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-white">
                       {category.description}
                     </p>
                   </div>
@@ -333,7 +333,7 @@ const Services: React.FC = () => {
                   {category.details.map((detail) => (
                     <li key={detail} className="flex items-center">
                       <Check className="w-4 h-4 text-orange-500 mr-2 flex-shrink-0" />
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{detail}</span>
+                      <span className="text-sm text-white">{detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -358,7 +358,7 @@ const Services: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               {t('service.custom.title')}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
+            <p className="text-xl text-white mb-8">
               {t('service.custom.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -374,7 +374,7 @@ const Services: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="#"
-                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all"
+                className="px-8 py-4 bg-white dark:bg-gray-800 text-white border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all"
               >
                 {t('service.custom.btn2')}
               </motion.a>
@@ -401,16 +401,16 @@ const Services: React.FC = () => {
             >
               <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-700">
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                  <h3 className="text-2xl font-bold text-white">
                     {selectedPlan.name}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-sm text-white mt-1">
                     {billingCycle === 'monthly' ? 'Monthly Retainer' : 'Project-Based'} • {selectedPlan.price}
                   </p>
                 </div>
                 <button
                   onClick={() => setSelectedPlan(null)}
-                  className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="p-2 text-white hover:text-white dark:hover:text-white rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   <X className="w-6 h-6" />
                 </button>

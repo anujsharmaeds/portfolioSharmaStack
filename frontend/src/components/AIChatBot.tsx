@@ -220,7 +220,7 @@ const AIChatBot: React.FC = () => {
                   <h3 className="font-black text-white text-lg leading-tight">SharmaStack AI</h3>
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-                    <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Enterprise Orchestrator</span>
+                    <span className="text-[10px] text-white font-bold uppercase tracking-widest">Enterprise Orchestrator</span>
                   </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@ const AIChatBot: React.FC = () => {
                     <div className={`w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center ${msg.role === 'user' ? 'bg-orange-600' : 'bg-orange-600'}`}>
                       {msg.role === 'user' ? <User className="w-4 h-4 text-white" /> : <Bot className="w-4 h-4 text-white" />}
                     </div>
-                    <div className={`p-4 rounded-2xl text-sm leading-relaxed ${msg.role === 'user' ? 'bg-orange-600 text-white rounded-tr-none' : 'bg-white/5 text-gray-300 border border-white/10 rounded-tl-none'}`}>
+                    <div className={`p-4 rounded-2xl text-sm leading-relaxed ${msg.role === 'user' ? 'bg-orange-600 text-white rounded-tr-none' : 'bg-white/5 text-white border border-white/10 rounded-tl-none'}`}>
                       {msg.content}
                     </div>
                   </div>
@@ -286,7 +286,7 @@ const AIChatBot: React.FC = () => {
                   <Send className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-[10px] text-gray-600 mt-4 text-center flex items-center justify-center gap-1">
+              <p className="text-[10px] text-white mt-4 text-center flex items-center justify-center gap-1">
                 <Sparkles className="w-3 h-3" /> Powered by SharmaStack AI • Llama 3.3 Versatile
               </p>
             </div>

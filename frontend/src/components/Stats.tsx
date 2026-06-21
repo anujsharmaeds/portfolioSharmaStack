@@ -57,7 +57,7 @@ const Stats: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {t('stats.title.1', 'By The')} <span className="gradient-text">{t('stats.title.2', 'Numbers')}</span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-white max-w-2xl mx-auto">
             {t('stats.subtitle', 'Quantifying success through measurable achievements and consistent delivery')}
           </p>
         </motion.div>
@@ -84,11 +84,11 @@ const Stats: React.FC = () => {
                   {stat.value}
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
+                <h3 className="text-lg font-semibold text-white mb-2">
                   {stat.label}
                 </h3>
 
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-white">
                   {stat.description}
                 </p>
               </div>
@@ -105,16 +105,16 @@ const Stats: React.FC = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-800 dark:text-white mb-2">10,000+</div>
-              <p className="text-gray-600 dark:text-gray-400">{t('stats.extra.1', 'Concurrent Users Handled')}</p>
+              <div className="text-2xl font-bold text-white mb-2">10,000+</div>
+              <p className="text-white">{t('stats.extra.1', 'Concurrent Users Handled')}</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-800 dark:text-white mb-2">40%</div>
-              <p className="text-gray-600 dark:text-gray-400">{t('stats.extra.2', 'Average Performance Improvement')}</p>
+              <div className="text-2xl font-bold text-white mb-2">40%</div>
+              <p className="text-white">{t('stats.extra.2', 'Average Performance Improvement')}</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-800 dark:text-white mb-2">60%</div>
-              <p className="text-gray-600 dark:text-gray-400">{t('stats.extra.3', 'Process Automation Achieved')}</p>
+              <div className="text-2xl font-bold text-white mb-2">60%</div>
+              <p className="text-white">{t('stats.extra.3', 'Process Automation Achieved')}</p>
             </div>
           </div>
         </motion.div>

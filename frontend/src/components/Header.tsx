@@ -22,7 +22,7 @@ const Header: React.FC = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-[#030712]/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 text-gray-900 dark:text-white transition-all duration-300 shadow-sm">
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-[#030712]/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 text-white transition-all duration-300 shadow-sm">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -57,7 +57,7 @@ const Header: React.FC = () => {
                 to={item.path}
                 className={`text-sm font-medium transition-all duration-300 ${location.pathname === item.path
                   ? 'text-orange-600 dark:text-orange-400 font-bold'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                  : 'text-white hover:text-white dark:hover:text-white'
                   }`}
               >
                 {item.label}
@@ -115,7 +115,7 @@ const Header: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
-              className="md:hidden p-2 rounded-lg text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800"
+              className="md:hidden p-2 rounded-lg text-white hover:bg-gray-200 dark:hover:bg-gray-800"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -134,7 +134,7 @@ const Header: React.FC = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className={`text-base font-medium py-2 ${location.pathname === item.path
                       ? 'text-orange-600 dark:text-orange-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400'
+                      : 'text-white hover:text-orange-600 dark:hover:text-orange-400'
                       }`}
                   >
                     {item.label}

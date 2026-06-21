@@ -76,7 +76,7 @@ const InnovationLab: React.FC = () => {
     { id: 'obstacle', icon: <Navigation />, color: 'text-red-400', unit: 'DIST', type: 'gauge' },
     { id: 'touch', icon: <Fingerprint />, color: 'text-orange-500', unit: 'TOUCH', type: 'binary' },
     { id: 'led_rgb', icon: <Lightbulb />, color: 'text-yellow-300', unit: 'RGB', type: 'color' },
-    { id: 'encoder', icon: <RefreshCcw />, color: 'text-slate-400', unit: 'STEP', type: 'gauge' },
+    { id: 'encoder', icon: <RefreshCcw />, color: 'text-white', unit: 'STEP', type: 'gauge' },
     { id: 'buzzer', icon: <Megaphone />, color: 'text-rose-500', unit: 'FREQ', type: 'bars' },
     { id: 'reed', icon: <Activity />, color: 'text-cyan-400', unit: 'MAG', type: 'binary' },
     { id: 'knock', icon: <Disc />, color: 'text-amber-600', unit: 'VIB', type: 'bars' },
@@ -84,7 +84,7 @@ const InnovationLab: React.FC = () => {
     { id: 'magic_cup', icon: <Lightbulb />, color: 'text-orange-400', unit: 'TILT', type: 'gauge' },
     { id: 'passive_buzzer', icon: <Megaphone />, color: 'text-red-400', unit: 'PWM', type: 'bars' },
     { id: 'digital_temp', icon: <Thermometer />, color: 'text-orange-300', unit: '°C', type: 'area' },
-    { id: 'broken_light', icon: <Target />, color: 'text-gray-400', unit: 'BREAK', type: 'binary' },
+    { id: 'broken_light', icon: <Target />, color: 'text-white', unit: 'BREAK', type: 'binary' },
     { id: 'mercury', icon: <RotateCw />, color: 'text-indigo-400', unit: 'ANGLE', type: 'gauge' },
     { id: 'led_7color', icon: <Lightbulb />, color: 'text-orange-400', unit: 'COLOR', type: 'color' },
     { id: 'button', icon: <Zap />, color: 'text-orange-500', unit: 'PRESS', type: 'binary' },
@@ -322,7 +322,7 @@ const InnovationLab: React.FC = () => {
               className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 ${
                 activeTab === 'ai' 
                 ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/20' 
-                : 'text-gray-400 hover:text-white'
+                : 'text-white hover:text-white'
               }`}
             >
               <Brain className="w-5 h-5" />
@@ -333,7 +333,7 @@ const InnovationLab: React.FC = () => {
               className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 ${
                 activeTab === 'iot' 
                 ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/20' 
-                : 'text-gray-400 hover:text-white'
+                : 'text-white hover:text-white'
               }`}
             >
               <Radio className="w-5 h-5" />
@@ -344,7 +344,7 @@ const InnovationLab: React.FC = () => {
               className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 ${
                 activeTab === 'sentinel' 
                 ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/20' 
-                : 'text-gray-400 hover:text-white'
+                : 'text-white hover:text-white'
               }`}
             >
               <Bot className="w-5 h-5" />
@@ -375,7 +375,7 @@ const InnovationLab: React.FC = () => {
                       </div>
                       <div className="flex-grow">
                         <h4 className="text-white font-bold mb-1">{t('lab.ai.rag.s1.title', 'Data Ingestion')}</h4>
-                        <p className="text-gray-400 text-sm">{t('lab.ai.rag.s1.desc', 'Vectorizing unstructured data into high-dimensional space.')}</p>
+                        <p className="text-white text-sm">{t('lab.ai.rag.s1.desc', 'Vectorizing unstructured data into high-dimensional space.')}</p>
                       </div>
                     </div>
                     <div className="absolute left-8 top-16 bottom-16 w-px bg-gradient-to-b from-orange-500 to-orange-500 opacity-20" />
@@ -385,7 +385,7 @@ const InnovationLab: React.FC = () => {
                       </div>
                       <div className="flex-grow">
                         <h4 className="text-white font-bold mb-1">{t('lab.ai.rag.s2.title', 'Semantic Retrieval')}</h4>
-                        <p className="text-gray-400 text-sm">{t('lab.ai.rag.s2.desc', 'Context-aware searching using embedding similarity.')}</p>
+                        <p className="text-white text-sm">{t('lab.ai.rag.s2.desc', 'Context-aware searching using embedding similarity.')}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-6">
@@ -394,7 +394,7 @@ const InnovationLab: React.FC = () => {
                       </div>
                       <div className="flex-grow">
                         <h4 className="text-white font-bold mb-1">{t('lab.ai.rag.s3.title', 'LLM Synthesis')}</h4>
-                        <p className="text-gray-400 text-sm">{t('lab.ai.rag.s3.desc', 'Generating hallucination-free, grounded responses.')}</p>
+                        <p className="text-white text-sm">{t('lab.ai.rag.s3.desc', 'Generating hallucination-free, grounded responses.')}</p>
                       </div>
                     </div>
                   </div>
@@ -411,12 +411,12 @@ const InnovationLab: React.FC = () => {
                       {t('lab.ai.status', 'DEPLOYED')}
                     </div>
                     <h3 className="text-3xl font-bold text-white mb-4">{t('lab.ai.agents.title', 'Autonomous Agents')}</h3>
-                    <p className="text-gray-300 leading-relaxed mb-8">
+                    <p className="text-white leading-relaxed mb-8">
                       {t('lab.ai.agents.desc', 'We develop multi-agent systems that can autonomously plan, reason, and execute complex business processes—from automated customer support to advanced data research.')}
                     </p>
                     <div className="grid grid-cols-2 gap-4">
                       {['ReAct Prompting', 'Chain-of-Thought', 'Auto-GPT', 'BabyAGI'].map(tag => (
-                        <div key={tag} className="px-4 py-2 bg-white/5 rounded-xl border border-white/10 text-gray-400 text-sm text-center">
+                        <div key={tag} className="px-4 py-2 bg-white/5 rounded-xl border border-white/10 text-white text-sm text-center">
                           {tag}
                         </div>
                       ))}
@@ -424,7 +424,7 @@ const InnovationLab: React.FC = () => {
                   </div>
                   <div className="mt-10 p-6 bg-black/40 rounded-3xl border border-white/5">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs text-gray-500 uppercase font-bold tracking-tighter">AI Inference Engine</span>
+                      <span className="text-xs text-white uppercase font-bold tracking-tighter">AI Inference Engine</span>
                       <span className="text-xs text-orange-400 font-mono">1.2ms latency</span>
                     </div>
                     <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
@@ -465,7 +465,7 @@ const InnovationLab: React.FC = () => {
                       <div className={`${sensor.color} bg-white/5 p-2 rounded-lg`}>
                         {sensor.icon}
                       </div>
-                      <span className={`text-xs font-bold ${activeSensor === sensor.id ? 'text-white' : 'text-gray-400'}`}>
+                      <span className={`text-xs font-bold ${activeSensor === sensor.id ? 'text-white' : 'text-white'}`}>
                         {t(`lab.iot.sensor.${sensor.id}`)}
                       </span>
                     </button>
@@ -481,12 +481,12 @@ const InnovationLab: React.FC = () => {
                       <Activity className="text-orange-500 animate-pulse" />
                       {t(`lab.iot.sensor.${activeSensor}`)}
                     </h3>
-                    <p className="text-gray-500 text-sm mt-1">Real-time Stream from Arduino Module</p>
+                    <p className="text-white text-sm mt-1">Real-time Stream from Arduino Module</p>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="bg-black/40 px-4 py-2 rounded-xl border border-white/5 text-center">
                       <div className="text-xl font-bold text-orange-400 font-mono">{sensorData.val}{sensors.find(s => s.id === activeSensor)?.unit}</div>
-                      <div className="text-[10px] text-gray-500 uppercase font-bold">Current Value</div>
+                      <div className="text-[10px] text-white uppercase font-bold">Current Value</div>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-orange-500 rounded-full animate-ping" />
@@ -534,7 +534,7 @@ const InnovationLab: React.FC = () => {
                             >
                               <div className={`absolute -inset-2 bg-${color} rounded-full animate-ping opacity-50`} />
                             </motion.div>
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] font-mono text-gray-500">
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] font-mono text-white">
                               X: {coords.x.toFixed(1)} Y: {coords.y.toFixed(1)}
                             </div>
                           </div>
@@ -593,7 +593,7 @@ const InnovationLab: React.FC = () => {
                             </svg>
                             <div className="absolute flex flex-col items-center">
                               <span className="text-4xl font-black text-white font-mono">{sensorData.val}</span>
-                              <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">{sensor?.unit}</span>
+                              <span className="text-[10px] text-white font-bold uppercase tracking-widest">{sensor?.unit}</span>
                             </div>
                           </div>
                         );
@@ -608,7 +608,7 @@ const InnovationLab: React.FC = () => {
                             <div className="grid grid-cols-3 gap-4 text-center w-full max-w-xs">
                               {['R', 'G', 'B'].map((l) => (
                                 <div key={l} className="bg-white/5 p-2 rounded-lg border border-white/10">
-                                  <div className="text-[10px] text-gray-500 font-bold">{l}</div>
+                                  <div className="text-[10px] text-white font-bold">{l}</div>
                                   <div className="text-sm font-bold text-white font-mono">{Math.floor(Math.random() * 255)}</div>
                                 </div>
                               ))}
@@ -632,7 +632,7 @@ const InnovationLab: React.FC = () => {
                     }
                   })()}
                   <div className="absolute top-8 left-8 right-8 flex justify-between items-center pointer-events-none">
-                    <div className="text-xs text-gray-500 uppercase font-bold tracking-widest">Frequency Spectrum / Time Domain</div>
+                    <div className="text-xs text-white uppercase font-bold tracking-widest">Frequency Spectrum / Time Domain</div>
                     <div className="text-[10px] text-orange-400 font-mono bg-orange-500/10 px-2 py-1 rounded border border-orange-500/20">Active_Link: 921600 baud</div>
                   </div>
                 </div>
@@ -640,7 +640,7 @@ const InnovationLab: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* MQTT Log Feed */}
                   <div className="h-48 bg-black/60 rounded-3xl border border-white/5 p-6 font-mono overflow-hidden">
-                    <div className="text-xs text-gray-500 uppercase font-bold mb-4 flex items-center gap-2">
+                    <div className="text-xs text-white uppercase font-bold mb-4 flex items-center gap-2">
                       <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
                       Serial Log / MQTT Feed
                     </div>
@@ -665,7 +665,7 @@ const InnovationLab: React.FC = () => {
                     <div className="bg-black/30 p-5 rounded-2xl border border-white/5 flex flex-col items-center justify-center">
                       <Cpu className="w-5 h-5 text-orange-400 mb-2" />
                       <div className="text-lg font-bold text-white font-mono">{sensorData.cpu}%</div>
-                      <div className="text-[9px] text-gray-500 uppercase font-bold">Edge AI Load</div>
+                      <div className="text-[9px] text-white uppercase font-bold">Edge AI Load</div>
                     </div>
                     <div className="bg-black/30 p-5 rounded-2xl border border-white/5 flex flex-col items-center justify-center">
                       <div className="flex gap-1 mb-2">
@@ -674,7 +674,7 @@ const InnovationLab: React.FC = () => {
                         ))}
                       </div>
                       <div className="text-lg font-bold text-white font-mono">{sensorData.connectivity}%</div>
-                      <div className="text-[9px] text-gray-500 uppercase font-bold">Packet Yield</div>
+                      <div className="text-[9px] text-white uppercase font-bold">Packet Yield</div>
                     </div>
                   </div>
                 </div>
@@ -683,7 +683,7 @@ const InnovationLab: React.FC = () => {
                 <div className="mt-8 bg-orange-600/5 border border-orange-500/20 rounded-3xl p-8 backdrop-blur-sm">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3">
-                      <Zap className={`w-5 h-5 ${isManual ? 'text-yellow-400 animate-pulse' : 'text-gray-500'}`} />
+                      <Zap className={`w-5 h-5 ${isManual ? 'text-yellow-400 animate-pulse' : 'text-white'}`} />
                       <h4 className="text-white font-bold tracking-tight">{t('lab.iot.manual.title', 'Manual Simulation Override')}</h4>
                     </div>
                     <button 
@@ -701,8 +701,8 @@ const InnovationLab: React.FC = () => {
                       }}
                       className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
                         isManual 
-                        ? 'bg-yellow-500 text-black shadow-lg shadow-yellow-500/20' 
-                        : 'bg-white/5 text-gray-400 border border-white/10'
+                        ? 'bg-yellow-500 text-white shadow-lg shadow-yellow-500/20' 
+                        : 'bg-white/5 text-white border border-white/10'
                       }`}
                     >
                       {isManual ? 'Manual Control' : 'Auto-Pilot'}
@@ -711,7 +711,7 @@ const InnovationLab: React.FC = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div>
-                      <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                      <p className="text-white text-sm mb-4 leading-relaxed">
                         {t('lab.iot.manual.desc', 'Toggle manual mode to interact with the sensor hardware simulator directly.')}
                       </p>
                       <div className="flex flex-col gap-2">
@@ -724,7 +724,7 @@ const InnovationLab: React.FC = () => {
                             MANUAL OVERRIDE: Interaction logged as {username}
                           </div>
                         )}
-                        <div className="text-[10px] text-gray-500 bg-white/5 px-3 py-2 rounded-lg border border-white/5">
+                        <div className="text-[10px] text-white bg-white/5 px-3 py-2 rounded-lg border border-white/5">
                           LAST ACTIVITY: <span className="text-white">{labStatus.last_user}</span> {labStatus.last_action} on {labStatus.last_sensor}
                         </div>
                       </div>
@@ -738,7 +738,7 @@ const InnovationLab: React.FC = () => {
                         if (sensor?.type === 'coord') {
                           return (
                             <div className="space-y-4">
-                              <div className="flex justify-between text-xs font-mono text-gray-500">
+                              <div className="flex justify-between text-xs font-mono text-white">
                                 <span>X-AXIS</span>
                                 <span>{coords.x.toFixed(1)}%</span>
                               </div>
@@ -748,7 +748,7 @@ const InnovationLab: React.FC = () => {
                                 onMouseUp={() => triggerAction('Adjusted X-Axis', activeSensor, coords.x.toFixed(0))}
                                 className={`w-full accent-${color}`}
                               />
-                              <div className="flex justify-between text-xs font-mono text-gray-500">
+                              <div className="flex justify-between text-xs font-mono text-white">
                                 <span>Y-AXIS</span>
                                 <span>{coords.y.toFixed(1)}%</span>
                               </div>
@@ -786,7 +786,7 @@ const InnovationLab: React.FC = () => {
 
                         return (
                           <div className="space-y-4">
-                            <div className="flex justify-between text-xs font-mono text-gray-500">
+                            <div className="flex justify-between text-xs font-mono text-white">
                               <span>SIMULATOR VALUE</span>
                               <span>{sensorData.val}{sensor?.unit}</span>
                             </div>
@@ -811,7 +811,7 @@ const InnovationLab: React.FC = () => {
                                     setWaveformData(prev => [...prev.slice(1), 60]);
                                   }, 100);
                                 }}
-                                className="w-full py-2 bg-white/5 border border-white/10 rounded-xl text-[10px] text-gray-400 font-bold uppercase tracking-widest hover:bg-white/10"
+                                className="w-full py-2 bg-white/5 border border-white/10 rounded-xl text-[10px] text-white font-bold uppercase tracking-widest hover:bg-white/10"
                               >
                                 Manual Pulse Spike
                               </button>
@@ -841,7 +841,7 @@ const InnovationLab: React.FC = () => {
                     {t('lab.sentinel.badge', 'Business Automation')}
                   </motion.span>
                   <h3 className="text-4xl font-black text-white mb-6">{t('lab.sentinel.title', 'AI & Bot Solutions')}</h3>
-                  <p className="text-gray-400 text-lg leading-relaxed mb-10">
+                  <p className="text-white text-lg leading-relaxed mb-10">
                     {t('lab.sentinel.desc', 'We build autonomous digital workforces. From intelligent customer support to complex multi-platform automation, our bots drive efficiency.')}
                   </p>
                   
@@ -864,7 +864,7 @@ const InnovationLab: React.FC = () => {
                           <div className="p-2 bg-white/5 rounded-lg group-hover:scale-110 transition-transform">{item.icon}</div>
                           <span className="text-white font-bold">{item.label}</span>
                         </div>
-                        <p className="text-xs text-gray-500 ml-12">{item.desc}</p>
+                        <p className="text-xs text-white ml-12">{item.desc}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -900,14 +900,14 @@ const InnovationLab: React.FC = () => {
                             </div>
                           </div>
                           <div className="bg-orange-500/10 border border-orange-500/20 p-4 rounded-2xl rounded-tl-none">
-                            <p className="text-sm text-gray-300 leading-relaxed font-mono">
+                            <p className="text-sm text-white leading-relaxed font-mono">
                               {agentStep === 0 && "> Initializing market scan..."}
                               {agentStep === 1 && "> Found 3 new high-potential leads in Berlin. Processing profiles..."}
                               {agentStep === 2 && "> Alert: Backend CPU spike detected. Scaling cluster automatically..."}
                               {agentStep === 3 && "> Research complete. Summary PDF dispatched to your email."}
                             </p>
                             <div className="mt-3 pt-3 border-t border-orange-500/10 flex justify-between items-center">
-                              <span className="text-[10px] text-gray-500 font-mono">ID: SH-BOT-992</span>
+                              <span className="text-[10px] text-white font-mono">ID: SH-BOT-992</span>
                               <span className="text-[10px] text-orange-500 font-bold">READY TO DEPLOY</span>
                             </div>
                           </div>
@@ -935,16 +935,16 @@ const InnovationLab: React.FC = () => {
                         <Globe />
                       </div>
                       <h4 className="text-white font-bold mb-1">Market Sentinel</h4>
-                      <p className="text-[10px] text-gray-500 mb-3 uppercase font-black">Telegram • Fintech</p>
-                      <p className="text-xs text-gray-400 leading-relaxed">Real-time crypto and stock analysis bot with customized technical indicator alerts.</p>
+                      <p className="text-[10px] text-white mb-3 uppercase font-black">Telegram • Fintech</p>
+                      <p className="text-xs text-white leading-relaxed">Real-time crypto and stock analysis bot with customized technical indicator alerts.</p>
                     </div>
                     <div className="bg-gray-900/40 p-6 rounded-3xl border border-white/5 group hover:border-orange-500/30 transition-all">
                       <div className="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-400 mb-4 group-hover:scale-110 transition-transform">
                         <MessageSquare />
                       </div>
                       <h4 className="text-white font-bold mb-1">LeadGen WhatsApp</h4>
-                      <p className="text-[10px] text-gray-500 mb-3 uppercase font-black">WhatsApp • CRM</p>
-                      <p className="text-xs text-gray-400 leading-relaxed">Automated lead qualification agent that interacts with users and syncs directly to your CRM.</p>
+                      <p className="text-[10px] text-white mb-3 uppercase font-black">WhatsApp • CRM</p>
+                      <p className="text-xs text-white leading-relaxed">Automated lead qualification agent that interacts with users and syncs directly to your CRM.</p>
                     </div>
                   </div>
                 </div>
@@ -958,7 +958,7 @@ const InnovationLab: React.FC = () => {
                 <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-10">
                   <div className="md:col-span-2">
                     <h4 className="text-2xl font-bold text-white mb-4">Why Automate with SharmaStack?</h4>
-                    <p className="text-gray-400 leading-relaxed mb-6 max-w-2xl">
+                    <p className="text-white leading-relaxed mb-6 max-w-2xl">
                       Our bots aren't just scripts; they are intelligent agents built on top of the Sentinel Framework. They reduce human error, operate 24/7, and scale with your business demands without increasing overhead.
                     </p>
                     <div className="flex flex-wrap gap-4">
@@ -1003,7 +1003,7 @@ const InnovationLab: React.FC = () => {
                   <Fingerprint className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-white">Identify Yourself</h3>
-                <p className="text-gray-400 text-sm mt-2">Enter your name to interact with the hardware lab. Your actions will be logged for the administrator.</p>
+                <p className="text-white text-sm mt-2">Enter your name to interact with the hardware lab. Your actions will be logged for the administrator.</p>
               </div>
               
               <input 

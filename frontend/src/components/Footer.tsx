@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Column */}
@@ -92,10 +92,10 @@ const Footer: React.FC = () => {
               </div>
               <div>
                 <h2 className="text-xl font-bold text-white">sharmaStack</h2>
-                {/* <p className="text-sm text-gray-400">Senior Full Stack Developer</p> */}
+                {/* <p className="text-sm text-white">Senior Full Stack Developer</p> */}
               </div>
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className="text-white mb-6">
               {t('footer.desc')}
             </p>
             <div className="flex space-x-4">
@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-white hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
-                  <span className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                  <span className="text-white hover:text-white transition-colors cursor-pointer">
                     {service}
                   </span>
                 </li>
@@ -151,7 +151,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 {/* <Phone className="w-5 h-5 text-orange-400 mt-1 flex-shrink-0" /> */}
-                {/* <span className="text-gray-400"></span> */}
+                {/* <span className="text-white"></span> */}
               </li>
               <li className="flex items-start space-x-3">
                 <Mail className="w-5 h-5 text-orange-400 mt-1 flex-shrink-0" />
@@ -159,14 +159,14 @@ const Footer: React.FC = () => {
                   href="mailto:contact@sharmastack.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-white hover:text-white transition-colors"
                 >
                   contact@sharmastack.com
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-orange-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">
+                <span className="text-white">
                   {t('hero.based', 'Gurugram, Haryana, India')}
                   <br />
                   <span className="text-sm">{t('status.europe')}</span>
@@ -200,7 +200,7 @@ const Footer: React.FC = () => {
                 {isSubscribing ? <Loader2 className="w-5 h-5 animate-spin" /> : t('footer.newsletter.btn')}
               </button>
             </div>
-            <p className="text-center text-gray-500 text-sm mt-2">
+            <p className="text-center text-white text-sm mt-2">
               {t('footer.newsletter.desc')}
             </p>
           </div>
@@ -209,20 +209,20 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 text-sm">
+            <p className="text-white text-sm">
               © {currentYear} sharmaStack. {t('footer.rights')}
             </p>
 
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a
                 href="#"
-                className="text-gray-500 hover:text-white text-sm transition-colors"
+                className="text-white hover:text-white text-sm transition-colors"
               >
                 {t('footer.privacy')}
               </a>
               <a
                 href="#"
-                className="text-gray-500 hover:text-white text-sm transition-colors"
+                className="text-white hover:text-white text-sm transition-colors"
               >
                 {t('footer.terms')}
               </a>

@@ -49,7 +49,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {title}
         </h3>
 
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-white mb-4">
           {description}
         </p>
 
@@ -62,7 +62,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Technologies */}
         <div className="mb-6">
-          <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <h4 className="text-sm font-medium text-white mb-2">
             {t('project.tech')}:
           </h4>
           <div className="flex flex-wrap gap-2">

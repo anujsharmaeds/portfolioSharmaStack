@@ -24,21 +24,21 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
             {icon}
           </div>
         </div>
-        <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+        <h3 className="text-xl font-bold text-white mb-2">
           {title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-white">
           {description}
         </p>
       </div>
 
       <div className="space-y-3">
-        <h4 className="font-medium text-gray-700 dark:text-gray-300">{t('service.features', 'Key Features:')}</h4>
+        <h4 className="font-medium text-white">{t('service.features', 'Key Features:')}</h4>
         <ul className="space-y-2">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start">
               <Check className="w-5 h-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0" />
-              <span className="text-gray-600 dark:text-gray-400 text-sm">{feature}</span>
+              <span className="text-white text-sm">{feature}</span>
             </li>
           ))}
         </ul>

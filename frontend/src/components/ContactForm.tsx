@@ -298,7 +298,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
                   type="file"
                   accept=".pdf,.doc,.docx"
                   {...register('resume', { required: 'Resume is required' })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 dark:file:bg-gray-700 dark:file:text-gray-300"
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 dark:file:bg-gray-700 dark:file:text-white"
                   disabled={isSubmitting}
                 />
                 {errors.resume && (
@@ -399,7 +399,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
           {errors.message && (
             <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>
           )}
-          <div className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-1 text-sm text-white">
             {t('contact.form.msgDesc')}
           </div>
         </div>
@@ -430,7 +430,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
 
       {/* Privacy Note */}
       <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-        <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+        <p className="text-sm text-white text-center">
           {t('contact.form.privacy')}
         </p>
       </div>

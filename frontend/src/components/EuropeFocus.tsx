@@ -59,7 +59,7 @@ const EuropeFocus: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {t('europe.title.1', 'Ready for')} <span className="europe-gradient bg-clip-text text-transparent">{t('europe.title.2', 'European')}</span> {t('europe.title.3', 'Opportunities')}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-white max-w-2xl mx-auto">
             {t('europe.subtitle', 'Open to Discuss across Globe with comprehensive preparation for seamless integration')}
           </p>
         </motion.div>
@@ -73,7 +73,7 @@ const EuropeFocus: React.FC = () => {
             className="space-y-8"
           >
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center">
+              <h3 className="text-xl font-bold text-white mb-4 flex items-center">
                 <MapPin className="w-6 h-6 mr-2 text-europe-blue" />
                 {t('europe.targets', 'Target Countries')}
               </h3>
@@ -90,15 +90,15 @@ const EuropeFocus: React.FC = () => {
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">
+              <h3 className="text-xl font-bold text-white mb-6">
                 {t('europe.lang', 'Language Proficiency')}
               </h3>
               <div className="space-y-4">
                 {languageProgress.map((lang) => (
                   <div key={lang.language}>
                     <div className="flex justify-between mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">{lang.language}</span>
-                      <span className="text-gray-600 dark:text-gray-400 text-sm">{lang.level}</span>
+                      <span className="text-white">{lang.language}</span>
+                      <span className="text-white text-sm">{lang.level}</span>
                     </div>
                     <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                       <motion.div
@@ -122,7 +122,7 @@ const EuropeFocus: React.FC = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+            <h3 className="text-2xl font-bold text-white mb-6">
               {t('europe.process', 'Discussion Process')}
             </h3>
 
@@ -141,10 +141,10 @@ const EuropeFocus: React.FC = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-800 dark:text-white mb-1">
+                  <h4 className="font-bold text-white mb-1">
                     {step.title}
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-white text-sm">
                     {step.description}
                   </p>
                 </div>
@@ -154,21 +154,21 @@ const EuropeFocus: React.FC = () => {
             {/* Timezone Info */}
             <div className="mt-8 bg-gradient-to-r from-europe-blue/10 to-europe-red/10 dark:from-europe-blue/5 dark:to-europe-red/5 rounded-2xl p-6">
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-bold text-gray-800 dark:text-white">{t('europe.timezone', 'Timezone Compatibility')}</h4>
+                <h4 className="font-bold text-white">{t('europe.timezone', 'Timezone Compatibility')}</h4>
                 <Clock className="w-5 h-5 text-europe-blue" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-europe-blue">IST</div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{t('europe.ist', 'India Standard Time')}</p>
+                  <p className="text-sm text-white">{t('europe.ist', 'India Standard Time')}</p>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-europe-red">CET</div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{t('europe.cet', 'Central European Time')}</p>
+                  <p className="text-sm text-white">{t('europe.cet', 'Central European Time')}</p>
                 </div>
               </div>
               <div className="mt-4 text-center">
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-white">
                   {t('europe.overlap', 'Overlap: 2:30 PM - 5:30 PM IST / 9:00 AM - 12:00 PM CET')}
                 </span>
               </div>
@@ -185,10 +185,10 @@ const EuropeFocus: React.FC = () => {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
             <div className="text-left">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-2">
                 {t('europe.cta.title', 'Interested in European Talent?')}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-white">
                 {t('europe.cta.desc', 'Let\'s discuss how I can contribute to your European team')}
               </p>
             </div>
