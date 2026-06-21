@@ -38,7 +38,7 @@ const LanguageSwitcher: React.FC = () => {
               key={language.code}
               onClick={() => changeLanguage(language.code)}
               className={`w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center space-x-3 ${
-                i18n.language === language.code ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400' : ''
+                i18n.language === language.code ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400' : ''
               }`}
             >
               <span className="text-xl">{language.flag}</span>

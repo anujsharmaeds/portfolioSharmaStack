@@ -151,7 +151,7 @@ const Projects: React.FC = () => {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/10">
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-orange-50 dark:from-gray-900 dark:to-orange-900/10">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             {t('projects.title')}
@@ -174,7 +174,7 @@ const Projects: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 mx-auto mb-4">
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-orange-500 mx-auto mb-4">
                   <div className="text-white">
                     {stat.icon}
                   </div>
@@ -201,13 +201,13 @@ const Projects: React.FC = () => {
                     placeholder={t('projects.search.placeholder')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   />
                 </div>
               </div>
 
               {/* Filter Button (Mobile) */}
-              <button className="md:hidden flex items-center justify-center px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl">
+              <button className="md:hidden flex items-center justify-center px-4 py-3 bg-orange-500 text-white border border-orange-600 rounded-xl">
                 <Filter className="w-5 h-5 mr-2" />
                 {t('projects.search.filterBtn')}
               </button>
@@ -220,7 +220,7 @@ const Projects: React.FC = () => {
                   key={filter.id}
                   onClick={() => setActiveFilter(filter.id)}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeFilter === filter.id
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                      ? 'bg-gradient-to-r from-orange-600 to-orange-600 text-white'
                       : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                     }`}
                 >
@@ -285,7 +285,7 @@ const Projects: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="/contact"
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
+                className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
                 {t('projects.cta.start')}
               </motion.a>
@@ -293,7 +293,7 @@ const Projects: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="#"
-                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all"
+                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all"
               >
                 {t('projects.cta.view')}
               </motion.a>

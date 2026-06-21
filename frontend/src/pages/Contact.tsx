@@ -91,7 +91,7 @@ const Contact: React.FC = () => {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-900 dark:to-green-900/10">
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-orange-50 dark:from-gray-900 dark:to-orange-900/10">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             {t('contact.title')}
@@ -126,13 +126,13 @@ const Contact: React.FC = () => {
                     rel={info.link.startsWith('http') ? 'noopener noreferrer' : ''}
                     className="flex items-start space-x-4 group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-500 flex items-center justify-center flex-shrink-0">
                       <div className="text-white">
                         {info.icon}
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                      <h3 className="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">
                         {info.title}
                       </h3>
                       <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-300">
@@ -162,7 +162,7 @@ const Contact: React.FC = () => {
                     key={type.id}
                     onClick={() => setActiveTab(type.id)}
                     className={`w-full text-left p-4 rounded-xl transition-all ${activeTab === type.id
-                      ? 'bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border-2 border-blue-500'
+                      ? 'bg-gradient-to-r from-orange-50 to-orange-50 dark:from-orange-900/20 dark:to-orange-900/20 border-2 border-orange-500'
                       : 'bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 border border-transparent'
                       }`}
                   >
@@ -171,7 +171,7 @@ const Contact: React.FC = () => {
                         {type.title}
                       </h4>
                       {activeTab === type.id && (
-                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <CheckCircle className="w-5 h-5 text-orange-500" />
                       )}
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
@@ -192,7 +192,7 @@ const Contact: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-gradient-to-br from-blue-500/10 to-green-500/10 dark:from-blue-500/5 dark:to-green-500/5 rounded-2xl p-8 border border-blue-200/50 dark:border-blue-500/20"
+              className="bg-gradient-to-br from-orange-500/10 to-orange-500/10 dark:from-orange-500/5 dark:to-orange-500/5 rounded-2xl p-8 border border-orange-200/50 dark:border-orange-500/20"
             >
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
                 <Clock className="w-6 h-6 mr-2" />
@@ -231,7 +231,7 @@ const Contact: React.FC = () => {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
               <div className="mb-8">
                 <div className="flex items-center space-x-2 mb-2">
-                  <Send className="w-6 h-6 text-blue-500" />
+                  <Send className="w-6 h-6 text-orange-500" />
                   <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
                     {t('contact.msg.title')}
                   </h2>
@@ -243,7 +243,7 @@ const Contact: React.FC = () => {
 
               {/* Inquiry Type Badge */}
               <div className="mb-8">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-green-500 text-white text-sm font-medium">
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-500 text-white text-sm font-medium">
                   {inquiryTypes.find(t => t.id === activeTab)?.title}
                 </div>
               </div>
@@ -275,7 +275,7 @@ const Contact: React.FC = () => {
                     },
                   ].map((item) => (
                     <div key={item.step} className="text-center">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-500 flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
                         {item.step}
                       </div>
                       <h4 className="font-semibold text-gray-800 dark:text-white mb-2">
@@ -314,7 +314,7 @@ const Contact: React.FC = () => {
       </div>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/10">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-orange-50 dark:from-gray-900 dark:to-orange-900/10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -332,7 +332,7 @@ const Contact: React.FC = () => {
                   e.preventDefault();
                   document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
+                className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
                 {t('contact.cta.start')}
               </motion.a>
@@ -340,7 +340,7 @@ const Contact: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="tel:+917525071752"
-                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all"
+                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all"
               >
                 {t('contact.cta.call')}
               </motion.a> */}

@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
           {/* Brand Column */}
           <div>
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-600 rounded-xl flex items-center justify-center">
                 <span className="text-white font-bold text-xl">SS</span>
               </div>
               <div>
@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
                   href={social.href}
                   target={social.href.startsWith('mailto:') ? "_self" : "_blank"}
                   rel={social.href.startsWith('mailto:') ? "" : "noopener noreferrer"}
-                  className="w-10 h-10 rounded-full bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors"
+                  className="w-10 h-10 rounded-full bg-gray-800 hover:bg-orange-600 flex items-center justify-center transition-colors"
                   aria-label={social.label}
                 >
                   {social.icon}
@@ -150,11 +150,11 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold text-white mb-6">{t('contact.info.title')}</h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
-                {/* <Phone className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" /> */}
+                {/* <Phone className="w-5 h-5 text-orange-400 mt-1 flex-shrink-0" /> */}
                 {/* <span className="text-gray-400"></span> */}
               </li>
               <li className="flex items-start space-x-3">
-                <Mail className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
+                <Mail className="w-5 h-5 text-orange-400 mt-1 flex-shrink-0" />
                 <a
                   href="mailto:contact@sharmastack.com"
                   target="_blank"
@@ -165,7 +165,7 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-orange-400 mt-1 flex-shrink-0" />
                 <span className="text-gray-400">
                   {t('hero.based', 'Gurugram, Haryana, India')}
                   <br />
@@ -189,13 +189,13 @@ const Footer: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSubscribe()}
                 placeholder={t('footer.newsletter.placeholder')}
-                className="flex-grow px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                className="flex-grow px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-orange-500"
                 disabled={isSubscribing}
               />
               <button
                 onClick={handleSubscribe}
                 disabled={isSubscribing}
-                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center min-w-[120px]"
+                className="px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center min-w-[120px]"
               >
                 {isSubscribing ? <Loader2 className="w-5 h-5 animate-spin" /> : t('footer.newsletter.btn')}
               </button>

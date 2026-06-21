@@ -155,8 +155,8 @@ const Services: React.FC = () => {
       <section className="relative py-32 overflow-hidden bg-white dark:bg-gray-950">
         {/* Background Blobs */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/10 blur-[120px] animate-pulse" />
-          <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-purple-600/10 blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-orange-600/10 blur-[120px] animate-pulse" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-orange-600/10 blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
         </div>
 
         <div className="relative container mx-auto px-4 text-center">
@@ -186,7 +186,7 @@ const Services: React.FC = () => {
               <button
                 onClick={() => setBillingCycle('project')}
                 className={`px-8 py-3 rounded-lg font-medium transition-all ${billingCycle === 'project'
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-orange-600 text-white'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                   }`}
               >
@@ -195,7 +195,7 @@ const Services: React.FC = () => {
               <button
                 onClick={() => setBillingCycle('monthly')}
                 className={`px-8 py-3 rounded-lg font-medium transition-all ${billingCycle === 'monthly'
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-orange-600 text-white'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                   }`}
               >
@@ -218,13 +218,13 @@ const Services: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className={`relative rounded-2xl p-8 border-2 transition-all duration-300 ${pkg.popular
-                    ? 'border-blue-500 shadow-2xl scale-105 bg-gradient-to-b from-white to-blue-50 dark:from-gray-800 dark:to-blue-900/10'
+                    ? 'border-orange-500 shadow-2xl scale-105 bg-gradient-to-b from-white to-orange-50 dark:from-gray-800 dark:to-orange-900/10'
                     : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800'
                   }`}
               >
                 {pkg.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium rounded-full">
+                    <span className="px-4 py-1 bg-gradient-to-r from-orange-600 to-orange-600 text-white text-sm font-medium rounded-full">
                       {t('service.badge.popular')}
                     </span>
                   </div>
@@ -248,7 +248,7 @@ const Services: React.FC = () => {
                   <ul className="space-y-3">
                     {pkg.features.map((feature) => (
                       <li key={feature} className="flex items-start">
-                        <Check className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        <Check className="w-5 h-5 text-orange-500 mr-3 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-600 dark:text-gray-400">{feature}</span>
                       </li>
                     ))}
@@ -276,7 +276,7 @@ const Services: React.FC = () => {
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedPlan(pkg)}
                   className={`w-full py-3 rounded-lg font-medium transition-colors ${pkg.popular
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:opacity-90'
+                      ? 'bg-gradient-to-r from-orange-600 to-orange-600 text-white hover:opacity-90'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                 >
@@ -311,10 +311,10 @@ const Services: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.25)" }}
-                className="bg-white dark:bg-gray-800/40 backdrop-blur-md rounded-[2.5rem] p-10 border border-gray-100 dark:border-gray-700/50 shadow-xl hover:border-blue-500/40 transition-all duration-500 group"
+                className="bg-white dark:bg-gray-800/40 backdrop-blur-md rounded-[2.5rem] p-10 border border-gray-100 dark:border-gray-700/50 shadow-xl hover:border-orange-500/40 transition-all duration-500 group"
               >
                 <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-6 sm:space-y-0 sm:space-x-6 mb-8">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/30 transform group-hover:rotate-6 transition-transform duration-500">
+                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-600 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/30 transform group-hover:rotate-6 transition-transform duration-500">
                     <div className="text-white scale-125">
                       {category.icon}
                     </div>
@@ -332,7 +332,7 @@ const Services: React.FC = () => {
                 <ul className="grid grid-cols-2 gap-3">
                   {category.details.map((detail) => (
                     <li key={detail} className="flex items-center">
-                      <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                      <Check className="w-4 h-4 text-orange-500 mr-2 flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-400">{detail}</span>
                     </li>
                   ))}
@@ -340,7 +340,7 @@ const Services: React.FC = () => {
 
                 <motion.button
                   whileHover={{ x: 5 }}
-                  className="mt-6 flex items-center text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                  className="mt-6 flex items-center text-orange-600 dark:text-orange-400 font-medium hover:text-orange-700 dark:hover:text-orange-300 transition-colors"
                 >
                   {t('service.cat.learnMore')}
                   <ArrowRight className="ml-2 w-4 h-4" />
@@ -366,7 +366,7 @@ const Services: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="/contact"
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
+                className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-600 text-white rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
                 {t('service.custom.btn1')}
               </motion.a>
@@ -374,7 +374,7 @@ const Services: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="#"
-                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-blue-500 dark:hover:border-blue-500 transition-all"
+                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all"
               >
                 {t('service.custom.btn2')}
               </motion.a>

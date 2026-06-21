@@ -196,10 +196,10 @@ const AIChatBot: React.FC = () => {
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-[100] w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white shadow-2xl shadow-blue-500/40 border border-white/20"
+        className="fixed bottom-6 right-6 z-[100] w-16 h-16 bg-gradient-to-br from-orange-600 to-orange-600 rounded-full flex items-center justify-center text-white shadow-2xl shadow-orange-500/40 border border-white/20"
       >
         {isOpen ? <X className="w-8 h-8" /> : <MessageSquare className="w-8 h-8" />}
-        {!isOpen && <span className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-4 border-[#030712] animate-pulse" />}
+        {!isOpen && <span className="absolute -top-1 -right-1 w-5 h-5 bg-orange-500 rounded-full border-4 border-[#030712] animate-pulse" />}
       </motion.button>
 
       <AnimatePresence>
@@ -211,15 +211,15 @@ const AIChatBot: React.FC = () => {
             className="fixed bottom-24 right-6 z-[100] w-[90vw] md:w-[420px] h-[650px] bg-gray-900/95 backdrop-blur-2xl rounded-[2.5rem] border border-white/10 shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="p-6 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-b border-white/5 flex items-center justify-between">
+            <div className="p-6 bg-gradient-to-r from-orange-600/20 to-orange-600/20 border-b border-white/5 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/20">
+                <div className="w-12 h-12 rounded-2xl bg-orange-600 flex items-center justify-center shadow-lg shadow-orange-600/20">
                   <Bot className="w-7 h-7 text-white" />
                 </div>
                 <div>
                   <h3 className="font-black text-white text-lg leading-tight">SharmaStack AI</h3>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
                     <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Enterprise Orchestrator</span>
                   </div>
                 </div>
@@ -231,10 +231,10 @@ const AIChatBot: React.FC = () => {
               {messages.map((msg, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`flex gap-3 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                    <div className={`w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center ${msg.role === 'user' ? 'bg-purple-600' : 'bg-blue-600'}`}>
+                    <div className={`w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center ${msg.role === 'user' ? 'bg-orange-600' : 'bg-orange-600'}`}>
                       {msg.role === 'user' ? <User className="w-4 h-4 text-white" /> : <Bot className="w-4 h-4 text-white" />}
                     </div>
-                    <div className={`p-4 rounded-2xl text-sm leading-relaxed ${msg.role === 'user' ? 'bg-purple-600 text-white rounded-tr-none' : 'bg-white/5 text-gray-300 border border-white/10 rounded-tl-none'}`}>
+                    <div className={`p-4 rounded-2xl text-sm leading-relaxed ${msg.role === 'user' ? 'bg-orange-600 text-white rounded-tr-none' : 'bg-white/5 text-gray-300 border border-white/10 rounded-tl-none'}`}>
                       {msg.content}
                     </div>
                   </div>
@@ -243,7 +243,7 @@ const AIChatBot: React.FC = () => {
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="flex gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center"><Bot className="w-4 h-4 text-white" /></div>
+                    <div className="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center"><Bot className="w-4 h-4 text-white" /></div>
                     <div className="p-4 bg-white/5 border border-white/10 rounded-2xl rounded-tl-none flex gap-1">
                       <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce" />
                       <span className="w-1.5 h-1.5 bg-gray-500 rounded-full animate-bounce [animation-delay:0.2s]" />
@@ -263,7 +263,7 @@ const AIChatBot: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={pill.action}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 rounded-xl text-xs text-blue-400 font-bold transition-all"
+                  className="flex items-center gap-2 px-4 py-2 bg-orange-600/10 hover:bg-orange-600/20 border border-orange-500/30 rounded-xl text-xs text-orange-400 font-bold transition-all"
                 >
                   {'icon' in pill && pill.icon}
                   {pill.label}
@@ -280,9 +280,9 @@ const AIChatBot: React.FC = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                   placeholder={flowStep === 'idle' || flowStep === 'finished' ? "Ask anything..." : "Type your answer..."}
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 pr-14 text-white text-sm focus:outline-none focus:border-blue-500/50 transition-all"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 pr-14 text-white text-sm focus:outline-none focus:border-orange-500/50 transition-all"
                 />
-                <button onClick={handleSend} className="absolute right-2 top-2 bottom-2 px-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all">
+                <button onClick={handleSend} className="absolute right-2 top-2 bottom-2 px-4 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-all">
                   <Send className="w-4 h-4" />
                 </button>
               </div>

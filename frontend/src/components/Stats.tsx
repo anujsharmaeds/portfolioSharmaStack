@@ -46,7 +46,7 @@ const Stats: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/10">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-orange-50 dark:from-gray-900 dark:to-orange-900/10">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -71,10 +71,10 @@ const Stats: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-white/20 dark:border-gray-700/50 hover:border-blue-200 dark:hover:border-blue-500/30 transition-all duration-300"
+              className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-white/20 dark:border-gray-700/50 hover:border-orange-200 dark:hover:border-orange-500/30 transition-all duration-300"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mb-4">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-orange-500 flex items-center justify-center mb-4">
                   <div className="text-white">
                     {stat.icon}
                   </div>
@@ -101,7 +101,7 @@ const Stats: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-500/5 dark:to-purple-500/5 rounded-2xl p-8 border border-blue-200/50 dark:border-blue-500/20"
+          className="mt-12 bg-gradient-to-r from-orange-500/10 to-orange-500/10 dark:from-orange-500/5 dark:to-orange-500/5 rounded-2xl p-8 border border-orange-200/50 dark:border-orange-500/20"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">

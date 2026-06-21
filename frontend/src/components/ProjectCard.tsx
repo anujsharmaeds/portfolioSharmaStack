@@ -32,7 +32,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       viewport={{ once: true }}
       whileHover={{ y: -10, rotateX: 2, rotateY: -2 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="glass-card overflow-hidden group hover:shadow-[0_20px_50px_rgba(59,130,246,0.15)] hover:border-blue-500/30 relative transition-all duration-500"
+      className="glass-card overflow-hidden group hover:shadow-[0_20px_50px_rgba(59,130,246,0.15)] hover:border-orange-500/30 relative transition-all duration-500"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 z-10 pointer-events-none" />
       {/* Project Image */}
@@ -45,7 +45,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       <div className="p-6 relative z-20">
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">
           {title}
         </h3>
 
@@ -55,7 +55,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Metrics Badge */}
         <div className="mb-4">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium glass border-green-500/30 text-green-300">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium glass border-orange-500/30 text-orange-300">
             📈 {metrics}
           </span>
         </div>
@@ -69,7 +69,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             {technologies.map((tech, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/20 transition-all duration-300"
+                className="px-3 py-1 bg-gradient-to-r from-orange-500/10 to-orange-500/10 hover:from-orange-500/20 hover:to-orange-500/20 text-orange-300 rounded-full text-xs font-medium border border-orange-500/20 transition-all duration-300"
               >
                 {tech}
               </span>
@@ -86,7 +86,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 glass rounded-lg hover:bg-white/10 hover:text-purple-400 transition-colors"
+              className="p-2 glass rounded-lg hover:bg-white/10 hover:text-orange-400 transition-colors"
               title={t('project.demo')}
             >
               <ExternalLink className="w-5 h-5" />
@@ -98,7 +98,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               href={codeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 glass rounded-lg hover:bg-white/10 hover:text-purple-400 transition-colors"
+              className="p-2 glass rounded-lg hover:bg-white/10 hover:text-orange-400 transition-colors"
               title={t('project.code')}
             >
               <Github className="w-5 h-5" />
@@ -108,7 +108,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <motion.button
             whileHover={{ x: 5 }}
             onClick={() => toast(t('common.comingSoon', 'Coming Soon!'), { icon: '🚀' })}
-            className="flex items-center text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+            className="flex items-center text-orange-600 dark:text-orange-400 font-medium hover:text-orange-700 dark:hover:text-orange-300 transition-colors"
           >
             {t('project.view')}
             <ArrowRight className="ml-2 w-4 h-4" />

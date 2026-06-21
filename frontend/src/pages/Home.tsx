@@ -94,7 +94,7 @@ const Home: React.FC = () => {
               href="/services"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+              className="inline-flex items-center px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium transition-colors"
             >
               {t('home.services.preview.btn')}
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -128,7 +128,7 @@ const Home: React.FC = () => {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text inline-block">{t('home.about.title')}</h2>
-              <div className="h-1.5 w-24 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
+              <div className="h-1.5 w-24 bg-gradient-to-r from-orange-600 to-orange-600 mx-auto rounded-full" />
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
               </div>
 
               <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-10" />
+                <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 to-orange-600 rounded-2xl blur-2xl opacity-10" />
                 <div className="relative bg-gray-50 dark:bg-gray-800/50 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl">
                   <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
                     {t('home.about.p3').split('SharmaStack').map((part, i, arr) => (
@@ -170,9 +170,9 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <motion.div 
                 whileHover={{ y: -10 }}
-                className="p-8 bg-blue-50/50 dark:bg-blue-900/10 rounded-3xl border border-blue-100 dark:border-blue-800/50 shadow-sm hover:shadow-xl transition-all duration-300"
+                className="p-8 bg-orange-50/50 dark:bg-orange-900/10 rounded-3xl border border-orange-100 dark:border-orange-800/50 shadow-sm hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-500/20">
+                <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-orange-500/20">
                   <Eye className="w-7 h-7" />
                 </div>
                 <h3 className="text-2xl font-bold mb-3 dark:text-white">Our Vision</h3>
@@ -181,9 +181,9 @@ const Home: React.FC = () => {
 
               <motion.div 
                 whileHover={{ y: -10 }}
-                className="p-8 bg-purple-50/50 dark:bg-purple-900/10 rounded-3xl border border-purple-100 dark:border-purple-800/50 shadow-sm hover:shadow-xl transition-all duration-300"
+                className="p-8 bg-orange-50/50 dark:bg-orange-900/10 rounded-3xl border border-orange-100 dark:border-orange-800/50 shadow-sm hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-purple-500/20">
+                <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-orange-500/20">
                   <Palette className="w-7 h-7" />
                 </div>
                 <h3 className="text-2xl font-bold mb-3 dark:text-white">Stunning Design</h3>
@@ -192,9 +192,9 @@ const Home: React.FC = () => {
 
               <motion.div 
                 whileHover={{ y: -10 }}
-                className="p-8 bg-green-50/50 dark:bg-green-900/10 rounded-3xl border border-green-100 dark:border-green-800/50 shadow-sm hover:shadow-xl transition-all duration-300"
+                className="p-8 bg-orange-50/50 dark:bg-orange-900/10 rounded-3xl border border-orange-100 dark:border-orange-800/50 shadow-sm hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-green-500/20">
+                <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-orange-500/20">
                   <Zap className="w-7 h-7" />
                 </div>
                 <h3 className="text-2xl font-bold mb-3 dark:text-white">Robust Engineering</h3>

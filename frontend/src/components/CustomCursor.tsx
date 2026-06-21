@@ -38,7 +38,7 @@ const CustomCursor: React.FC = () => {
     <>
       {/* Main dot */}
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-purple-500 rounded-full mix-blend-screen pointer-events-none z-[100] hidden md:block"
+        className="fixed top-0 left-0 w-4 h-4 bg-orange-500 rounded-full mix-blend-screen pointer-events-none z-[100] hidden md:block"
         animate={{
           x: mousePosition.x - 8,
           y: mousePosition.y - 8,
@@ -49,7 +49,7 @@ const CustomCursor: React.FC = () => {
       />
       {/* Trailing glow circle */}
       <motion.div
-        className="fixed top-0 left-0 w-12 h-12 border-2 border-blue-400 bg-blue-500/10 backdrop-blur-[2px] rounded-full mix-blend-screen pointer-events-none z-[99] hidden md:flex items-center justify-center"
+        className="fixed top-0 left-0 w-12 h-12 border-2 border-orange-400 bg-orange-500/10 backdrop-blur-[2px] rounded-full mix-blend-screen pointer-events-none z-[99] hidden md:flex items-center justify-center"
         animate={{
           x: mousePosition.x - 24,
           y: mousePosition.y - 24,

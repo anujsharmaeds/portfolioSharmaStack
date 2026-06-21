@@ -42,7 +42,7 @@ const Header: React.FC = () => {
               <h1 className="text-lg font-semibold text-white">
                 SharmaStack
               </h1>
-              <p className="text-[10px] uppercase tracking-wider font-bold text-green-500 dark:text-green-300">
+              <p className="text-[10px] uppercase tracking-wider font-bold text-orange-500 dark:text-orange-300">
                 {t('header.subtitle', 'Web Development • AI • IoT • FinTech • Scalable Systems • 5+ Years')}
               </p>
             </div>
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
                 key={item.path}
                 to={item.path}
                 className={`text-sm font-medium transition-all duration-300 ${location.pathname === item.path
-                  ? 'text-blue-600 dark:text-purple-400 font-bold'
+                  ? 'text-orange-600 dark:text-orange-400 font-bold'
                   : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
                   }`}
               >
@@ -107,7 +107,7 @@ const Header: React.FC = () => {
             {/* CTA Button */}
             <Link
               to="/contact"
-              className="hidden md:inline-flex items-center px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-medium shadow-lg hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all duration-300"
+              className="hidden md:inline-flex items-center px-6 py-2 bg-gradient-to-r from-orange-600 to-orange-600 hover:from-orange-700 hover:to-orange-700 text-white rounded-xl font-medium shadow-lg hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all duration-300"
             >
               {t('cta.hire')}
             </Link>
@@ -133,8 +133,8 @@ const Header: React.FC = () => {
                     to={item.path}
                     onClick={() => setIsMenuOpen(false)}
                     className={`text-base font-medium py-2 ${location.pathname === item.path
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                      ? 'text-orange-600 dark:text-orange-400'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400'
                       }`}
                   >
                     {item.label}
@@ -144,7 +144,7 @@ const Header: React.FC = () => {
                   <Link
                     to="/contact"
                     onClick={() => setIsMenuOpen(false)}
-                    className="inline-flex items-center justify-center w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                    className="inline-flex items-center justify-center w-full px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium transition-colors"
                   >
                     {t('cta.hire')}
                   </Link>

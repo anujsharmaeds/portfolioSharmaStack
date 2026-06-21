@@ -158,7 +158,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
               required: 'Name is required',
               minLength: { value: 2, message: 'Name must be at least 2 characters' }
             })}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
             placeholder={t('contact.form.name.ph', 'John Doe')}
             disabled={isSubmitting}
           />
@@ -180,7 +180,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
                 message: 'Invalid email address',
               },
             })}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
             placeholder={t('contact.form.email.ph', 'john@example.com')}
             disabled={isSubmitting}
           />
@@ -201,7 +201,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
               <input
                 type="tel"
                 {...register('phone')}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                 placeholder={t('contact.form.phone.ph', '+91 XXXXXXXXXX')}
                 disabled={isSubmitting}
               />
@@ -215,7 +215,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
               </label>
               <input
                 {...register('company')}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                 placeholder={t('contact.form.company.ph', 'Your Company Name')}
                 disabled={isSubmitting}
               />
@@ -235,7 +235,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
               {activeTab === 'career' ? (
                 <select
                   {...register('role', { required: 'Position is required' })}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   disabled={isSubmitting}
                 >
                   <option value="">Select Position</option>
@@ -251,7 +251,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
               ) : (
                 <input
                   {...register('role', { required: 'Role is required' })}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   placeholder="e.g. Content Creator"
                   disabled={isSubmitting}
                 />
@@ -268,7 +268,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
               <input
                 type="url"
                 {...register('website')}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                 placeholder="https://"
                 disabled={isSubmitting}
               />
@@ -284,7 +284,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
                 <input
                   type="url"
                   {...register('linkedin')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                   placeholder="https://linkedin.com/in/..."
                   disabled={isSubmitting}
                 />
@@ -298,7 +298,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
                   type="file"
                   accept=".pdf,.doc,.docx"
                   {...register('resume', { required: 'Resume is required' })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-700 dark:file:text-gray-300"
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100 dark:file:bg-gray-700 dark:file:text-gray-300"
                   disabled={isSubmitting}
                 />
                 {errors.resume && (
@@ -321,7 +321,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
               required: showSubjectAndMessage ? 'Subject is required' : false,
               minLength: { value: 5, message: 'Subject must be at least 5 characters' }
             })}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
             placeholder={t('contact.form.subject.ph', 'Project Inquiry: Web Development')}
             disabled={isSubmitting}
           />
@@ -340,7 +340,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
             </label>
             <select
               {...register('budget')}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
               disabled={isSubmitting}
             >
               {budgetOptions.map((option) => (
@@ -357,7 +357,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
             </label>
             <select
               {...register('timeline')}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
               disabled={isSubmitting}
             >
               {timelineOptions.map((option) => (
@@ -392,7 +392,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
               maxLength: { value: 2000, message: 'Message must be less than 2000 characters' }
             })}
             rows={6}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none"
             placeholder={t('contact.form.message.ph', 'Tell me about your project, requirements, and goals...')}
             disabled={isSubmitting}
           />
@@ -413,7 +413,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ activeTab = 'general', defaul
         whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
         type="submit"
         disabled={isSubmitting}
-        className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
+        className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-orange-600 to-orange-600 hover:from-orange-700 hover:to-orange-700 text-white rounded-lg font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
       >
         {isSubmitting ? (
           <>
